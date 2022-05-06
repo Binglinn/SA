@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-
 <head>
     <title>Zay Shop eCommerce HTML CSS Template</title>
     <meta charset="utf-8">
