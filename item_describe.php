@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php echo "test"?>
 <head>
     <title>Zay Shop - Product Detail Page</title>
     <meta charset="utf-8">
