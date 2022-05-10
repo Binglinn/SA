@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Zay Shop eCommerce HTML CSS Template</title>
+    <title>失物招領</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,14 +21,16 @@
         .panel{margin:0px;padding:5px;text-align:center;display:none;font-family:'Arial';text-align:left;}
     </style>
     <?php
+    session_start();
     $link=mysqli_connect("localhost","root");
     mysqli_select_db($link, "sa");
 
     if(!$link){
         echo "連接失敗" . mysqli_connect_error(); 
     }
- 
-    $sql_lose= "SELECT * FROM lose where lose_status='即時刊登' ORDER BY lose_date desc";
+
+    $date= date("Y-m-d",strtotime("-7 day"));
+    $sql_lose= "SELECT * FROM lose where lose_status='即時刊登' AND lose_date>'$date' ORDER BY lose_date desc";
 
     $rs_lose = mysqli_query($link, $sql_lose);
     ?>
@@ -60,21 +62,59 @@ https://templatemo.com/tm-559-zay-shop
             </button>
 
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+            <div class="flex-fill">
+                    <?php if($_SESSION["user_admin"]=="admin"){?>
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="about.html">尋物啟事</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="classify.php">分類</a>
+                            <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="contact.html">後臺管理</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">登出</a>
                         </li>
                     </ul>
+                    <?php }elseif($_SESSION["user_admin"]=="user"){?>
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">即時刊登區</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="find.php">尋物啟事</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="classify.php">遺失物分類</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="self.php">個人專區</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">登出</a>
+                        </li>
+                        </ul>
+                    <?php }elseif($_SESSION["user_admin"]==""){?>
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">即時刊登區</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="find.php">尋物啟事</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="classify.php">遺失物分類</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">登入</a>
+                        </li>
+                        </ul>
+                        <?php }?>
                 </div>
                 <!-- <div class="text-end mt-2" >
                     <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
@@ -143,8 +183,8 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="card h-100">           
                             <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" alt="圖片">
                         <div class="card-body">
-                            <div class="flip" ><span class="1"><?php echo $item_list[$i]["lose_name"]?></span><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
-                            <div class="panel">日期：<?php echo $item_list[$i]["lose_date"]?><br>地點：<?php echo $item_list[$i]["lose_place"]?><br>特徵：<?php echo $item_list[$i]["lose_describe"]?></div>
+                            <div class="flip" ><b><?php echo $item_list[$i]["lose_name"]?></b><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
+                            <div class="panel">物品編號：<?php echo $item_list[$i]["lose_id"]?><br>日期：<?php echo $item_list[$i]["lose_date"]?><br>地點：<?php echo $item_list[$i]["lose_place"]?><br>特徵：<?php echo $item_list[$i]["lose_describe"]?></div>
                         </div>
                     </div>    
                 </div>
@@ -152,6 +192,12 @@ https://templatemo.com/tm-559-zay-shop
             </div>
         </div>
          <div class='col-md-12'>
+         <?php if($_SESSION["user_admin"]=="admin" or $_SESSION["user_admin"]==""){?>
+            <center><a href="message.php"><button class="btn btn-success btn-lg px-3">查看留言區</button></a></center>
+        <?php } elseif($_SESSION["user_admin"]=="user"){?>
+            <center><a href="insert.php"><button class="btn btn-success btn-lg px-3">新增遺失物</button></a>
+            <a href="message.php"><button class="btn btn-success btn-lg px-3">查看留言區</button></a></center>
+        <?php } ?>
             <ul class="pagination pagination-lg justify-content-end">
                 <p class="page-item">
                 <br>

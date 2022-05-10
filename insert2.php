@@ -3,7 +3,7 @@
     $lose_status = "即時刊登";
     $lose_office = "123";
     $lose_picture = "123";
-    $user_email = "123";
+    $user_email = $_SESSION['user_email'];
     $lose_classify = $_POST["classify"];
     $lose_name = $_POST["name"];
     $lose_describe = $_POST["describe"];
@@ -27,7 +27,7 @@
     $upload_file = $_FILES['image']['tmp_name'];
     move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
 
-    $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_picture,lose_status,lose_office) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$upload_dir','$lose_status','$lose_office')";
+    $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_picture,lose_status,lose_office,user_email) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$upload_dir','$lose_status','$lose_office','$user_email')";
    
     if(mysqli_query($link, $sql)){
         header("location:index.php");

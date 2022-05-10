@@ -1,4 +1,7 @@
-
+<?php
+    session_start();
+?>
+ 
 <!DOCTYPE html>
 
 <html lang="en">
@@ -18,6 +21,22 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+
+    <style>
+        .flip{margin:0px;padding:5px;text-align:center;cursor:pointer;font-family:'Arial';}
+        .panel{margin:0px;padding:5px;text-align:center;display:none;font-family:'Arial';text-align:left;}
+    </style>
+    <?php
+    $link=mysqli_connect("localhost","root","","sa");
+
+    if(!$link){
+        echo "連接失敗" . mysqli_connect_error(); 
+    }
+    $date = date("Y-m-d",strtotime("-7 day"));
+    $sql_lose= "SELECT * FROM lose where lose_status='即時刊登' AND lose_date>'$date' order by lose_date desc";
+    $rs_lose = mysqli_query($link, $sql_lose);
+    ?>
+    
 <!--
     
 TemplateMo 559 Zay Shop
@@ -45,7 +64,7 @@ https://templatemo.com/tm-559-zay-shop
             </button>
 
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-            <div class="flex-fill">
+                <div class="flex-fill">
                     <?php if($_SESSION["user_admin"]=="admin"){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
@@ -107,63 +126,33 @@ https://templatemo.com/tm-559-zay-shop
         </div>
     </nav>
     <!-- Close Header -->
-    <section class="bg-light">
-        <div class="container py-5">
-            <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1"><b><font color="green">Post</font></b></h1>
-                    <p>
-                        發佈拾獲資訊
-                    </p>
-                </div>
+    
+    <!-- Modal -->
+    <div class="container py-5" >
+        <div class="row py-5">
+            <form action="send_message.php" method="post">
+            <label  style="color: green;" for="inputname" ><h1>留言</h1></label>
+             <div class="form-group col-md-6 mb-3">
+                 <input  type="text" class="form-control mt-1" name="lose_id" placeholder="物品編號">
             </div>
-        </div>
-    </section>
-
-    <div class="container py-5">
-        <form class="col-md-9 m-auto" action="insert2.php" method="post" enctype="multipart/form-data" >
-            <div class="mb-3">
-                <label>物品名稱</label>
-                <input type="text" class="form-control mt-1" name="name" placeholder="物品名稱">
+            <div class="form-group col-md-6 mb-3">
+                <textarea type="text" rows="5" class="form-control mt-1" name="mes_content" placeholder="留言"></textarea>
             </div>
-            <div class="mb-3">
-                <label>遺失地點</label>
-                <input type="text" class="form-control mt-1" name="place" placeholder="遺失地點">
+            <div class="col text-end mt-1">
+                <input type="submit" value="確認送出" class="btn btn-success btn-lg px-3">
+            </div>      
+            </form>
             </div>
-            <div class="mb-3">
-                <label>遺失日期</label>
-                <input type="datetime-local" class="form-control mt-1" name="date" placeholder="遺失日期">
-            </div>
-            <div class="mb-3">
-                <label>分類</label><br>
-                <select class="form-control mt-1" name="classify">
-                    <option >請選擇分類</option>
-                    <option value="證件">證件</option>
-                    <option value="皮夾&包包">皮夾&包包</option>
-                    <option value="3C產品">3C產品</option>
-                    <option value="鑰匙">鑰匙</option>
-                    <option value="文具用品">文具用品</option>
-                    <option value="衣物">衣物</option>
-                    <option value="雨傘">雨傘</option>
-                    <option value="其他">其他</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label>圖片上傳</label>
-                <input type="file" class="form-control mt-1" name="image" accept=".jpg, .jepg, .png">
-            </div>
-            <div class="mb-3">
-                <label>物品描述</label>
-                <textarea class="form-control mt-1"  name="describe" placeholder="物品描述" rows="5"></textarea>
-            </div>
-            <div class="row">
-                <div class="col text-end mt-2">
-                    <input type="submit" class="btn btn-success btn-lg px-3" value="確認送出">
-                </div>
-            </div>
-        </form>
     </div>
-
+    
+  
+            
+    
+   
+                    
+    <!-- Start Banner Hero -->
+    
+    <!-- End Banner Hero -->
 
 
     <!-- Start Footer -->
