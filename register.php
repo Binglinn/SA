@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    $user_name = $_SESSION['user_name'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,22 +54,24 @@ https://templatemo.com/tm-559-zay-shop
 
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
                 <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="find.php">尋物啟事</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="classify.php">分類</a>
+                            <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a > </a>
                         </li>
-                    </ul>
+                        </ul>
                 </div>
-                
+                <!-- <div class="text-end mt-2" >
+                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
+                </div> -->
             </div>
 
         </div>

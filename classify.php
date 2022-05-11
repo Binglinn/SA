@@ -42,6 +42,8 @@ $( document ).tooltip();
 </head>
 <?php
     session_start();
+    $user_name = $_SESSION['user_name'];
+    
       $link=mysqli_connect("localhost","root","12345678","sa");
       if(!$link){
         echo "連結失敗".mysqli_connect_error();

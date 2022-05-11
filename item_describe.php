@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php echo "test"?>
+<?php 
+    session_start();
+    $user_name = $_SESSION['user_name'];
+?>
 <head>
     <title>Zay Shop - Product Detail Page</title>
     <meta charset="utf-8">
