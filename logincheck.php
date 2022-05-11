@@ -9,13 +9,15 @@ $link=mysqli_connect("localhost","root","12345678","sa");
 $sql="select * from user where user_email= '$user_email' and user_password='$user_password'";
 
 
+
 $result=mysqli_query($link,$sql);
 
 
 if($record = mysqli_fetch_assoc($result)){
+    $_SESSION['user_name']= $record['user_name'];
     if($record["user_admin"]=='admin'){
         $_SESSION["user_admin"]="admin";
-        header('location:shop.html');
+        header('location:index.php');
     }
     else if($record["user_admin"] == 'user'){
         $_SESSION["user_admin"]="user";
