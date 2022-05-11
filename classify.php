@@ -200,6 +200,7 @@ $( document ).tooltip();
         </div>
 
             <div class="col-lg-9">
+            
                 <div class="row">
                     <div class="col-md-8">
                         <ul class="list-inline shop-top-menu pb-3 pt-1" >
@@ -218,9 +219,6 @@ $( document ).tooltip();
                             </form>
                         </div>
                     </div>
-
-
-
                 <div class="row">
                    
                 <?php
@@ -300,7 +298,12 @@ $( document ).tooltip();
         <br>
         <p>
         <div class='col-md-12'>
+            <?php if($_SESSION["user_admin"]=="admin" ){?>
+                <center><a href="insert.php"><button class="btn btn-success btn-lg px-3">新增遺失物</button></a></center>
+            <?php } ?>
             <ul class="pagination pagination-lg justify-content-end">
+                   
+                
                 <p class="page-item">
                 <br>
                     <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href='?page=1'>首頁</a></li>

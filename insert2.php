@@ -1,9 +1,13 @@
 <?php
     session_start();
-    $lose_status = "即時刊登";
-    $lose_office = "123";
-    $lose_picture = "123";
-    //$user_email = "123";
+    if($_SESSION["user_admin"]=="admin"){
+         $lose_status = "分類";
+         $lose_office = $_POST["office"];
+    } else{
+        $lose_status = "即時刊登";
+        $lose_office = "";
+    }
+    
     $lose_classify = $_POST["classify"];
     $lose_name = $_POST["name"];
     $lose_describe = $_POST["describe"];
@@ -24,6 +28,8 @@
    
             
     //上傳檔案
+
+    
     $upload_dir= $_FILES['image']['name'];
     $upload_file = $_FILES['image']['tmp_name'];
     move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);

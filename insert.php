@@ -1,7 +1,4 @@
-<?php
-    session_start();
-    $user_name = $_SESSION['user_name'];
-?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -33,6 +30,11 @@ https://templatemo.com/tm-559-zay-shop
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
+
+<?php
+    session_start();
+    $user_name = $_SESSION['user_name'];
+?>
 
 <body>
     <!-- Header -->
@@ -85,7 +87,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="logout.php"><?php echo $user_name ?>, 登出</a>
                         </li>
                         </ul>
-                    <?php }elseif($_SESSION["user_admin"]==""){?>
+                    <?php } elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">即時刊登區</a>
@@ -115,9 +117,11 @@ https://templatemo.com/tm-559-zay-shop
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1"><b><font color="green">Post</font></b></h1>
-                    <p>
-                        發佈拾獲資訊
-                    </p>
+                    <?php if($_SESSION["user_admin"]=="admin"){?>
+                        <p>新增分類物品</p>
+                    <?php } else{ ?>
+                        <p>發佈拾獲資訊</p>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -140,7 +144,7 @@ https://templatemo.com/tm-559-zay-shop
             <div class="mb-3">
                 <label>分類</label><br>
                 <select class="form-control mt-1" name="classify">
-                    <option >請選擇分類</option>
+                    <option selected style="display: none;">請選擇分類</option>  
                     <option value="證件">證件</option>
                     <option value="皮夾&包包">皮夾&包包</option>
                     <option value="3C產品">3C產品</option>
@@ -159,6 +163,17 @@ https://templatemo.com/tm-559-zay-shop
                 <label>物品描述</label>
                 <textarea class="form-control mt-1"  name="describe" placeholder="物品描述" rows="5"></textarea>
             </div>
+            <?php if($_SESSION["user_admin"]=="admin"){?>
+            <div class="mb-3">
+                <label>領取處室</label>
+                <select class="form-control mt-1" name="office" >
+                    <option selected style="display: none;">請輸入處室</option>                    
+                    <option value="野聲樓一樓YP104">野聲樓一樓YP104</option>
+                    <option value="進修部二樓ES201">進修部二樓ES201</option>
+                    <option value="軍訓室">軍訓室</option>
+                </select>
+            </div>
+            <?php } ?>
             <div class="row">
                 <div class="col text-end mt-2">
                     <input type="submit" class="btn btn-success btn-lg px-3" value="確認送出">
