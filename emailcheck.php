@@ -27,7 +27,7 @@
             
         }
         echo $email_check;
-        $link=mysqli_connect("localhost","root","","sa");
+        $link=mysqli_connect("localhost","root","12345678","sa");
         if(!$link){
             echo "連接失敗" . mysqli_connect_error(); 
         }

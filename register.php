@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,9 +67,6 @@ https://templatemo.com/tm-559-zay-shop
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">後臺管理</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">登出</a>
-                        </li>
                     </ul>
                     <?php }elseif($_SESSION["user_admin"]=="user"){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -80,9 +81,6 @@ https://templatemo.com/tm-559-zay-shop
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="self.php">個人專區</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">登出</a>
                         </li>
                         </ul>
                     <?php }elseif($_SESSION["user_admin"]==""){?>

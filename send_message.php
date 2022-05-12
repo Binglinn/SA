@@ -6,24 +6,29 @@
     $user_email = $_SESSION['user_email'];
     $lose_id = $_POST['lose_id'];
 
-    $link = mysqli_connect("localhost", "root", "", "sa");
+    $link = mysqli_connect("localhost", "root", "12345678", "sa");
 
-    $id_sql="select max(mes_id) from mes";
+    $id_sql="select max(mes_id) from mes"; 
     $rs_id=mysqli_query($link, $id_sql);
     $record=mysqli_fetch_row($rs_id);
 
     $mes_id=$record[0]+1;
 
-    if(!$link){
-        echo "連接失敗" . mysqli_connect_error(); 
-    }
-    mysqli_query($link, "set names utf8");
-    $sql = "INSERT INTO mes (mes_id,mes_content,mes_time,user_email,lose_id) VALUES ('$mes_id', '$mes_content', '$mes_time', '$user_email','$lose_id')";
-
-    if(mysqli_query($link, $sql)){
-        header("location:message.php");
-    }else{
-        echo $sql;
+    $lose_sql = "select lose_id,lose_name from lose";
+    $rs_lose = mysqli_query($link,$lose_sql);
+    while($record_lose=mysqli_fetch_assoc($rs_lose)){
+        if($lose_id == $record_lose['lose_id']){
+            $sql = "INSERT INTO mes (mes_id,mes_content,mes_time,user_email,lose_id,lose_name) VALUES ('$mes_id', '$mes_content', '$mes_time', '$user_email','$lose_id','$record_lose[lose_name]')";
+            if(mysqli_query($link, $sql)){
+                header("location:message.php");
+            }
+        }else{
+            ?>
+            <script>
+            alert("沒有此物品編號，請重新輸入");
+            parent.location.href='message.php';</script>
+            <?php
+        }
     }
 ?>
 

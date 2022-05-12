@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +46,7 @@ $( document ).tooltip();
 </head>
 <?php
     session_start();
-      $link=mysqli_connect("localhost","root","","sa");
+      $link=mysqli_connect("localhost","root","12345678","sa");
       if(!$link){
         echo "連結失敗".mysqli_connect_error();
       }
@@ -217,7 +221,7 @@ $( document ).tooltip();
                         </div>
                     </div>
 
-
+ 
 
                 <div class="row">
                    

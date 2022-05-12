@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 
 <!DOCTYPE html>
 
@@ -124,19 +127,19 @@ https://templatemo.com/tm-559-zay-shop
         <form class="col-md-9 m-auto" action="insert2.php" method="post" enctype="multipart/form-data" >
             <div class="mb-3">
                 <label>物品名稱</label>
-                <input type="text" class="form-control mt-1" name="name" placeholder="物品名稱">
+                <input type="text" class="form-control mt-1" name="name" placeholder="物品名稱" required="required">
             </div>
             <div class="mb-3">
-                <label>遺失地點</label>
-                <input type="text" class="form-control mt-1" name="place" placeholder="遺失地點">
+                <label>拾獲地點</label>
+                <input type="text" class="form-control mt-1" name="place" placeholder="拾獲地點" required="required">
             </div>
             <div class="mb-3">
-                <label>遺失日期</label>
-                <input type="datetime-local" class="form-control mt-1" name="date" placeholder="遺失日期">
+                <label>拾獲日期</label>
+                <input type="date" class="form-control mt-1" name="date" placeholder="遺失日期" required="required">
             </div>
             <div class="mb-3">
                 <label>分類</label><br>
-                <select class="form-control mt-1" name="classify">
+                <select class="form-control mt-1" name="classify" required>
                     <option >請選擇分類</option>
                     <option value="證件">證件</option>
                     <option value="皮夾&包包">皮夾&包包</option>
@@ -158,7 +161,7 @@ https://templatemo.com/tm-559-zay-shop
             </div>
             <div class="row">
                 <div class="col text-end mt-2">
-                    <input type="submit" class="btn btn-success btn-lg px-3" value="確認送出">
+                    <center><input type="submit" class="btn btn-success btn-lg px-3" value="確認送出"></center>
                 </div>
             </div>
         </form>

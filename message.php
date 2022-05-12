@@ -1,15 +1,7 @@
 <?php
     session_start();
-    $link = mysqli_connect("localhost", "root", "", "sa");
-    if(!$link){
-        echo "連接失敗" . mysqli_connect_error(); 
-    }
-    mysqli_query($link, "set names utf8");
-    $sql = "SELECT * FROM mes ORDER BY mes_time desc";
-    $result = mysqli_query($link, $sql);
 ?>
- 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 
 <html lang="en">
 
@@ -117,11 +109,49 @@ https://templatemo.com/tm-559-zay-shop
 
         </div>
     </nav>
-    <br><br>
+    <br>
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4 pb-4" align=right>
+                <div width=50px>
+                    <form action="message.php" method="get">
+                        <?php $searchtxt = $_GET["searchtxt"]; ?>
+                        <div class="input-group-prepend">     
+                            <p align=margin-right><input type=text class="form-control" name="searchtxt" placeholder="搜尋物品編號" ></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+ 
+        session_start();
+        $link = mysqli_connect("localhost", "root", "12345678", "sa");
+        if(!$link){
+            echo "連接失敗" . mysqli_connect_error(); 
+        }
+
+        mysqli_query($link, "set names utf8");
+
+        $date = date("Y-m-d",strtotime("-7 day"));
+        if(isset($searchtxt))
+            {
+                $sql="select * from mes where lose_id like '%$searchtxt%' AND mes_time>'$date' ORDER BY mes_time desc";   
+            }
+            else{
+                $sql = "SELECT * FROM mes WHERE mes_time>'$date' ORDER BY mes_time desc";
+            }
+        $result=mysqli_query($link,$sql);
+
+        ?>
+    <br>
     <table class="table">
     <?php
     echo "
             <th>物品編號</th>
+            <th>物品名稱</th>
             <th>留言</th>
             <th>留言時間</th>
             <th>留言者</th>";
@@ -130,6 +160,7 @@ https://templatemo.com/tm-559-zay-shop
     while($record=mysqli_fetch_row($result)){
         echo "<tr>
                   <td>$record[4]</td>
+                  <td>$record[5]</td>
                   <td>$record[1]</td>
                   <td>$record[2]</td>
                   <td>$record[3]</td>
@@ -137,17 +168,12 @@ https://templatemo.com/tm-559-zay-shop
     }
     ?>
     </table>
+
     <?php if($_SESSION["user_admin"]=="user"){?>
         <center><a href="add_message.php"><button class="btn btn-success btn-lg px-3">新增留言</button></a></center>
     <?php } ?>
     <br><br>
-    <!-- Close Header -->
-    
-    <!-- Modal -->
 
-    
-   
-                
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
