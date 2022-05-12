@@ -34,7 +34,7 @@
         echo "連接失敗" . mysqli_connect_error(); 
     }
     $date = date("Y-m-d",strtotime("-7 day"));
-    $sql_lose= "SELECT * FROM lose where lose_status='即時刊登' AND lose_date>'$date' order by lose_date desc";
+    $sql_lose= "SELECT * FROM lose where lose_status='即時刊登' AND lose_postTime>'$date' order by lose_postTime desc";
     $rs_lose = mysqli_query($link, $sql_lose);
     ?>
     

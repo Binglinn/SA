@@ -131,15 +131,15 @@ https://templatemo.com/tm-559-zay-shop
         <form class="col-md-9 m-auto" action="insert2.php" method="post" enctype="multipart/form-data" >
             <div class="mb-3">
                 <label>物品名稱</label>
-                <input type="text" class="form-control mt-1" name="name" placeholder="物品名稱">
+                <input type="text" class="form-control mt-1" name="name" placeholder="物品名稱" required="required">
             </div>
             <div class="mb-3">
-                <label>遺失地點</label>
-                <input type="text" class="form-control mt-1" name="place" placeholder="遺失地點">
+                <label>拾獲地點</label>
+                <input type="text" class="form-control mt-1" name="place" placeholder="拾獲地點" required="required">
             </div>
             <div class="mb-3">
-                <label>遺失日期</label>
-                <input type="datetime-local" class="form-control mt-1" name="date" placeholder="遺失日期">
+                <label>拾獲日期</label>
+                <input type="datetime-local" class="form-control mt-1" name="date" placeholder="拾獲日期" >
             </div>
             <div class="mb-3">
                 <label>分類</label><br>

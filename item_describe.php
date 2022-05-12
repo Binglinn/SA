@@ -40,7 +40,7 @@ https://templatemo.com/tm-559-zay-shop
       $sql="select * from lose where lose_id = $lose_id ";
       $rs=mysqli_query($link,$sql);
 
-      $sql_place="select * from lose,place where lose_id = $lose_id  and lose.lose_place = place.place_name ";
+      $sql_place="select * from lose,place where lose_id = $lose_id  and lose.lose_place like '%織品%'";
       $rs_place=mysqli_query($link,$sql_place);
 
       
@@ -167,8 +167,8 @@ https://templatemo.com/tm-559-zay-shop
                             <p class="h3 py-2">拾獲日期：<?php echo  $record['lose_date']?></p>
                             <p class="h3 py-2">拾獲地點：<?php echo $record['lose_place'] ?></p> 
                             <p class="h3 py-2">物品敘述：<?php echo $record['lose_describe'] ?></p>   
-                            <?php while($record=mysqli_fetch_assoc($rs_place)){   ?>
-                                <div><img width=100% src="assets/img/<?php echo $record['place_picture'] ?>"></div>
+                            <?php while($record=mysqli_fetch_assoc($rs_place)){   ;?>
+                                <div><img width=100% src="assets/img/location/<?php echo $record['place_picture'] ?>"></div>
                                 
 
 

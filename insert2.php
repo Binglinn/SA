@@ -13,6 +13,7 @@
     $lose_describe = $_POST["describe"];
     $lose_place = $_POST["place"];
     $lose_date = $_POST["date"];
+    $lose_postTime = date("Y/m/d H:i:s",time()+8*60*60);
     $user_email = $_SESSION['user_email'];
     
 
@@ -34,7 +35,7 @@
     $upload_file = $_FILES['image']['tmp_name'];
     move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
 
-    $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_picture,lose_status,lose_office,user_email) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$upload_dir','$lose_status','$lose_office','$user_email')";
+    $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_postTime,lose_picture,lose_status,lose_office,user_email) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$lose_postTime','$upload_dir','$lose_status','$lose_office','$user_email')";
    
     if(mysqli_query($link, $sql)){
         header("location:index.php");

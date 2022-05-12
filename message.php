@@ -1,9 +1,7 @@
 <?php
     session_start();
-    $user_name = $_SESSION['user_name'];
 ?>
-
-<!DOCTYPE html>
+<!DOCTYPE html> 
 
 <html lang="en">
 
@@ -51,13 +49,13 @@ https://templatemo.com/tm-559-zay-shop
 
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
                 <div class="flex-fill">
-                <?php if($_SESSION["user_admin"]=="admin"){?>
+                    <?php if($_SESSION["user_admin"]=="admin"){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="find.php">尋物啟事</a>
+                            <a class="nav-link" href="about.html">尋物啟事</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="classify.php">遺失物分類</a>
@@ -113,19 +111,19 @@ https://templatemo.com/tm-559-zay-shop
     </nav>
     <br>
     <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-md-8"></div>
-                    <div class="col-md-4 pb-4" align=right>
-                        <div width=50px>
-                            <form action="message.php" method="get">
-                                <?php $searchtxt = $_GET["searchtxt"]; ?>
-                                <div class="input-group-prepend">     
-                                    <p align=margin-right><input type=text class="form-control" name="searchtxt" placeholder="搜尋物品編號" ></p>
-                                </div>
-                            </form>
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4 pb-4" align=right>
+                <div width=50px>
+                    <form action="message.php" method="get">
+                        <?php $searchtxt = $_GET["searchtxt"]; ?>
+                        <div class="input-group-prepend">     
+                            <p align=margin-right><input type=text class="form-control" name="searchtxt" placeholder="搜尋物品編號" ></p>
                         </div>
-                    </div>
+                    </form>
                 </div>
+            </div>
+        </div>
     </div>
     <?php
  
@@ -134,15 +132,16 @@ https://templatemo.com/tm-559-zay-shop
         if(!$link){
             echo "連接失敗" . mysqli_connect_error(); 
         }
+
         mysqli_query($link, "set names utf8");
 
+        $date = date("Y-m-d",strtotime("-7 day"));
         if(isset($searchtxt))
             {
-                $sql="select * from mes where lose_id like '%$searchtxt%'";   
+                $sql="select * from mes where lose_id like '%$searchtxt%' AND mes_time>'$date' ORDER BY mes_time desc";   
             }
             else{
-                $sql = "SELECT * FROM mes ORDER BY mes_time desc";
-
+                $sql = "SELECT * FROM mes WHERE mes_time>'$date' ORDER BY mes_time desc";
             }
         $result=mysqli_query($link,$sql);
 
@@ -152,17 +151,19 @@ https://templatemo.com/tm-559-zay-shop
     <?php
     echo "
             <th>物品編號</th>
+            <th>物品名稱</th>
             <th>留言</th>
             <th>留言時間</th>
             <th>留言者</th>";
 
     //一次取得一筆(列)資料，並存入record[]
-    while($record=mysqli_fetch_row($result)){
+    while($record=mysqli_fetch_assoc($result)){
         echo "<tr>
-                  <td>$record[4]</td>
-                  <td>$record[1]</td>
-                  <td>$record[2]</td>
-                  <td>$record[3]</td>
+                  <td>$record[lose_id]</td>
+                  <td>$record[lose_name]</td>
+                  <td>$record[mes_content]</td>
+                  <td>$record[mes_time]</td>
+                  <td>$record[user_email]</td>
               </tr>";
     }
     ?>
