@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $user_name = $_SESSION['user_name'];
 ?>
  
 <!DOCTYPE html>
@@ -65,14 +64,14 @@ https://templatemo.com/tm-559-zay-shop
             </button>
 
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill  ">
-                <?php if($_SESSION["user_admin"]=="admin"){?>
+                <div class="flex-fill">
+                    <?php if($_SESSION["user_admin"]=="admin"){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="find.php">尋物啟事</a>
+                            <a class="nav-link" href="about.html">尋物啟事</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="classify.php">遺失物分類</a>
@@ -186,7 +185,7 @@ https://templatemo.com/tm-559-zay-shop
                             <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" alt="圖片">
                         <div class="card-body">
                             <div class="flip" ><b><?php echo $item_list[$i]["lose_name"]?></b><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
-                            <div class="panel">物品編號：<?php echo $item_list[$i]["lose_id"]?><br>日期：<?php echo $item_list[$i]["lose_date"]?><br>地點：<?php echo $item_list[$i]["lose_place"]?><br>物品描述：<?php echo $item_list[$i]["lose_describe"]?></div>
+                            <div class="panel">物品編號：<?php echo $item_list[$i]["lose_id"]?><br>拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>拾獲地點：<?php echo $item_list[$i]["lose_place"]?><br>物品描述：<?php echo $item_list[$i]["lose_describe"]?></div>
                         </div>
                     </div>    
                 </div>
