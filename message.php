@@ -51,13 +51,13 @@ https://templatemo.com/tm-559-zay-shop
 
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
                 <div class="flex-fill">
-                    <?php if($_SESSION["user_admin"]=="admin"){?>
+                <?php if($_SESSION["user_admin"]=="admin"){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">尋物啟事</a>
+                            <a class="nav-link" href="find.php">尋物啟事</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="classify.php">遺失物分類</a>
@@ -66,7 +66,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="contact.html">後臺管理</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout.php"><?php echo $user_name ?>, 登出</a>
+                            <a class="nav-link" href="logout.php">登出</a>
                         </li>
                     </ul>
                     <?php }elseif($_SESSION["user_admin"]=="user"){?>
@@ -84,7 +84,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="self.php">個人專區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout.php"><?php echo $user_name ?>, 登出</a>
+                            <a class="nav-link" href="logout.php">登出</a>
                         </li>
                         </ul>
                     <?php }elseif($_SESSION["user_admin"]==""){?>

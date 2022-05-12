@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $user_name = $_SESSION['user_name'];
 ?>
  
 <!DOCTYPE html>
@@ -33,9 +32,8 @@
     if(!$link){
         echo "連接失敗" . mysqli_connect_error(); 
     }
-    $date = date("Y-m-d",strtotime("-7 day"));
-    $sql_lose= "SELECT * FROM lose where lose_status='即時刊登' AND lose_date>'$date' order by lose_date desc";
-    $rs_lose = mysqli_query($link, $sql_lose);
+    $sql_find= "SELECT * FROM find ";
+    $rs_find = mysqli_query($link, $sql_find);
     ?>
     
 <!--
@@ -65,7 +63,7 @@ https://templatemo.com/tm-559-zay-shop
             </button>
 
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill  ">
+                <div class="flex-fill">
                 <?php if($_SESSION["user_admin"]=="admin"){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
@@ -149,14 +147,15 @@ https://templatemo.com/tm-559-zay-shop
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1"><b><font color="green">Latest</font></b></h1>
+                    <h1 class="h1"><b><font color="green">Lost</font></b></h1>
                     <p>
-                        即時刊登區
+                        尋物啟事
                     </p>
                 </div>
             </div>
+           
             <?php
-                        $data_nums = mysqli_num_rows($rs_lose); //統計總比數
+                        $data_nums = mysqli_num_rows($rs_find); //統計總比數
                         
                         $per = 8; //每頁顯示項目數量
                         $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
@@ -176,17 +175,17 @@ https://templatemo.com/tm-559-zay-shop
                 <?php 
                for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
                    
-                while($record=mysqli_fetch_assoc($rs_lose)){
+                while($record=mysqli_fetch_assoc($rs_find)){
 
                     array_push($item_list,$record);}?>
                     
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" alt="圖片">
+                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" alt="圖片">
                         <div class="card-body">
-                            <div class="flip" ><b><?php echo $item_list[$i]["lose_name"]?></b><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
-                            <div class="panel">物品編號：<?php echo $item_list[$i]["lose_id"]?><br>日期：<?php echo $item_list[$i]["lose_date"]?><br>地點：<?php echo $item_list[$i]["lose_place"]?><br>物品描述：<?php echo $item_list[$i]["lose_describe"]?></div>
+                            <div class="flip" ><b><?php echo $item_list[$i]["find_name"]?></b><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
+                            <div class="panel">遺失地點：<?php echo $item_list[$i]["find_place"]?><br>物品描述：<?php echo $item_list[$i]["find_describe"]?><br>聯絡資訊：<?php echo $item_list[$i]["find_contact"]?></div>
                         </div>
                     </div>    
                 </div>
@@ -194,11 +193,11 @@ https://templatemo.com/tm-559-zay-shop
             </div>
         </div>
          <div class='col-md-12'>
-        <?php if($_SESSION["user_admin"]=="admin" or $_SESSION["user_admin"]==""){?>
-            <center><a href="message.php"><button class="btn btn-success btn-lg px-3">查看留言區</button></a></center>
+        <?php if($_SESSION["user_admin"]=="admin"){?>
+            <center><a href=""><button class="btn btn-success btn-lg px-3">刪除尋物</button></a></center>
         <?php } elseif($_SESSION["user_admin"]=="user"){?>
-            <center><a href="insert.php"><button class="btn btn-success btn-lg px-3">新增遺失物</button></a>
-            <a href="message.php"><button class="btn btn-success btn-lg px-3">查看留言區</button></a></center>
+            <center><a href="find-insert.php"><button class="btn btn-success btn-lg px-3">新增尋物</button></a>
+           </center>
         <?php } ?>
             <ul class="pagination pagination-lg justify-content-end">
           
