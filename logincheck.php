@@ -4,7 +4,7 @@ $user_email=$_POST['user_email'];
 $_SESSION['user_email'] = $user_email;
 $user_password=$_POST['user_password'];
 
-$link=mysqli_connect("localhost","root","12345678","sa");
+$link=mysqli_connect("localhost","root","","sa");
 
 $sql="select * from user where user_email= '$user_email' and user_password='$user_password'";
 

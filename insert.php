@@ -140,7 +140,7 @@ https://templatemo.com/tm-559-zay-shop
             <div class="mb-3">
                 <label>分類</label><br>
                 <select class="form-control mt-1" name="classify" required>
-                    <option >請選擇分類</option>
+                    <option></option>
                     <option value="證件">證件</option>
                     <option value="皮夾&包包">皮夾&包包</option>
                     <option value="3C產品">3C產品</option>

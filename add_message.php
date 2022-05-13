@@ -4,7 +4,7 @@
  
 <!DOCTYPE html>
 
-<html lang="en"> 
+<html lang="en">
 
 <head>
     <title>Zay Shop eCommerce HTML CSS Template</title>
@@ -26,6 +26,17 @@
         .flip{margin:0px;padding:5px;text-align:center;cursor:pointer;font-family:'Arial';}
         .panel{margin:0px;padding:5px;text-align:center;display:none;font-family:'Arial';text-align:left;}
     </style>
+    <?php
+    $link=mysqli_connect("localhost","root","","sa");
+
+    if(!$link){
+        echo "連接失敗" . mysqli_connect_error(); 
+    }
+    $date = date("Y-m-d",strtotime("-7 day"));
+    $sql_lose= "SELECT * FROM lose where lose_status='即時刊登' AND lose_date>'$date' order by lose_date desc";
+    $rs_lose = mysqli_query($link, $sql_lose);
+    ?>
+    
 <!--
     
 TemplateMo 559 Zay Shop
@@ -120,18 +131,18 @@ https://templatemo.com/tm-559-zay-shop
     <div class="container py-5" >
         <div class="row py-5">
             <form action="send_message.php" method="post">
-            <label  style="color: green;" for="inputname" ><h1>留言</h1></label>
-             <div class="form-group col-md-6 mb-3">
-                 <input  type="text" class="form-control mt-1" name="lose_id" placeholder="物品編號" required="required">
-            </div>
-            <div class="form-group col-md-6 mb-3">
-                <textarea type="text" rows="5" class="form-control mt-1" name="mes_content" placeholder="留言" required="required"></textarea>
-            </div>
-            <div class="col text-end mt-1">
-                <input type="submit" value="確認送出" class="btn btn-success btn-lg px-3">
-            </div>      
+                <label  style="color: green;" for="inputname" ><h1>留言</h1></label>
+                 <div class="form-group col-md-6 mb-3">
+                     <input  type="text" class="form-control mt-1" name="lose_id" placeholder="物品編號">
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <textarea type="text" rows="5" class="form-control mt-1" name="mes_content" placeholder="留言"></textarea>
+                </div>
+                 <div class="col text-end mt-1">
+                    <input type="submit" value="確認送出" class="btn btn-success btn-lg px-3">
+                </div>      
             </form>
-            </div>
+        </div>
     </div>
     
   

@@ -7,11 +7,11 @@
     $lose_describe = $_POST["describe"];
     $lose_place = $_POST["place"];
     $lose_date = $_POST["date"];
-    $lose_time = date("Y/m/d H:i:s",time()+8*60*60);
+    $lose_postTime = date("Y/m/d H:i:s",time()+8*60*60);
     $user_email = $_SESSION["user_email"];
     
 
-    $link=mysqli_connect("localhost","root","12345678","sa");
+    $link=mysqli_connect("localhost","root","","sa");
     
     
     $id_sql="select max(lose_id) from lose";
@@ -27,7 +27,7 @@
     $upload_file = $_FILES['image']['tmp_name'];
     move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
 
-    $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_time,lose_picture,lose_status,lose_office,user_email) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$lose_time','$upload_dir','$lose_status','$lose_office','$user_email')";
+    $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_postTime,lose_picture,lose_status,lose_office,user_email) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$lose_postTime','$upload_dir','$lose_status','$lose_office','$user_email')";
    
     if(mysqli_query($link, $sql)){
         header("location:index.php");

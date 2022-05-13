@@ -46,7 +46,7 @@ $( document ).tooltip();
 </head>
 <?php
     session_start();
-      $link=mysqli_connect("localhost","root","12345678","sa");
+      $link=mysqli_connect("localhost","root","","sa");
       if(!$link){
         echo "連結失敗".mysqli_connect_error();
       }

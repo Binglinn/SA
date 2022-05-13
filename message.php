@@ -128,7 +128,7 @@ https://templatemo.com/tm-559-zay-shop
     <?php
  
         session_start();
-        $link = mysqli_connect("localhost", "root", "12345678", "sa");
+        $link = mysqli_connect("localhost", "root", "", "sa");
         if(!$link){
             echo "連接失敗" . mysqli_connect_error(); 
         }
@@ -147,7 +147,7 @@ https://templatemo.com/tm-559-zay-shop
 
         ?>
     <br>
-    <table class="table">
+    <table class="table" style="text-align:center;">
     <?php
     echo "
             <th>物品編號</th>

@@ -6,7 +6,7 @@
     $user_email = $_SESSION['user_email'];
     $lose_id = $_POST['lose_id'];
 
-    $link = mysqli_connect("localhost", "root", "12345678", "sa");
+    $link = mysqli_connect("localhost", "root", "", "sa");
 
     $id_sql="select max(mes_id) from mes"; 
     $rs_id=mysqli_query($link, $id_sql);
