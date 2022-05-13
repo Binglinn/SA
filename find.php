@@ -32,7 +32,7 @@
     if(!$link){
         echo "連接失敗" . mysqli_connect_error(); 
     }
-    $sql_find= "SELECT * FROM find ";
+    $sql_find= "SELECT * FROM find order by find_id DESC";
     $rs_find = mysqli_query($link, $sql_find);
     ?>
     

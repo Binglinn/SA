@@ -124,17 +124,19 @@ https://templatemo.com/tm-559-zay-shop
     </section>
 
     <div class="container py-5">
+        
+        <p><center>*為必填</center></p>
         <form class="col-md-9 m-auto" action="find-insert2.php" method="post" enctype="multipart/form-data" >
             <div class="mb-3">
-                <label>物品名稱</label>
+                <label>*物品名稱</label>
                 <input type="text" class="form-control mt-1" name="name" placeholder="物品名稱" required>
             </div>
             <div class="mb-3">
-                <label>遺失地點</label>
+                <label>*遺失地點</label>
                 <input type="text" class="form-control mt-1" name="place" placeholder="遺失地點" required>
             </div>
             <div class="mb-3">
-                <label>聯絡資訊</label>
+                <label>*聯絡資訊</label>
                 <input type="text" class="form-control mt-1" name="contact" placeholder="聯絡資訊" required>
             </div>
             <div class="mb-3">
@@ -142,7 +144,7 @@ https://templatemo.com/tm-559-zay-shop
                 <input type="file" class="form-control mt-1" name="image" accept=".jpg, .jepg, .png" required>
             </div>
             <div class="mb-3">
-                <label>物品描述</label>
+                <label>*物品描述</label>
                 <textarea class="form-control mt-1"  name="describe" placeholder="物品描述" rows="5" required></textarea>
             </div>
             <div class="row">

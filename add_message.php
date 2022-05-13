@@ -133,11 +133,12 @@ https://templatemo.com/tm-559-zay-shop
         <div class="row py-5">
             <form action="send_message.php" method="post">
             <label  style="color: green;" for="inputname" ><h1>留言</h1></label>
+            <p>*為必填</p>
              <div class="form-group col-md-6 mb-3">
-                 <input  type="text" class="form-control mt-1" name="lose_id" placeholder="物品編號" required="required">
+                 <input  type="text" class="form-control mt-1" name="lose_id" placeholder="*物品編號" required="required">
             </div>
             <div class="form-group col-md-6 mb-3">
-                <textarea type="text" rows="5" class="form-control mt-1" name="mes_content" placeholder="留言" required="required"></textarea>
+                <textarea type="text" rows="5" class="form-control mt-1" name="mes_content" placeholder="*留言" required="required"></textarea>
             </div>
             <div class="col text-end mt-1">
                 <input type="submit" value="確認送出" class="btn btn-success btn-lg px-3">
