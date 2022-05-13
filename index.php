@@ -71,7 +71,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">尋物啟事</a>
+                            <a class="nav-link" href="find.php">尋物啟事</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="classify.php">遺失物分類</a>

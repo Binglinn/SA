@@ -4,10 +4,7 @@
     $user_name=$_POST["user_name"];
     $user_phone=$_POST["user_phone"];
     $user_password=$_POST["user_password"];
-    // $link=mysqli_connect("localhost","root","12345678","sa");
-    // if(!$link){
-    //     echo "連接失敗" . mysqli_connect_error(); 
-    // }
+
 
     validateEmail($user_email,$user_name,$user_phone,$user_password);
     function validateEmail($user_email,$user_name,$user_phone,$user_password) {

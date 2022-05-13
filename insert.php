@@ -128,23 +128,24 @@ https://templatemo.com/tm-559-zay-shop
     </section>
 
     <div class="container py-5">
+        <p><center>*為必填</center></p>
         <form class="col-md-9 m-auto" action="insert2.php" method="post" enctype="multipart/form-data" >
             <div class="mb-3">
-                <label>物品名稱</label>
+                <label>物品名稱*</label>
                 <input type="text" class="form-control mt-1" name="name" placeholder="物品名稱" required="required">
             </div>
             <div class="mb-3">
-                <label>拾獲地點</label>
+                <label>拾獲地點*</label>
                 <input type="text" class="form-control mt-1" name="place" placeholder="拾獲地點" required="required">
             </div>
             <div class="mb-3">
-                <label>拾獲日期</label>
-                <input type="datetime-local" class="form-control mt-1" name="date" placeholder="拾獲日期" >
+                <label>拾獲日期*</label>
+                <input type="date" class="form-control mt-1" name="date" placeholder="拾獲日期" required="required">
             </div>
             <div class="mb-3">
-                <label>分類</label><br>
-                <select class="form-control mt-1" name="classify">
-                    <option selected style="display: none;">請選擇分類</option>  
+                <label>分類*</label><br>
+                <select class="form-control mt-1" name="classify" required="required">
+                    <option></option>  
                     <option value="證件">證件</option>
                     <option value="皮夾&包包">皮夾&包包</option>
                     <option value="3C產品">3C產品</option>
@@ -160,14 +161,14 @@ https://templatemo.com/tm-559-zay-shop
                 <input type="file" class="form-control mt-1" name="image" accept=".jpg, .jepg, .png">
             </div>
             <div class="mb-3">
-                <label>物品描述</label>
-                <textarea class="form-control mt-1"  name="describe" placeholder="物品描述" rows="5"></textarea>
+                <label>物品描述*</label>
+                <textarea class="form-control mt-1"  name="describe" placeholder="物品描述" rows="5" required="required"></textarea>
             </div>
             <?php if($_SESSION["user_admin"]=="admin"){?>
             <div class="mb-3">
-                <label>領取處室</label>
-                <select class="form-control mt-1" name="office" >
-                    <option selected style="display: none;">請輸入處室</option>                    
+                <label>領取處室*</label>
+                <select class="form-control mt-1" name="office" required="required" >
+                    <option></option>                    
                     <option value="野聲樓一樓YP104">野聲樓一樓YP104</option>
                     <option value="進修部二樓ES201">進修部二樓ES201</option>
                     <option value="軍訓室">軍訓室</option>
@@ -175,9 +176,9 @@ https://templatemo.com/tm-559-zay-shop
             </div>
             <?php } ?>
             <div class="row">
-                <div class="col text-end mt-2">
-                    <input type="submit" class="btn btn-success btn-lg px-3" value="確認送出">
-                </div>
+                <div class="col text-end mt-2" >
+                <center><input type="submit" class="btn btn-success btn-lg px-3" value="確認送出"></center>                
+            </div>
             </div>
         </form>
     </div>

@@ -196,6 +196,12 @@ $( document ).tooltip();
                      其他
                     </a> 
                 </div>
+                <div class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none"  
+                    href="classify.php?searchtxt=已領回&classify_name=已領回">
+                     已領回專區
+                    </a> 
+                </div>
             </ul>
         </div>
 
@@ -224,9 +230,17 @@ $( document ).tooltip();
                 <?php
                 if(isset($searchtxt))
                     {
-                        $sql="select * from lose where(lose_name like '%$searchtxt%'  or lose_classify like '%$searchtxt%')and lose_status='分類' order by lose_date DESC";          
-                        
-                    }     
+                        if($searchtxt != '已領回'){
+                            $sql="select * from lose where(lose_name like '%$searchtxt%'  or lose_classify like '%$searchtxt%')and lose_status='分類' order by lose_date DESC";          
+                        }
+                        else{
+                            
+                            $sql="select * from lose where lose_status='已領回'  order by lose_date DESC";
+                        }
+                    }    
+               
+                   
+                
                 else
                 {
                     $sql="select * from lose where lose_status='分類'  order by lose_date DESC";
