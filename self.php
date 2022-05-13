@@ -25,6 +25,7 @@ https://templatemo.com/tm-559-zay-shop
 -->
 </head>
 
+<?php session_start() ?>
 <body>
    
 
