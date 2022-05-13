@@ -25,7 +25,8 @@
     move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
 
     $sql = "insert into find (find_id,find_name,find_describe,find_place,find_picture,find_contact,user_email) values ('$find_id','$find_name','$find_describe','$find_place','$upload_dir','$find_contact','$user_email')";
-   
+    $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_postTime,lose_picture,lose_status,lose_office,user_email) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$lose_postTime','$upload_dir','$lose_status','$lose_office','$user_email')";
+
     if(mysqli_query($link, $sql)){
         header("location:find.php");
     }else{
