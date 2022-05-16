@@ -183,7 +183,7 @@ https://templatemo.com/tm-559-zay-shop
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" alt="圖片">
+                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" >
                         <div class="card-body">
                             <div class="flip" ><span class="1"><?php echo $item_list[$i]["lose_name"]?></span><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
                             <div class="panel">日期：<?php echo $item_list[$i]["lose_date"]?><br>地點：<?php echo $item_list[$i]["lose_place"]?><br>特徵：<?php echo $item_list[$i]["lose_describe"]?></div>

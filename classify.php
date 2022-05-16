@@ -231,7 +231,7 @@ $( document ).tooltip();
                 if(isset($searchtxt))
                     {
                         if($searchtxt != '已領回'){
-                            $sql="select * from lose where(lose_name like '%$searchtxt%'  or lose_classify like '%$searchtxt%')and lose_status='分類' order by lose_date DESC";          
+                            $sql="select * from lose where(lose_name like '%$searchtxt%'  or lose_classify like '%$searchtxt%' or lose_place like '%$searchtxt%' )and lose_status='分類' order by lose_date DESC";          
                         }
                         else{
                             
