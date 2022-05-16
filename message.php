@@ -147,7 +147,7 @@ https://templatemo.com/tm-559-zay-shop
 
         ?>
     <br>
-    <table class="table">
+    <table class="table" style="text-align:center">
     <?php
     echo "
             <th>物品編號</th>

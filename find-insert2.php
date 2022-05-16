@@ -4,6 +4,7 @@
     $find_name = $_POST["name"];
     $find_describe = $_POST["describe"];
     $find_place = $_POST["place"];
+    $find_postTime = date("Y/m/d H:i:s",time()+8*60*60);
     $find_contact=$_POST["contact"];
     $user_email = $_SESSION["user_email"];
     
@@ -24,8 +25,8 @@
     $upload_file = $_FILES['image']['tmp_name'];
     move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
 
-    $sql = "insert into find (find_id,find_name,find_describe,find_place,find_picture,find_contact,user_email) values ('$find_id','$find_name','$find_describe','$find_place','$upload_dir','$find_contact','$user_email')";
-
+    $sql = "insert into find (find_id,find_name,find_describe,find_place,find_postTime,find_picture,find_contact,user_email) values ('$find_id','$find_name','$find_describe','$find_place','$find_postTime','$upload_dir','$find_contact','$user_email')";
+   
     if(mysqli_query($link, $sql)){
         header("location:find.php");
     }else{

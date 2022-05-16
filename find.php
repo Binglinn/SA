@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
+ 
 <head>
     <title>Zay Shop eCommerce HTML CSS Template</title>
     <meta charset="utf-8">
@@ -32,16 +32,14 @@
     if(!$link){
         echo "連接失敗" . mysqli_connect_error(); 
     }
-    $sql_find= "SELECT * FROM find order by find_id DESC";
+    $date = date("Y-m-d",strtotime("-30 day"));
+    $sql_find= "SELECT * FROM find WHERE find_postTime>'$date' ORDER BY find_postTime desc";
     $rs_find = mysqli_query($link, $sql_find);
     ?>
-    
 <!--
     
 TemplateMo 559 Zay Shop
-
 https://templatemo.com/tm-559-zay-shop
-
 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -182,7 +180,7 @@ https://templatemo.com/tm-559-zay-shop
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" alt="圖片">
+                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" style="width:260px;height:260px;" alt="圖片">
                         <div class="card-body">
                             <div class="flip" ><b><?php echo $item_list[$i]["find_name"]?></b><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
                             <div class="panel">遺失地點：<?php echo $item_list[$i]["find_place"]?><br>物品描述：<?php echo $item_list[$i]["find_describe"]?><br>聯絡資訊：<?php echo $item_list[$i]["find_contact"]?></div>
