@@ -12,10 +12,13 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/templatemo.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel='stylesheet' href='https://css.gg/girl.css' >
+
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+
 <!--
     
 TemplateMo 559 Zay Shop
@@ -25,7 +28,10 @@ https://templatemo.com/tm-559-zay-shop
 -->
 </head>
 
-<?php session_start() ?>
+<?php 
+    session_start();
+    $user_name = $_SESSION['user_name'];
+?>
 <body>
    
 
@@ -35,6 +41,7 @@ https://templatemo.com/tm-559-zay-shop
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
                 Lost & found
+                
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +51,11 @@ https://templatemo.com/tm-559-zay-shop
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
             <div class="flex-fill">
                     <?php if($_SESSION["user_admin"]=="admin"){?>
+                      
+                    <br>
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
+                            <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;嗨！管理者
+                        </ul>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">即時刊登區</a>
@@ -61,24 +73,37 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="logout.php">登出</a>
                         </li>
                     </ul>
+
                     <?php }elseif($_SESSION["user_admin"]=="user"){?>
-                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">即時刊登區</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="find.php">尋物啟事</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="classify.php">遺失物分類</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="self.php">個人專區</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">登出</a>
-                        </li>
+
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
+                            <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
+                            <?php echo '嗨！' ,$user_name;?>
                         </ul>
+
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php">即時刊登區</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="find.php">尋物啟事</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="classify.php">遺失物分類</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="self.php">個人專區</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout.php">登出</a>
+                            </li>      
+                            
+                                  
+                        </ul>
+
+                        
+
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
@@ -94,6 +119,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="login.php">登入</a>
                         </li>
                         </ul>
+
                         <?php }?>
                 </div>
                 <!-- <div class="text-end mt-2" >
@@ -131,31 +157,43 @@ https://templatemo.com/tm-559-zay-shop
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h2">個人專區</h1>
+                <h1>個人專區</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="self-lose.php"><img src="./assets/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">已發布拾獲貼文</h5>
-               
-            </div>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="self-find.php"><img src="./assets/img/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
-                <h2 class="h5 text-center mt-3 mb-3">已發布尋物貼文</h2>
-               
-            </div>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="./assets/img/category_img_03.jpg" class="rounded-circle img-fluid border"></a>
-                <h2 class="h5 text-center mt-3 mb-3">設定</h2>
+        <div align="center" class="row">
+        <div class="col-12 col-md-4 p-5 mt-3">
                 
+                <h3 >
+                <a href="self-lose.php">
+                <img src="./assets/img/pickup2.png" width="310" height="310" ></a>
+                    
+                <br>已發布拾獲貼文</h3>
             </div>
+
+            <div class="col-12 col-md-4 p-5 mt-3">
+           
+                <h3 > <a href="self-find.php">
+                    <img src="./assets/img/searching.png" width="280" height="280" ></a>
+                <br> <br>已發布尋物貼文</h3>
+            </div>
+
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <h3> <a href="#"> <br>
+                    <img src="./assets/img/settings-2.png" width="215" height="215" ></a>
+                 <br><br><br>設定</h3>
+            </div>
+
+            
         </div>
+
+
+        
     </section>
     <!-- End Categories of The Month -->
-
+    
 
    
+
    
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

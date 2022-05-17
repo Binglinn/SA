@@ -59,6 +59,7 @@ $( document ).tooltip();
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
                 Lost & found
+                
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,8 +67,13 @@ $( document ).tooltip();
             </button>
 
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill">
-                <?php if($_SESSION["user_admin"]=="admin"){?>
+            <div class="flex-fill">
+                    <?php if($_SESSION["user_admin"]=="admin"){?>
+                      
+                    <br>
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
+                            <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;嗨！管理者
+                        </ul>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">即時刊登區</a>
@@ -85,24 +91,37 @@ $( document ).tooltip();
                             <a class="nav-link" href="logout.php">登出</a>
                         </li>
                     </ul>
+
                     <?php }elseif($_SESSION["user_admin"]=="user"){?>
-                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">即時刊登區</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="find.php">尋物啟事</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="classify.php">遺失物分類</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="self.php">個人專區</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">登出</a>
-                        </li>
+
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
+                            <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
+                            <?php echo '嗨！' ,$user_name;?>
                         </ul>
+
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php">即時刊登區</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="find.php">尋物啟事</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="classify.php">遺失物分類</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="self.php">個人專區</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout.php">登出</a>
+                            </li>      
+                            
+                                  
+                        </ul>
+
+                        
+
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
@@ -118,6 +137,7 @@ $( document ).tooltip();
                             <a class="nav-link" href="login.php">登入</a>
                         </li>
                         </ul>
+
                         <?php }?>
                 </div>
                 <!-- <div class="text-end mt-2" >
