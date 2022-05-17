@@ -175,7 +175,7 @@ https://templatemo.com/tm-559-zay-shop
             <th>物品名稱</th>
             <th>留言</th>
             <th>留言時間</th>
-            <th>留言者信箱</th>";
+            <th>留言者</th>";
 
     //一次取得一筆(列)資料，並存入record[]
     while($record=mysqli_fetch_assoc($result)){
@@ -184,7 +184,7 @@ https://templatemo.com/tm-559-zay-shop
                   <td>$record[find_name]</td>
                   <td>$record[mes_content]</td>
                   <td>$record[mes_time]</td>
-                  <td>$record[user_email]</td>
+                  <td>$record[user_name]</td>
               </tr>";
     }
     ?>

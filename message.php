@@ -184,7 +184,8 @@ https://templatemo.com/tm-559-zay-shop
                   <td>$record[lose_name]</td>
                   <td>$record[mes_content]</td>
                   <td>$record[mes_time]</td>
-                  <td>$record[user_email]</td>
+                  <td>$record[user_name]</td>
+
               </tr>";
     }
     ?>

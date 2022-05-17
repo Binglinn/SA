@@ -4,6 +4,7 @@
     $mes_content = $_POST['mes_content'];
     $mes_time = date("Y/m/d H:i:s",time()+8*60*60);
     $user_email = $_SESSION['user_email'];
+    $user_name = $_SESSION['user_name'];
     $find_id = $_POST['find_id'];
 
 
@@ -19,7 +20,7 @@
     $rs_find = mysqli_query($link,$find_sql);
     while($record_find=mysqli_fetch_assoc($rs_find)){
         if($find_id == $record_find['find_id']){
-            $sql = "INSERT INTO mes_find (mes_id,mes_content,mes_time,user_email,find_id,find_name) VALUES ('$mes_id', '$mes_content', '$mes_time','$user_email','$find_id','$record_find[find_name]')";
+            $sql = "INSERT INTO mes_find (mes_id,mes_content,mes_time,user_email,find_id,find_name,user_name) VALUES ('$mes_id', '$mes_content', '$mes_time','$user_email','$find_id','$record_find[find_name]','$user_name')";
             if(mysqli_query($link, $sql)){
                 header("location:message_find.php");
             }
