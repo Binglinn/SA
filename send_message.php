@@ -4,7 +4,6 @@
     $mes_content = $_POST['mes_content'];
     $mes_time = date("Y/m/d H:i:s",time()+8*60*60);
     $user_email = $_SESSION['user_email'];
-    $user_name = $_SESSION['user_name'];
     $lose_id = $_POST['lose_id'];
 
     $link = mysqli_connect("localhost", "root", "12345678", "sa");
@@ -15,11 +14,12 @@
 
     $mes_id=$record[0]+1;
 
-    $lose_sql = "select lose_id,lose_name from lose";
+    $lose_sql = "select lose_id from lose ";
     $rs_lose = mysqli_query($link,$lose_sql);
+
     while($record_lose=mysqli_fetch_assoc($rs_lose)){
         if($lose_id == $record_lose['lose_id']){
-            $sql = "INSERT INTO mes (mes_id,mes_content,mes_time,user_email,lose_id,lose_name,user_name) VALUES ('$mes_id', '$mes_content', '$mes_time', '$user_email','$lose_id','$record_lose[lose_name]','$user_name')";
+            $sql = "INSERT INTO mes (mes_id,mes_content,mes_time,user_email,lose_id) VALUES ('$mes_id', '$mes_content', '$mes_time', '$user_email','$lose_id')";
             if(mysqli_query($link, $sql)){
                 header("location:message.php");
             }
