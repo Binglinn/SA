@@ -141,7 +141,7 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Modal -->
     <div class="container py-5" >
         <div class="row py-5">
-            <form action="send_message_find.php" method="post">
+            <form action="send_message.php" method="post">
             <label  style="color: green;" for="inputname" ><h1>留言</h1></label>
             <p>*為必填</p>
              <div class="form-group col-md-6 mb-3">
