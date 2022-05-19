@@ -15,11 +15,11 @@
 
     $mes_id=$record[0]+1;
 
-    $lose_sql = "select lose_id from lose ";
+    $lose_sql = "select lose_id ,lose_status from lose ";
     $rs_lose = mysqli_query($link,$lose_sql);
 
-    while($record_lose=mysqli_fetch_assoc($rs_lose)){
-        if($lose_id == $record_lose['lose_id']){
+    while($record_lose=mysqli_fetch_assoc($rs_lose) ){
+        if($lose_id == $record_lose['lose_id'] && $record_lose['lose_status']=="即時刊登"){
             $sql = "INSERT INTO mes (mes_id,mes_content,mes_time,user_email,lose_id,find_id) VALUES ('$mes_id', '$mes_content', '$mes_time', '$user_email','$lose_id','0')";
             if(mysqli_query($link, $sql)){
                 header("location:message.php");
