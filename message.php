@@ -162,7 +162,7 @@ https://templatemo.com/tm-559-zay-shop
                 $sql="select mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose where lose_id like '%$searchtxt%' AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
             }
             else{
-                $sql = "SELECT mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose WHERE mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";
+                $sql = "SELECT mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose WHERE mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY lose_id asc, mes_time desc  ";
             }
         $result=mysqli_query($link,$sql);
 

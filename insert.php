@@ -189,8 +189,8 @@ https://templatemo.com/tm-559-zay-shop
                 <label>*領取處室</label>
                 <select class="form-control mt-1" name="office" required="required" >
                     <option></option>                    
-                    <option value="野聲樓一樓YP104">野聲樓一樓YP104</option>
-                    <option value="進修部二樓ES201">進修部二樓ES201</option>
+                    <option value="野聲樓一樓YP104">野聲樓YP104</option>
+                    <option value="進修部二樓ES201">進修部ES201</option>
                     <option value="軍訓室">軍訓室</option>
                 </select>
             </div>
