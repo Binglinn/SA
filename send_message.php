@@ -24,7 +24,7 @@
             if(mysqli_query($link, $sql)){
                 header("location:message.php");
             }
-        }else{
+        }else if($find_id==0){
             ?>
             <script>
             alert("沒有此物品編號，請重新輸入");
@@ -41,7 +41,7 @@
             if(mysqli_query($link, $sql)){
                 header("location:message_find.php");
             }
-        }else{
+        }else if ($lose_id==0){
             ?>
             <script>
             alert("沒有此物品編號，請重新輸入");

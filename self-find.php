@@ -206,10 +206,10 @@ https://templatemo.com/tm-559-zay-shop
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" style="width:253px;height:253px;">
+                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" style="width:253px;height:253px;" >
                         <div class="card-body">
                             <div class="flip" ><span class="1"><?php echo $item_list[$i]["find_name"]?></span><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
-                            <div class="panel">地點：<?php echo $item_list[$i]["find_place"]?><br>特徵：<?php echo $item_list[$i]["find_describe"]?><br>聯絡資訊：<?php echo $item_list[$i]["find_contact"]?></div>
+                            <div class="panel">物品編號：<?php echo $item_list[$i]["find_id"]?><br>遺失地點：<?php echo $item_list[$i]["find_place"]?><br>聯絡資訊：<?php echo $item_list[$i]["find_contact"]?><br>物品描述：<?php echo $item_list[$i]["find_describe"]?></div>
                         </div>
                     </div>    
                 </div>

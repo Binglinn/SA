@@ -37,8 +37,14 @@
 
     $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_postTime,lose_picture,lose_status,lose_office,user_email) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$lose_postTime','$upload_dir','$lose_status','$lose_office','$user_email')";
    
+    
     if(mysqli_query($link, $sql)){
-        header("location:index.php");
+        if($lose_status=="分類"){
+            header("location:classify.php");
+        }
+        else{
+            header("location:index.php");
+        }
     }else{
         echo $sql;
     }
@@ -52,6 +58,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="index.php"><button>回首頁</button></a>
+    <a href="classify.php"><button>回首頁</button></a>
 </body>
 </html>
