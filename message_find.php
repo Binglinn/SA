@@ -159,7 +159,7 @@ https://templatemo.com/tm-559-zay-shop
         $date = date("Y-m-d",strtotime("-30 day"));
         if(isset($searchtxt))
             {
-                $sql="select mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_name from mes,find,user where find_id like '%$searchtxt%' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
+                $sql="select mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_name from mes,find,user where mes.find_id like '%$searchtxt%' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
             }
             else{
                 $sql = "SELECT mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_name from mes,find,user WHERE mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY find_id asc,mes_time desc";
