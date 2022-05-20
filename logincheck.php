@@ -27,7 +27,8 @@ if($record = mysqli_fetch_assoc($result)){
     ?>
     <script>
     alert("帳號密碼錯誤");
-    parent.location.href='login.php';</script>
+    history.go(-1);
+    </script>
     <?php
 }
     

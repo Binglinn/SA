@@ -22,11 +22,23 @@
             
     //上傳檔案
     $upload_dir= $_FILES['image']['name'];
-    $upload_file = $_FILES['image']['tmp_name'];
-    move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
+    getimagesize();
+    list($width, $height, $type, $attr) = getimagesize("assets/img/$upload_dir");
+    
+    if($width != $height ) { ?>
+       <script>
+            alert("圖片長寬須為1：1！");
+            history.go(-1);
+        </script>
+    <?php 
+    }
 
-    $sql = "insert into find (find_id,find_name,find_describe,find_place,find_postTime,find_picture,find_contact,user_email) values ('$find_id','$find_name','$find_describe','$find_place','$find_postTime','$upload_dir','$find_contact','$user_email')";
-   
+     else{
+        $upload_file = $_FILES['image']['tmp_name'];
+        move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
+        $sql = "insert into find (find_id,find_name,find_describe,find_place,find_postTime,find_picture,find_contact,user_email) values ('$find_id','$find_name','$find_describe','$find_place','$find_postTime','$upload_dir','$find_contact','$user_email')";
+    }
+
     if(mysqli_query($link, $sql)){
         header("location:find.php");
     }else{
@@ -35,13 +47,3 @@
    
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-    <a href="find.php"><button>回首頁</button></a>
-</body>
-</html>

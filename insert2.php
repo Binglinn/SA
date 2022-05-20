@@ -31,11 +31,27 @@
     //上傳檔案
 
     
-    $upload_dir= $_FILES['image']['name'];
-    $upload_file = $_FILES['image']['tmp_name'];
-    move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
+    
 
-    $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_postTime,lose_picture,lose_status,lose_office,user_email) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$lose_postTime','$upload_dir','$lose_status','$lose_office','$user_email')";
+    $upload_dir= $_FILES['image']['name'];
+    getimagesize();
+    list($width, $height, $type, $attr) = getimagesize("assets/img/$upload_dir");
+    
+    if($width != $height ) { ?>
+       <script>
+            alert("圖片長寬須為1：1！");
+            history.go(-1);
+        </script>
+    <?php }
+
+     else{
+        $upload_file = $_FILES['image']['tmp_name'];
+        move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
+        $sql = "insert into lose (lose_id,lose_classify,lose_name,lose_describe,lose_place,lose_date,lose_postTime,lose_picture,lose_status,lose_office,user_email) values ('$lose_id','$lose_classify','$lose_name','$lose_describe','$lose_place','$lose_date','$lose_postTime','$upload_dir','$lose_status','$lose_office','$user_email')";
+
+    }
+
+
    
     
     if(mysqli_query($link, $sql)){
@@ -51,13 +67,3 @@
    
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-    <a href="classify.php"><button>回首頁</button></a>
-</body>
-</html>

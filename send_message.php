@@ -28,7 +28,8 @@
             ?>
             <script>
             alert("沒有此物品編號，請重新輸入");
-            parent.location.href='message.php';</script>
+            history.go(-1);
+            </script>
             <?php
         }
     }
@@ -45,7 +46,8 @@
             ?>
             <script>
             alert("沒有此物品編號，請重新輸入");
-            parent.location.href='message_find.php';</script>
+            parent.location.href='message_find.php';
+            </script>
             <?php
         }
     }

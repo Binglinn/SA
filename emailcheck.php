@@ -18,7 +18,7 @@
             ?>
             <script>
                 alert("帳號格式錯誤");
-                parent.location.href='register.php';
+                history.go(-1);;
             </script>
         <?php
             
