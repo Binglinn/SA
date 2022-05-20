@@ -1,9 +1,9 @@
 <?php 
     session_start();
-    $user_name = $_SESSION['user_name'];
+    $user_name = $_SESSION['user_name'];;
+    $hidden_lose_id = $_POST['hidden_lose_id'];
 ?>
 <!DOCTYPE html> 
-
 <html lang="en">
 
 <head>
@@ -136,37 +136,30 @@ https://templatemo.com/tm-559-zay-shop
             <div class="col-md-8"></div>
             <div class="col-md-4 pb-4" align=right>
                 <div width=50px>
-                    <form action="message.php" method="get">
-                        <?php $searchtxt = $_GET["searchtxt"]; ?>
-                        <div class="input-group-prepend">     
-                            <p align=margin-right><input type=text class="form-control" name="searchtxt" placeholder="搜尋物品編號" ></p>
-                        </div>
-                    </form>
+                    <?php 
+                        $searchtxt = $hidden_lose_id;                          
+                    ?>
                 </div>
             </div>
         </div>
     </div>
     <?php
- 
-        session_start();
         $link = mysqli_connect("localhost", "root", "12345678", "sa");
         if(!$link){
             echo "連接失敗" . mysqli_connect_error(); 
         }
-
         mysqli_query($link, "set names utf8");
 
         $date = date("Y-m-d",strtotime("-7 day"));
-        if(isset($searchtxt))
-            {
-                $sql="select mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose where mes.lose_id like '%$searchtxt%' AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
-            }
-            else{
-                $sql = "SELECT mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose WHERE mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY lose_id asc, mes_time desc  ";
-            }
+        if(isset($searchtxt)){
+            $sql="select mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose where mes.lose_id like '$searchtxt' AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
+        }else{
+            $searchtxt = $_SESSION['hidden_lose_id'];
+            $sql="select mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose where mes.lose_id like '$searchtxt' AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
+        }
         $result=mysqli_query($link,$sql);
 
-        ?>
+    ?>
     <br>
     <table class="table" style="text-align:center">
     <?php
@@ -191,9 +184,6 @@ https://templatemo.com/tm-559-zay-shop
     ?>
     </table>
 
-    <?php if($_SESSION["user_admin"]=="user"){?>
-        <center><a href="add_message.php"><button class="btn btn-success btn-lg px-3">新增留言</button></a></center>
-    <?php } ?>
     <br><br>
 
     <footer class="bg-dark" id="tempaltemo_footer">

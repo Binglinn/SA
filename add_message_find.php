@@ -1,7 +1,9 @@
 <?php
    session_start();
    $user_name = $_SESSION['user_name'];
-   $user_email = $_SESSION['user_email'];
+//    $user_email = $_SESSION['user_email']; 
+   $hidden_find_id = $_POST['hidden_find_id'];
+   $_SESSION['hidden_find_id'] = $hidden_find_id; 
 ?>
  
 <!DOCTYPE html>
@@ -145,7 +147,7 @@ https://templatemo.com/tm-559-zay-shop
             <label  style="color: green;" for="inputname" ><h1>留言</h1></label>
             <p>*為必填</p>
              <div class="form-group col-md-6 mb-3">
-                 <input  type="text" class="form-control mt-1" name="find_id" placeholder="*物品編號" required="required">
+                 <input  type="text" class="form-control mt-1" name="find_id" value="<?php echo $hidden_find_id ?>" readonly>
             </div>
             <div class="form-group col-md-6 mb-3">
                 <textarea type="text" rows="5" class="form-control mt-1" name="mes_content" placeholder="*留言" required="required"></textarea>

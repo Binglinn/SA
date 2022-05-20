@@ -1,6 +1,8 @@
 <?php
    session_start();
    $user_name = $_SESSION['user_name'];
+   $hidden_lose_id = $_POST['hidden_lose_id'];
+   $_SESSION['hidden_lose_id'] = $hidden_lose_id;
 ?>
  
 <!DOCTYPE html>
@@ -151,11 +153,11 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Modal -->
     <div class="container py-5" >
         <div class="row py-5">
-            <form action="send_message.php" method="post">
+            <form action="send_message.php" method="post"> 
             <label  style="color: green;" for="inputname" ><h1>留言</h1></label>
             <p>*為必填</p>
              <div class="form-group col-md-6 mb-3">
-                 <input  type="text" class="form-control mt-1" name="lose_id" placeholder="*物品編號" required="required">
+                 <input type="text" class="form-control mt-1" name="lose_id" value="<?php echo $hidden_lose_id ?>" readonly>
             </div>
             <div class="form-group col-md-6 mb-3">
                 <textarea type="text" rows="5" class="form-control mt-1" name="mes_content" placeholder="*留言" required="required"></textarea>

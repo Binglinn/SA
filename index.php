@@ -203,22 +203,31 @@ https://templatemo.com/tm-559-zay-shop
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" style="width:253px;height:253px;  object-fit: cover;" >
+                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" style="width:253px;height:253px;" onerror="javascript:this.src='assets/img/apple-icon.png'"/>
                         <div class="card-body">
                             <div class="flip" ><b><?php echo $item_list[$i]["lose_name"]?></b><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
-                            <div class="panel">物品編號：<?php echo $item_list[$i]["lose_id"]?><br>拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>拾獲地點：<?php echo $item_list[$i]["lose_place"]?><br>物品描述：<?php echo $item_list[$i]["lose_describe"]?></div>
-                        </div>
-                    </div>    
-                </div>
+                            <div class="panel">
+                                物品編號：<?php echo $item_list[$i]["lose_id"]?><br>
+                                拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>
+                                拾獲地點：<?php echo $item_list[$i]["lose_place"]?><br>
+                                物品描述：<?php echo $item_list[$i]["lose_describe"]?><br>
+                                <form action="add_message.php" method="post">
+                                    <input type="hidden" class="form-control mt-1" name="hidden_lose_id" value="<?php echo $item_list[$i]["lose_id"] ?>" ><br>
+                                    <?php if($_SESSION["user_admin"]=="user"){?><center><input type="submit" class="btn btn-success btn-lg px-3" value="新增留言"></center><?php } ?>
+                                </form>
+                                <form action="message.php" method="post">
+                                    <input type="hidden"class="form-control mt-1" name="hidden_lose_id" value="<?php echo $item_list[$i]["lose_id"] ?>"><br>
+                                    <center><input type="submit" class="btn btn-success btn-lg px-3" value="查看留言區"></center></div>
+                                </form>
+                            </div>
+                        </div>    
+                    </div>
                 <?php }?>
             </div>
         </div>
-         <div class='col-md-12'>
-        <?php if($_SESSION["user_admin"]=="admin" or $_SESSION["user_admin"]==""){?>
-            <center><a href="message.php"><button class="btn btn-success btn-lg px-3">查看留言區</button></a></center>
-        <?php } elseif($_SESSION["user_admin"]=="user"){?>
-            <center><a href="insert.php"><button class="btn btn-success btn-lg px-3">新增遺失物</button></a>
-            <a href="message.php"><button class="btn btn-success btn-lg px-3">查看留言區</button></a></center>
+         <div class='col-md-12'>       
+        <?php if($_SESSION["user_admin"]=="user"){?>
+            <center><a href="insert.php"><button class="btn btn-success btn-lg px-3">新增遺失物</button></a></center>
         <?php } ?>
             <ul class="pagination pagination-lg justify-content-end">
           

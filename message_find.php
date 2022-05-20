@@ -1,6 +1,7 @@
 <?php 
     session_start();
     $user_name = $_SESSION['user_name'];
+    $hidden_find_id = $_POST['hidden_find_id'];
 ?>
 <!DOCTYPE html> 
 
@@ -136,12 +137,7 @@ https://templatemo.com/tm-559-zay-shop
             <div class="col-md-8"></div>
             <div class="col-md-4 pb-4" align=right>
                 <div width=50px>
-                    <form action="message_find.php" method="get">
-                        <?php $searchtxt = $_GET["searchtxt"]; ?>
-                        <div class="input-group-prepend">     
-                            <p align=margin-right><input type=text class="form-control" name="searchtxt" placeholder="搜尋物品編號" ></p>
-                        </div>
-                    </form>
+                    <?php $searchtxt = $hidden_find_id ?>
                 </div>
             </div>
         </div>
@@ -156,13 +152,14 @@ https://templatemo.com/tm-559-zay-shop
 
         mysqli_query($link, "set names utf8");
 
-        $date = date("Y-m-d",strtotime("-30 day"));
+        $date = date("Y-m-d",strtotime("-30 day")); 
         if(isset($searchtxt))
             {
-                $sql="select mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_name from mes,find,user where mes.find_id like '%$searchtxt%' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
+                $sql="select mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
             }
             else{
-                $sql = "SELECT mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_name from mes,find,user WHERE mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY find_id asc,mes_time desc";
+                $searchtxt = $_SESSION['hidden_find_id'];
+                $sql="select mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
             }
         $result=mysqli_query($link,$sql);
 
@@ -189,10 +186,6 @@ https://templatemo.com/tm-559-zay-shop
     }
     ?>
     </table>
-
-    <?php if($_SESSION["user_admin"]=="user"){?>
-        <center><a href="add_message_find.php"><button class="btn btn-success btn-lg px-3">新增留言</button></a></center>
-    <?php } ?>
     <br><br>
 
     <footer class="bg-dark" id="tempaltemo_footer">
