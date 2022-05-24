@@ -1,7 +1,7 @@
 <?php 
     session_start();
     $user_name = $_SESSION['user_name'];
-    $hidden_find_id = $_POST['hidden_find_id'];
+    $hidden_find_id = $_GET['hidden_find_id'];
 ?>
 <!DOCTYPE html> 
 
@@ -186,6 +186,13 @@ https://templatemo.com/tm-559-zay-shop
     }
     ?>
     </table>
+    <?php
+    if($_SESSION['user_admin']=="user"){?>
+        <form action="add_message_find.php" method="get">
+            <input type="hidden"class="form-control mt-1" name="hidden_find_id" value="<?php echo $hidden_find_id ?>"><br>
+            <center><input type="submit" class="btn btn-success btn-lg px-3" value="新增留言"></button></center>
+        </form>
+    <?php }?>
     <br><br>
 
     <footer class="bg-dark" id="tempaltemo_footer">

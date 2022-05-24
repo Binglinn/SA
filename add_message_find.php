@@ -1,9 +1,8 @@
 <?php
    session_start();
    $user_name = $_SESSION['user_name'];
-//    $user_email = $_SESSION['user_email']; 
-   $hidden_find_id = $_POST['hidden_find_id'];
-   $_SESSION['hidden_find_id'] = $hidden_find_id; 
+    $hidden_find_id = $_GET['hidden_find_id'];
+    $_SESSION['hidden_find_id'] = $hidden_find_id;
 ?>
  
 <!DOCTYPE html>

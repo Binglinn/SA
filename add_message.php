@@ -1,7 +1,7 @@
 <?php
    session_start();
    $user_name = $_SESSION['user_name'];
-   $hidden_lose_id = $_POST['hidden_lose_id'];
+   $hidden_lose_id = $_GET['hidden_lose_id'];
    $_SESSION['hidden_lose_id'] = $hidden_lose_id;
 ?>
  

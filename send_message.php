@@ -15,19 +15,15 @@
 
     $mes_id=$record[0]+1;
 
-    $lose_sql = "select lose_id,lose_status from lose ";
-    $rs_lose = mysqli_query($link,$lose_sql);
 
-    while($record_lose=mysqli_fetch_assoc($rs_lose)){
+    if($lose_id != ""){
         $sql = "INSERT INTO mes (mes_id,mes_content,mes_time,user_email,lose_id,find_id) VALUES ('$mes_id', '$mes_content', '$mes_time', '$user_email','$lose_id','0')";
         if(mysqli_query($link, $sql)){
             header("location:message.php");
         }
     }
     
-    $find_sql = "select find_id from find";
-    $rs_find = mysqli_query($link,$find_sql);
-    while($record_find=mysqli_fetch_assoc($rs_find)){
+    if($find_id != ""){
         $sql = "INSERT INTO mes (mes_id,mes_content,mes_time,user_email,lose_id,find_id) VALUES ('$mes_id', '$mes_content', '$mes_time', '$user_email','0','$find_id')";
         if(mysqli_query($link, $sql)){
             header("location:message_find.php");
@@ -40,6 +36,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <?php echo $lose_id,$find_id?>
 </head>
 <body>
     <a href="index.php"><button>回首頁</button></a>

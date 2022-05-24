@@ -1,7 +1,7 @@
 <?php 
     session_start();
     $user_name = $_SESSION['user_name'];;
-    $hidden_lose_id = $_POST['hidden_lose_id'];
+    $hidden_lose_id = $_GET['hidden_lose_id'];
 ?>
 <!DOCTYPE html> 
 <html lang="en">
@@ -152,10 +152,10 @@ https://templatemo.com/tm-559-zay-shop
 
         $date = date("Y-m-d",strtotime("-7 day"));
         if(isset($searchtxt)){
-            $sql="select mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose where mes.lose_id like '$searchtxt' AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
+            $sql="select mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose where mes.lose_id=$searchtxt AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
         }else{
             $searchtxt = $_SESSION['hidden_lose_id'];
-            $sql="select mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose where mes.lose_id like '$searchtxt' AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
+            $sql="select mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name FROM mes,user,lose where mes.lose_id=$searchtxt AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
         }
         $result=mysqli_query($link,$sql);
 
@@ -183,7 +183,15 @@ https://templatemo.com/tm-559-zay-shop
     }
     ?>
     </table>
-
+    <?php 
+    if($_SESSION['user_admin']=="user"){?>
+        <form action="add_message.php" method="get">
+            <input type="hidden"class="form-control mt-1" name="hidden_lose_id" value="<?php echo $hidden_lose_id ?>"><br>
+            <center><input type="submit" class="btn btn-success btn-lg px-3" value="新增留言"></button></center>
+        </form>
+    <?php } ?>
+    
+    
     <br><br>
 
     <footer class="bg-dark" id="tempaltemo_footer">
