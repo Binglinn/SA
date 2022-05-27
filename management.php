@@ -181,7 +181,12 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Start Categories of The Month -->
     <section class=" py-5">
         <div class="row text-center pt-3 ">
-                <h3>帳號總表</h3>
+        <div class="col-lg-6 m-auto">
+                    <h1><b><font color="green">Account Summary</font></b></h1>
+                    <p>
+                        帳號總表
+                    </p>
+                </div>
         </div>
         </div>
         <div  align="center" style="padding:15px">
