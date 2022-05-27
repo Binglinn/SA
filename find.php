@@ -81,7 +81,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">後臺管理</a>
+                            <a class="nav-link" href="management.php">後臺管理</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">登出</a>

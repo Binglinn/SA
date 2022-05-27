@@ -80,7 +80,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">後臺管理</a>
+                            <a class="nav-link" href="management.php">後臺管理</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">登出</a>
@@ -180,14 +180,20 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="card">
                         <div class="card-body">
                             
-                            <h1 class="h2"><?php echo  $record['lose_name']?></h1>
-                            <p class="h3 py-2">分類項目：<?php echo $record['lose_classify'] ?></p>   
+                            <p class="h2 col-md-4" style="display:inline;"><?php echo  $record['lose_name']?> </p>
+
+                            <p class="h3 py-2" >分類項目：<?php echo $record['lose_classify'] ?></p>   
                             <p class="h3 py-2">拾獲日期：<?php echo $record['lose_date']?></p>
                             <p class="h3 py-2">拾獲地點：<?php echo $record['lose_place'] ?></p> 
                             <p class="h3 py-2">物品敘述：<?php echo $record['lose_describe'] ?></p>   
                             <p class="h3 py-2">領取地點：<?php echo $record['lose_office'] ?></p>   
-                            
-                    <?php }?>
+
+                            <?php 
+                                if($_SESSION["user_admin"]=="admin" && $record['lose_status']=='分類'){?>
+                                <a href="update_status.php?lose_status=已領回&lose_id=<?php echo $lose_id ?>" style="text-decoration:none; color:green;float:right; "  ><i class="far fa-arrow-alt-circle-right" style="color:green">&nbsp;遺失物已領回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></a>
+                                <?php } ?>
+                             <?php }?>
+
                         </div>
                     </div>
                 </div>

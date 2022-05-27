@@ -84,7 +84,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">後臺管理</a>
+                            <a class="nav-link" href="management.php">後臺管理</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">登出</a>
@@ -203,7 +203,7 @@ https://templatemo.com/tm-559-zay-shop
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" style="width:253px;height:253px;" onerror="javascript:this.src='assets/img/apple-icon.png'"/>
+                            <img  onerror="javascript:this.src='assets/img/apple-icon.png'" src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" style="width:253px;height:253px;" onerror="javascript:this.src='assets/img/apple-icon.png'"/>
                         <div class="card-body">
                             <div class="flip" >
                                 <b><?php echo $item_list[$i]["lose_name"]?></b>
@@ -218,7 +218,11 @@ https://templatemo.com/tm-559-zay-shop
                                     拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>
                                     拾獲地點：<?php echo $item_list[$i]["lose_place"]?><br>
                                     物品描述：<?php echo $item_list[$i]["lose_describe"]?><br>
-                                    
+                                    <br>
+                                    <?php 
+                                        if($_SESSION["user_admin"]=="admin"){?>
+                                        <center><a href="update_status.php?lose_status=分類&lose_id=<?php echo  $item_list[$i]["lose_id"] ?>" style="text-decoration:none; color:green;"  ><i class="far fa-arrow-alt-circle-right" style="color:green">&nbsp;遺失物轉交學校</i></a></center>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>    
