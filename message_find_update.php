@@ -1,9 +1,12 @@
-<?php 
-    session_start();
-    $user_name = $_SESSION['user_name'];
-    $hidden_lose_id = $_GET['hidden_lose_id'];
+<?php
+   session_start();
+   $user_name = $_SESSION['user_name'];
+   $mes_id = $_GET['mes_id'];
+   $find_id = $_GET['find_id'];
 ?>
-<!DOCTYPE html> 
+ 
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -21,6 +24,20 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+
+    <style>
+        .flip{margin:0px;padding:5px;text-align:center;cursor:pointer;font-family:'Arial';}
+        .panel{margin:0px;padding:5px;text-align:center;display:none;font-family:'Arial';text-align:left;}
+    </style>
+    <?php
+    $link=mysqli_connect("localhost","root","12345678","sa");
+
+    if(!$link){
+        echo "連接失敗" . mysqli_connect_error(); 
+    }
+    $sql= "SELECT * FROM mes WHERE mes_id = $mes_id";
+    $rs = mysqli_query($link, $sql);
+    ?>
     
 <!--
     
@@ -130,103 +147,45 @@ https://templatemo.com/tm-559-zay-shop
 
         </div>
     </nav>
-    <br>
-    <div class="col-lg-12">
-        <div class="row">
-            <div class="col-md-8"></div>
-            <div class="col-md-4 pb-4" align=right>
-                <div width=50px>
-                    <?php 
-                        $searchtxt = $hidden_lose_id;                          
-                    ?>
-                </div>
+    <!-- Close Header -->
+    
+    <!-- Modal -->
+    <?php
+        while($record=mysqli_fetch_assoc($rs)){
+    ?>
+    <div class="container py-5" >
+        <div class="row py-5">
+            <form action="message_update_mes.php" method="post">
+            <label  style="color: green;" for="inputname" ><h1>留言</h1></label>
+            <p>*為必填</p>
+             <div class="form-group col-md-6 mb-3">
+                 <input type="text" class="form-control mt-1" name="find_id" value="<?php echo $find_id ?>" readonly>
             </div>
-        </div>
+            <div class="form-group col-md-6 mb-3">
+                <textarea type="text" rows="5" class="form-control mt-1" name="mes_content" required="required"><?php echo $record['mes_content'] ?></textarea>
+            </div>
+            <input type="hidden" name = "mes_id" value="<?php echo $mes_id ?>">
+            <div class="col text-end mt-1">
+                <input type="submit" value="確認送出" class="btn btn-success btn-lg px-3">
+            </div>
+            </form>      
+            </div>
     </div>
     <?php
-        $link = mysqli_connect("localhost", "root", "12345678", "sa");
-        if(!$link){
-            echo "連接失敗" . mysqli_connect_error(); 
         }
-        mysqli_query($link, "set names utf8");
-
-        $date = date("Y-m-d",strtotime("-7 day"));
-        if(isset($searchtxt)){
-            $sql="select mes.mes_id,mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name,user.user_email FROM mes,user,lose where mes.lose_id=$searchtxt AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
-        }else{
-            $searchtxt = $_SESSION['hidden_lose_id'];
-            $sql="select mes.mes_id,mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name,user.user_email FROM mes,user,lose where mes.lose_id=$searchtxt AND mes_time>'$date' AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
-        }
-        $result=mysqli_query($link,$sql)
-
-    ?>
-    <br>
-    <table class="table" style="text-align:center">
-    <?php
-    echo "
-            <th>物品編號</th>
-            <th>物品名稱</th>
-            <th>留言</th>
-            <th>留言時間</th>
-            <th>留言者</th>"
-            ?>
-            <?php if($_SESSION["user_admin"]=="user" or $_SESSION["user_admin"]=="admin"){?>
-                <th>功能</th>
-            <?php } ?>
-    <!-- //一次取得一筆(列)資料，並存入record[] -->
-    <?php
-    while($record=mysqli_fetch_assoc($result)){
-        if($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]=="$record[user_email]"){
-        echo "<tr>
-                  <td>$record[lose_id]</td>
-                  <td>$record[lose_name]</td>
-                  <td>$record[mes_content]</td>
-                  <td>$record[mes_time]</td>
-                  <td>$record[user_name]</td>
-                  <td><a href='message_update.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]'>[修改]</a>
-                  、<a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]'>[刪除]</a></td>
-              </tr>";
-                }elseif($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]!="$record[user_email]"){
-                    echo "<tr>
-                    <td>$record[lose_id]</td>
-                    <td>$record[lose_name]</td>
-                    <td>$record[mes_content]</td>
-                    <td>$record[mes_time]</td>
-                    <td>$record[user_name]</td>
-                    <td> </td>
-                    <tr>";
-                }elseif($_SESSION["user_admin"]=="admin"){
-                    echo "<tr>
-                    <td>$record[lose_id]</td>
-                    <td>$record[lose_name]</td>
-                    <td>$record[mes_content]</td>
-                    <td>$record[mes_time]</td>
-                    <td>$record[user_name]</td>
-                    <td>
-                    <a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]'?>[刪除]</a></td>
-                    <tr>";
-                }elseif($_SESSION["user_admin"]==""){
-                    echo "<tr>
-                    <td>$record[lose_id]</td>
-                    <td>$record[lose_name]</td>
-                    <td>$record[mes_content]</td>
-                    <td>$record[mes_time]</td>
-                    <td>$record[user_name]</td>
-                    <tr>";
-                    }
-            }
     ?>
     
-    </table>
-    <?php 
-    if($_SESSION['user_admin']=="user"){?>
-        <form action="add_message.php" method="get">
-            <input type="hidden"class="form-control mt-1" name="hidden_lose_id" value="<?php echo $hidden_lose_id ?>"><br>
-            <center><input type="submit" class="btn btn-success btn-lg px-3" value="新增留言"></button></center>
-        </form>
-    <?php } ?>
-    <br><br>
+  
+            
+    
+   
+                    
+    <!-- Start Banner Hero -->
+    
+    <!-- End Banner Hero -->
 
+
+    <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">

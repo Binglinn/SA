@@ -69,7 +69,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="management.php">後臺管理</a>
+                            <a class="nav-link" href="contact.html">後臺管理</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">登出</a>
@@ -155,13 +155,13 @@ https://templatemo.com/tm-559-zay-shop
         $date = date("Y-m-d",strtotime("-30 day")); 
         if(isset($searchtxt))
             {
-                $sql="select mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
+                $sql="select mes.mes_id, mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_email, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
             }
             else{
                 $searchtxt = $_SESSION['hidden_find_id'];
-                $sql="select mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
+                $sql="select mes.mes_id, mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_email, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
             }
-        $result=mysqli_query($link,$sql);
+        $result=mysqli_query($link,$sql)
 
         ?>
     <br>
@@ -172,19 +172,59 @@ https://templatemo.com/tm-559-zay-shop
             <th>物品名稱</th>
             <th>留言</th>
             <th>留言時間</th>
-            <th>留言者</th>";
-
-    //一次取得一筆(列)資料，並存入record[]
+            <th>留言者</th>"
+            ?>
+            <?php if($_SESSION["user_admin"]=="user" or $_SESSION["user_admin"]=="admin"){?>
+                <th>功能</th>
+            <?php } ?>
+    <!-- //一次取得一筆(列)資料，並存入record[] -->
+    <?php
     while($record=mysqli_fetch_assoc($result)){
+        if(($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]=="$record[user_email]")){   
         echo "<tr>
                   <td>$record[find_id]</td>
                   <td>$record[find_name]</td>
                   <td>$record[mes_content]</td>
                   <td>$record[mes_time]</td>
                   <td>$record[user_name]</td>
-              </tr>";
-    }
+                  <td><a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>[修改]</a>、
+                  <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>[刪除]</a></td
+                  </tr>";
+                }
+
+                elseif($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]!="$record[user_email]"){
+                    echo "<tr>
+                    <td>$record[find_id]</td>
+                    <td>$record[find_name]</td>
+                    <td>$record[mes_content]</td>
+                    <td>$record[mes_time]</td>
+                    <td>$record[user_name]</td>
+                    <td> </td>
+                    </tr>";
+               }
+                elseif($_SESSION["user_admin"]=="admin"){
+                    echo "<tr>
+                    <td>$record[find_id]</td>
+                    <td>$record[find_name]</td>
+                    <td>$record[mes_content]</td>
+                    <td>$record[mes_time]</td>
+                    <td>$record[user_name]</td>
+                    <td>
+                    <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>[刪除]</a></td>
+                    </tr>";
+                }
+                elseif($_SESSION["user_admin"]==""){
+                    echo "<tr>
+                    <td>$record[find_id]</td>
+                    <td>$record[find_name]</td>
+                    <td>$record[mes_content]</td>
+                    <td>$record[mes_time]</td>
+                    <td>$record[user_name]</td>
+                    </tr>";
+                }
+         }
     ?>
+    <!-- AND $_SESSION["user_email"]=="$record[user_email]" -->
     </table>
     <?php
     if($_SESSION['user_admin']=="user"){?>
@@ -192,7 +232,7 @@ https://templatemo.com/tm-559-zay-shop
             <input type="hidden"class="form-control mt-1" name="hidden_find_id" value="<?php echo $hidden_find_id ?>"><br>
             <center><input type="submit" class="btn btn-success btn-lg px-3" value="新增留言"></button></center>
         </form>
-    <?php }?>
+    <?php } ?>
     <br><br>
 
     <footer class="bg-dark" id="tempaltemo_footer">

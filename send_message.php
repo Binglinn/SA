@@ -19,26 +19,24 @@
     if($lose_id != ""){
         $sql = "INSERT INTO mes (mes_id,mes_content,mes_time,user_email,lose_id,find_id) VALUES ('$mes_id', '$mes_content', '$mes_time', '$user_email','$lose_id','0')";
         if(mysqli_query($link, $sql)){
-            header("location:message.php");
+            ?>
+            <script>
+            alert("新增成功！");
+            history.go(-2);
+            </script>
+            <?php
         }
     }
     
     if($find_id != ""){
         $sql = "INSERT INTO mes (mes_id,mes_content,mes_time,user_email,lose_id,find_id) VALUES ('$mes_id', '$mes_content', '$mes_time', '$user_email','0','$find_id')";
         if(mysqli_query($link, $sql)){
-            header("location:message_find.php");
+            ?>
+            <script>
+            alert("新增成功！");
+            history.go(-2);
+            </script>
+            <?php
         }
     }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <?php echo $lose_id,$find_id?>
-</head>
-<body>
-    <a href="index.php"><button>回首頁</button></a>
-</body>
-</html>
