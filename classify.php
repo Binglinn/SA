@@ -336,6 +336,28 @@ $( document ).tooltip();
                 
                 <p class="page-item">
                 <br>
+                <?php if(isset($searchtxt)){?>
+                    <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href='?searchtxt=<?php echo $searchtxt ?>&classify_name=<?php echo $searchtxt ?>&page=1'>首頁</a></li>
+                    <?php
+                        for( $i=1 ; $i<=$pages ; $i++ ) {
+                            if ( $page-3 < $i && $i < $page+3 ) {
+                                if($i==$page){
+                                ?>
+                                <li><a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="?searchtxt=<?php echo $searchtxt ?>&classify_name=<?php echo $searchtxt ?>&page=<?php echo $i;?>" tabindex="-1" >
+                                <?php echo $i.'&nbsp';?></a></li>
+                                <?php
+                                }
+                                else{ ?>
+                                    <li><a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="searchtxt=<?php echo $searchtxt ?>&classify_name=<?php echo $searchtxt ?>&?page=<?php echo $i;?>" tabindex="-1" >
+                                    <?php echo $i.'&nbsp';?></a></li>
+                                <?php 
+                                }
+                            } 
+                         }?>
+                    <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="?searchtxt=<?php echo $searchtxt ?>&classify_name=<?php echo $searchtxt ?>&page=<?php echo $pages?>">末頁</a></li>
+                <?php } 
+                
+                else{ ?>
                     <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href='?page=1'>首頁</a></li>
                     <?php
                         for( $i=1 ; $i<=$pages ; $i++ ) {
@@ -354,6 +376,7 @@ $( document ).tooltip();
                             } 
                          }?>
                     <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="?page=<?php echo $pages?>">末頁</a></li>
+                <?php } ?>
                 </p>
             </ul>
         </div>

@@ -179,20 +179,19 @@ https://templatemo.com/tm-559-zay-shop
 
 
     <!-- Start Categories of The Month -->
-    <section class="container py-5">
-        <div class="row text-center pt-3">
-            <div class="col-lg-6 m-auto">
-                <h3>帳號管理</h3>
-            </div>
+    <section class=" py-5">
+        <div class="row text-center pt-3 ">
+                <h3>帳號總表</h3>
         </div>
-        <div align="center">
-        <div width="100%">
-            <table id="table" width="100%" class="table table-hover display">
-                <thead>
-                    <tr>
-                        <th>使用者帳號</th>
-                        <th>姓名</th>
-                        <th>連絡電話</th>
+        </div>
+        <div  align="center" style="padding:15px">
+            <table id="table" width="100%" class="table table-hover display" >
+                <thead >
+                    
+                    <tr >
+                        <th style="text-align: center;">使用者帳號</th>
+                        <th style="text-align: center;">姓名</th>
+                        <th style="text-align: center;">連絡電話</th>
                     </tr>
                 </thead>
                 <tbody align="center">
@@ -208,10 +207,6 @@ https://templatemo.com/tm-559-zay-shop
                     <?php } ?> 
                 </tbody>
             </table>
-
-
-
-            
         </div>
 
 
