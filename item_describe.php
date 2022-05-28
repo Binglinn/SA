@@ -24,6 +24,7 @@
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
+    <script src="https://kit.fontawesome.com/c288ca735f.js" crossorigin="anonymous"></script>
 <!--
     
 TemplateMo 559 Zay Shop
@@ -182,18 +183,24 @@ https://templatemo.com/tm-559-zay-shop
                             
                             <p class="h2 col-md-4" style="display:inline;"><?php echo  $record['lose_name']?> </p>
 
-                            <p class="h3 py-2" >分類項目：<?php echo $record['lose_classify'] ?></p>   
+                            <p class="h3 py-2">分類項目：<?php echo $record['lose_classify'] ?></p>   
                             <p class="h3 py-2">拾獲日期：<?php echo $record['lose_date']?></p>
                             <p class="h3 py-2">拾獲地點：<?php echo $record['lose_place'] ?></p> 
                             <p class="h3 py-2">物品敘述：<?php echo $record['lose_describe'] ?></p>   
                             <p class="h3 py-2">領取地點：<?php echo $record['lose_office'] ?></p>   
-
+                            
+                            
+                            
                             <?php 
                                 if($_SESSION["user_admin"]=="admin" && $record['lose_status']=='分類'){?>
+                                <div >
+                                <a href=classify_update.php?lose_id=<?php echo $record["lose_id"]?> style="text-decoration:none;"><font color="green"><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;修改</font></a>&nbsp;&nbsp;&nbsp;</a>
+                                <a href=classify_delete_mes.php?lose_id=<?php echo $record["lose_id"]?> style="text-decoration:none;"><font color="green" ><i class="fa-solid fa-trash"></i>&nbsp;刪除</font></a>
+                            
                                 <a href="update_status.php?lose_status=已領回&lose_id=<?php echo $lose_id ?>" style="text-decoration:none; color:green;float:right; "  ><i class="far fa-arrow-alt-circle-right" style="color:green">&nbsp;遺失物已領回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></a>
                                 <?php } ?>
                              <?php }?>
-
+                             </div>
                         </div>
                     </div>
                 </div>

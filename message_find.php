@@ -2,6 +2,7 @@
     session_start();
     $user_name = $_SESSION['user_name'];
     $hidden_find_id = $_GET['hidden_find_id'];
+    $find_name = $_GET['find_name'];
 ?>
 <!DOCTYPE html> 
 
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/templatemo.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <script src="https://kit.fontawesome.com/c288ca735f.js" crossorigin="anonymous"></script>
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
@@ -165,67 +167,62 @@ https://templatemo.com/tm-559-zay-shop
 
         ?>
     <br>
+    <center><h4>物品編號：<?php echo $hidden_find_id ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;物品名稱：<?php echo $find_name ?></h4></center><br>
+    <div style="margin-left:100px;margin-right:100px;">
     <table class="table" style="text-align:center;">
     <?php
     echo "
-            <th>物品編號</th>
-            <th>物品名稱</th>
+            <th>留言者</th>
             <th>留言</th>
-            <th>留言時間</th>
-            <th>留言者</th>"
+            <th style=width:150px>留言時間</th>"
             ?>
             <?php if($_SESSION["user_admin"]=="user" or $_SESSION["user_admin"]=="admin"){?>
                 <th>功能</th>
+            <?php }else{ ?>
+                <th></th>
             <?php } ?>
     <!-- //一次取得一筆(列)資料，並存入record[] -->
     <?php
     while($record=mysqli_fetch_assoc($result)){
         if(($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]=="$record[user_email]")){   
         echo "<tr>
-                  <td>$record[find_id]</td>
-                  <td>$record[find_name]</td>
-                  <td>$record[mes_content]</td>
+                  <td style=text-align:center;line-height:50px;>$record[user_name]</td>
+                  <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                   <td>$record[mes_time]</td>
-                  <td>$record[user_name]</td>
-                  <td><a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>[修改]</a>、
-                  <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>[刪除]</a></td
+                  <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
+                  <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
                   </tr>";
                 }
 
                 elseif($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]!="$record[user_email]"){
                     echo "<tr>
-                    <td>$record[find_id]</td>
-                    <td>$record[find_name]</td>
-                    <td>$record[mes_content]</td>
+                    <td style=text-align:center;line-height:50px;>$record[user_name]</td>
+                    <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                     <td>$record[mes_time]</td>
-                    <td>$record[user_name]</td>
-                    <td> </td>
+                    <td style=text-align:center;line-height:50px;></td>
                     </tr>";
                }
                 elseif($_SESSION["user_admin"]=="admin"){
                     echo "<tr>
-                    <td>$record[find_id]</td>
-                    <td>$record[find_name]</td>
-                    <td>$record[mes_content]</td>
+                    <td style=text-align:center;line-height:50px;>$record[user_name]</td>
+                    <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                     <td>$record[mes_time]</td>
-                    <td>$record[user_name]</td>
-                    <td>
-                    <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>[刪除]</a></td>
+                    <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
                     </tr>";
                 }
                 elseif($_SESSION["user_admin"]==""){
                     echo "<tr>
-                    <td>$record[find_id]</td>
-                    <td>$record[find_name]</td>
-                    <td>$record[mes_content]</td>
+                    <td style=text-align:center;line-height:50px;>$record[user_name]</td>
+                    <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                     <td>$record[mes_time]</td>
-                    <td>$record[user_name]</td>
+                    <td style=text-align:center;line-height:50px;></td>
                     </tr>";
                 }
          }
     ?>
     <!-- AND $_SESSION["user_email"]=="$record[user_email]" -->
     </table>
+    </div>
     <?php
     if($_SESSION['user_admin']=="user"){?>
         <form action="add_message_find.php" method="get">

@@ -156,7 +156,8 @@ https://templatemo.com/tm-559-zay-shop
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1>個人專區</h1>
+                <h1 class="h1"><b><font color="green">Personal</font></b></h1>
+                <h4>個人專區</h4>
             </div>
         </div>
         <div align="center" class="row">
@@ -172,13 +173,13 @@ https://templatemo.com/tm-559-zay-shop
             <div class="col-12 col-md-4 p-5 mt-3">
            
                 <h3 > <a href="self-find.php">
-                    <img src="./assets/img/searching.png" width="280" height="280" ></a>
+                    <img src="./assets/img/searching.png" width="275" height="275" ></a>
                 <br> <br>已發布尋物貼文</h3>
             </div>
 
             <div class="col-12 col-md-4 p-5 mt-3">
                 <h3> <a href="self-setting.php"> <br>
-                    <img src="./assets/img/settings-2.png" width="215" height="215" ></a>
+                    <img src="./assets/img/settings-2.png" width="210" height="210" ></a>
                  <br><br><br>設定</h3>
             </div>
 

@@ -1,12 +1,12 @@
-<?php 
+<?php
     session_start();
     $user_name = $_SESSION['user_name'];
+    $lose_id = $_GET["lose_id"];
 ?>
- 
 <!DOCTYPE html>
 
 <html lang="en">
- 
+
 <head>
     <title>Zay Shop eCommerce HTML CSS Template</title>
     <meta charset="utf-8">
@@ -22,26 +22,12 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-    <script src="https://kit.fontawesome.com/c288ca735f.js" crossorigin="anonymous"></script>
-
-    <style>
-        .flip{margin:0px;padding:5px;text-align:center;cursor:pointer;font-family:'Arial';}
-        .panel{margin:0px;padding:5px;text-align:center;display:none;font-family:'Arial';text-align:left;}
-    </style>
-    <?php
-    $link=mysqli_connect("localhost","root","12345678","sa");
-
-    if(!$link){
-        echo "連接失敗" . mysqli_connect_error(); 
-    }
-    $date = date("Y-m-d",strtotime("-30 day"));
-    $sql_find= "SELECT * FROM find WHERE find_postTime>'$date' ORDER BY find_postTime desc";
-    $rs_find = mysqli_query($link, $sql_find);
-    ?>
 <!--
     
 TemplateMo 559 Zay Shop
+
 https://templatemo.com/tm-559-zay-shop
+
 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -117,8 +103,6 @@ https://templatemo.com/tm-559-zay-shop
                                   
                         </ul>
 
-                        
-
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
@@ -145,139 +129,127 @@ https://templatemo.com/tm-559-zay-shop
         </div>
     </nav>
     <!-- Close Header -->
-    
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-   
     <section class="bg-light">
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1"><b><font color="green">Lost</font></b></h1>
-                    <h5>尋物啟事</h5>
+                    <h1 class="h1"><b><font color="green">Update</font></b></h1>
+                        <p>修改分類物品資訊</p>
                 </div>
             </div>
-           
-            <?php
-                        $data_nums = mysqli_num_rows($rs_find); //統計總比數
-                        
-                        $per = 8; //每頁顯示項目數量
-                        $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
-                        if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
-                            $page=1; //則在此設定起始頁數
-                        } else {
-                            $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
-                            
-                        }
-                        $start = ($page-1)*$per; //每一頁開始的資料序號
-                    
-                      
-                        $item_list=[];
-                           
-                ?> 
-            <div class="row">
-                <?php 
-               for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
-                   
-                while($record=mysqli_fetch_assoc($rs_find)){
-
-                    array_push($item_list,$record);}?>
-                    
-                    
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" style="width:253px; height:253px;" onerror="javascript:this.src='assets/img/apple-icon.png'" >
-                        <div class="card-body">
-                            <div class="flip" >
-                                <b><?php echo $item_list[$i]["find_name"]?></b>
-                                <a href="message_find.php?hidden_find_id=<?php echo $item_list[$i]["find_id"] ?>& find_name=<?php echo $item_list[$i]["find_name"] ?>" class="fas fa-comments" style="color:green;"></a>
-                                <div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div>
-                            </div>
-                            <div class="panel">
-                                物品編號：<?php echo $item_list[$i]["find_id"]?><br>
-                                遺失地點：<?php echo $item_list[$i]["find_place"]?><br>
-                                聯絡資訊：<?php echo $item_list[$i]["find_contact"]?><br>
-                                物品描述：<?php echo $item_list[$i]["find_describe"]?>
-                                <?php if($_SESSION["user_admin"]=="admin"){?>
-                                  <?php }?>
-                            </div>
-                        </div>
-                        <?php if($_SESSION["user_admin"]=="admin"){?>
-                            <div  class="card-footer" style="background-color:white">
-                                <div>
-                                <center><a href=item_delete_mes.php?find_id=<?php echo $item_list[$i]["find_id"]?> style="text-decoration:none;"> <font color="green"><i class="fa-solid fa-trash"></i>&nbsp;刪除</font></a></center>
-                                </div>
-                            </div>
-                        <?php }?>
-                    </div>    
-                </div>
-                <?php }?>
-            </div>
         </div>
-         <div class='col-md-12'>
-        <?php if($_SESSION["user_admin"]=="user"){?>
-            <center><a href="find-insert.php"><button class="btn btn-success btn-lg px-3">新增尋物</button></a>
-        <?php } ?>
-            <ul class="pagination pagination-lg justify-content-end">
-          
-                <p class="page-item">
-                    <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href='?page=1'>首頁</a></li>
-                    <?php
-                        for( $i=1 ; $i<=$pages ; $i++ ) {
-                            if ( $page-3 < $i && $i < $page+3 ) {
-                                if($i==$page){
-                                ?>
-                                <li><a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="?page=<?php echo $i;?>" tabindex="-1" >
-                                <?php echo $i.'&nbsp';?></a></li>
-                                <?php
-                                }
-                                else{ ?>
-                                    <li><a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="?page=<?php echo $i;?>" tabindex="-1" >
-                                    <?php echo $i.'&nbsp';?></a></li>
-                                <?php 
-                                }
-                            } 
-                         }?>
-                         
-                    <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="?page=<?php echo $pages?>">末頁</a></li>
-          
-                </p>
-            </ul>
-            
-            <div align="right"><?php echo '共 ',$data_nums,' 筆-在 ',$page,' 頁-共 ',$pages,' 頁';?></div>
-        </div>
-        
     </section>
-    
-   
-                    <script>
-                    $(function(){
-                    $(".flip").click(function(){
-                    $(".panel").slideToggle("slow");
-                   
-                    });});
-                    
-                    
-                    </script>  
 
-    <!-- Start Banner Hero -->
-    
-    <!-- End Banner Hero -->
+    <?php
+        $link = mysqli_connect("localhost", "root", "12345678", "sa");
+        if(!$link){
+            echo "連接失敗" . mysqli_connect_error(); 
+        }
+        mysqli_query($link, "set names utf8");
+        $sql = "SELECT * FROM lose WHERE lose_id = $lose_id";
+        $result = mysqli_query($link, $sql);
+        while($record=mysqli_fetch_assoc($result)){
+    ?>
 
+    <div class="container py-5">
+        <p><center>*為必填</center></p>
+        <form class="col-md-9 m-auto" action="classify_update2.php" method="post" enctype="multipart/form-data" >
+            <div class="mb-3">
+                <label>*物品名稱</label>
+                <input type="text" class="form-control mt-1" name="name" value=<?php echo $record["lose_name"] ?> required="required">
+            </div>
+            <div class="mb-3">
+                <label>*拾獲地點</label>
+                <input type="text" class="form-control mt-1" name="place" value=<?php echo $record["lose_place"] ?> required="required">
+            </div>
+            <div class="mb-3">
+                <label>*拾獲日期</label>
+                <input type="date" class="form-control mt-1" name="date" value=<?php echo $record["lose_date"] ?> required="required">
+            </div>
+            <div class="mb-3">
+                <label>*分類</label><br>
+                <select class="form-control mt-1" name="classify" required="required">
+                    <option></option>
+                    <?php if($record["lose_classify"] == "證件"){?>
+                        <option value="證件" selected>證件</option>
+                    <?php } else{?>
+                        <option value="證件" >證件</option>
+                    <?php } ?>
+                    <?php if($record["lose_classify"] == "皮夾&包包"){?>
+                        <option value="皮夾&包包" selected>皮夾&包包</option>
+                    <?php } else{?>
+                        <option value="皮夾&包包">皮夾&包包</option>
+                    <?php } ?>
+                    <?php if($record["lose_classify"] == "3C產品"){?>
+                        <option value="3C產品" selected>3C產品</option>
+                    <?php } else{?>
+                        <option value="3C產品">3C產品</option>
+                    <?php } ?>
+                    <?php if($record["lose_classify"] == "鑰匙"){?>
+                        <option value="鑰匙" selected>鑰匙</option>
+                    <?php } else{?>
+                        <option value="鑰匙">鑰匙</option>
+                    <?php } ?>
+                    <?php if($record["lose_classify"] == "文具用品"){?>
+                        <option value="文具用品" selected>文具用品</option>
+                    <?php } else{?>
+                        <option value="文具用品">文具用品</option>
+                    <?php } ?>
+                    <?php if($record["lose_classify"] == "衣物"){?>
+                        <option value="衣物" selected>衣物</option>
+                    <?php } else{?>
+                        <option value="衣物">衣物</option>
+                    <?php } ?>
+                    <?php if($record["lose_classify"] == "雨傘"){?>
+                        <option value="雨傘" selected>雨傘</option>
+                    <?php } else{?>
+                        <option value="雨傘">雨傘</option>
+                    <?php } ?>
+                    <?php if($record["lose_classify"] == "其他"){?>
+                        <option value="其他" selected>其他</option>
+                    <?php } else{?>
+                        <option value="其他">其他</option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>圖片上傳(僅支援1：1大小圖片；且若不更改圖片，無須上傳任何圖片)</label>
+                <input type="file" class="form-control mt-1" name="image" accept=".jpg, .jepg, .png">
+            </div>
+            <div class="mb-3">
+                <label>*物品描述</label>
+                <textarea class="form-control mt-1"  name="describe" rows="5" required="required"><?php echo $record["lose_describe"] ?></textarea>
+            </div>
+            <div class="mb-3">
+                <label>*領取處室</label>
+                <select class="form-control mt-1" name="office" required="required" >
+                    <option></option>
+                    <?php if($record["lose_office"] == "野聲樓YP104"){?>
+                        <option value="野聲樓YP104" selected>野聲樓YP104</option>
+                    <?php } else{?>
+                        <option value="野聲樓YP104">野聲樓YP104</option>
+                    <?php } ?>
+                    <?php if($record["lose_office"] == "進修部ES201"){?>
+                        <option value="進修部ES201" selected>進修部ES201</option>
+                    <?php } else{?>
+                        <option value="進修部ES201">進修部ES201</option>
+                    <?php } ?>
+                    <?php if($record["lose_office"] == "軍訓室"){?>
+                        <option value="軍訓室" selected>軍訓室</option>
+                    <?php } else{?>
+                        <option value="軍訓室">軍訓室</option>
+                    <?php } ?>                                
+                </select>
+            </div>
+            <input type="hidden" name="lose_id" value="<?php echo $record["lose_id"] ?>"
+            <div class="row">
+                <div class="col text-end mt-2" >
+                <center><input type="submit" class="btn btn-success btn-lg px-3" value="確認送出"></center>                
+            </div>
+            </div>
+        </form>
+    </div>
+    <?php } ?>
 
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

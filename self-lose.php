@@ -20,6 +20,7 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <script src="https://kit.fontawesome.com/c288ca735f.js" crossorigin="anonymous"></script>
 
     <style>
         .flip{margin:0px;padding:5px;text-align:center;cursor:pointer;font-family:'Arial';}
@@ -36,7 +37,7 @@
             echo "連接失敗" . mysqli_connect_error(); 
         }
     
-        $sql_lose= "SELECT * FROM lose where lose_status='即時刊登'and user_email='$user_email'";
+        $sql_lose= "SELECT * FROM lose where lose_status='即時刊登'and user_email='$user_email' order by lose_postTime desc ";
 
         $rs_lose = mysqli_query($link, $sql_lose);
        
@@ -174,7 +175,8 @@ https://templatemo.com/tm-559-zay-shop
         <div class="container py-5">
             <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h2">已發布拾物貼文</h1><br><br>
+                <h1 class="h1"><b><font color="green">Published found</font></b></h1>
+                <h5>已發布即時刊登區</h5>
             </div>
             </div>
             <?php
@@ -203,13 +205,23 @@ https://templatemo.com/tm-559-zay-shop
                      
                     array_push($item_list,$record);}?>
                     
-                    
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" style="width:253px;height:253px;" >
+                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/apple-icon.png'"/>
                         <div class="card-body">
                             <div class="flip" ><span class="1"><?php echo $item_list[$i]["lose_name"]?></span><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
-                            <div class="panel">物品編號：<?php echo $item_list[$i]["lose_id"]?><br>拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>拾獲地點：<?php echo $item_list[$i]["lose_place"]?><br> 物品描述：<?php echo $item_list[$i]["lose_describe"]?></div>
+                            <div class="panel" >
+                                物品編號：<?php echo $item_list[$i]["lose_id"]?><br>
+                                拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>
+                                拾獲地點：<?php echo $item_list[$i]["lose_place"]?><br> 
+                                物品描述：<?php echo $item_list[$i]["lose_describe"]?><br>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="background-color:white">
+                            <center>
+                                <a href=self_lose_update.php?lose_id=<?php echo $item_list[$i]["lose_id"]?>><font color="green"><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;修改</font></a>&nbsp;&nbsp;&nbsp;
+                                <a href=item_delete_mes.php?lose_id=<?php echo $item_list[$i]["lose_id"]?>><font color="green"><i class="fa-solid fa-trash"></i>&nbsp;刪除</font></a>
+                            </center>
                         </div>
                     </div>    
                 </div>

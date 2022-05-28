@@ -135,7 +135,7 @@ https://templatemo.com/tm-559-zay-shop
             </div>
             <div class="mb-3">
                 <label><b>使用者名稱</b></label>
-                <input type="text" class="form-control mt-1" name="user_name" placeholder="編輯使用者名稱" autofocus>
+                <input type="text" class="form-control mt-1" name="user_name" placeholder="編輯使用者名稱" autofocus required>
             </div>
             <div class="mb-3">
                 <label><b>電話</b></label>
@@ -168,7 +168,7 @@ https://templatemo.com/tm-559-zay-shop
             </div>
             <div class="mb-3">
                 <label><b>電話</b></label>
-                <input type="text" class="form-control mt-1" name="phone" placeholder="編輯電話號碼" autofocus>
+                <input type="text" class="form-control mt-1" name="phone" placeholder="編輯電話號碼" autofocus required>
             </div>
             <div class="mb-3">
                 <label><b>密碼</b></label>
@@ -202,14 +202,14 @@ https://templatemo.com/tm-559-zay-shop
             </div>
             <div class="mb-3">
                 <label><b>密碼</b></label>
-                <input type="password" class="form-control mt-1" name="old_password" placeholder="輸入舊密碼" autofocus>
+                <input type="password" class="form-control mt-1" name="old_password" placeholder="輸入舊密碼" autofocus required>
                
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control mt-1" name="new_password" placeholder="輸入新密碼" > 
+                <input type="password" class="form-control mt-1" name="new_password" placeholder="輸入新密碼" required> 
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control mt-1" name="check_password" placeholder="確認新密碼" > 
+                <input type="password" class="form-control mt-1" name="check_password" placeholder="確認新密碼" required> 
             </div>
             
             

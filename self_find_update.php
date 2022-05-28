@@ -1,12 +1,13 @@
-<?php 
+<?php
     session_start();
     $user_name = $_SESSION['user_name'];
+    $find_id = $_GET["find_id"];
+    $_SESSION['find_id'] = $find_id;
 ?>
- 
 <!DOCTYPE html>
 
 <html lang="en">
- 
+
 <head>
     <title>Zay Shop eCommerce HTML CSS Template</title>
     <meta charset="utf-8">
@@ -22,26 +23,12 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-    <script src="https://kit.fontawesome.com/c288ca735f.js" crossorigin="anonymous"></script>
-
-    <style>
-        .flip{margin:0px;padding:5px;text-align:center;cursor:pointer;font-family:'Arial';}
-        .panel{margin:0px;padding:5px;text-align:center;display:none;font-family:'Arial';text-align:left;}
-    </style>
-    <?php
-    $link=mysqli_connect("localhost","root","12345678","sa");
-
-    if(!$link){
-        echo "連接失敗" . mysqli_connect_error(); 
-    }
-    $date = date("Y-m-d",strtotime("-30 day"));
-    $sql_find= "SELECT * FROM find WHERE find_postTime>'$date' ORDER BY find_postTime desc";
-    $rs_find = mysqli_query($link, $sql_find);
-    ?>
 <!--
     
 TemplateMo 559 Zay Shop
+
 https://templatemo.com/tm-559-zay-shop
+
 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -82,7 +69,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="management.php">後臺管理</a>
+                            <a class="nav-link" href="contact.html">後臺管理</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">登出</a>
@@ -117,8 +104,6 @@ https://templatemo.com/tm-559-zay-shop
                                   
                         </ul>
 
-                        
-
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
@@ -145,139 +130,59 @@ https://templatemo.com/tm-559-zay-shop
         </div>
     </nav>
     <!-- Close Header -->
-    
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-   
     <section class="bg-light">
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1"><b><font color="green">Lost</font></b></h1>
-                    <h5>尋物啟事</h5>
+                    <h1 class="h1"><b><font color="green">Update</font></b></h1>
+                        <p>修改尋物資訊</p>
                 </div>
             </div>
-           
-            <?php
-                        $data_nums = mysqli_num_rows($rs_find); //統計總比數
-                        
-                        $per = 8; //每頁顯示項目數量
-                        $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
-                        if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
-                            $page=1; //則在此設定起始頁數
-                        } else {
-                            $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
-                            
-                        }
-                        $start = ($page-1)*$per; //每一頁開始的資料序號
-                    
-                      
-                        $item_list=[];
-                           
-                ?> 
-            <div class="row">
-                <?php 
-               for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
-                   
-                while($record=mysqli_fetch_assoc($rs_find)){
-
-                    array_push($item_list,$record);}?>
-                    
-                    
-                <div class="col-12 col-md-3 mb-4">
-                    <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" style="width:253px; height:253px;" onerror="javascript:this.src='assets/img/apple-icon.png'" >
-                        <div class="card-body">
-                            <div class="flip" >
-                                <b><?php echo $item_list[$i]["find_name"]?></b>
-                                <a href="message_find.php?hidden_find_id=<?php echo $item_list[$i]["find_id"] ?>& find_name=<?php echo $item_list[$i]["find_name"] ?>" class="fas fa-comments" style="color:green;"></a>
-                                <div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div>
-                            </div>
-                            <div class="panel">
-                                物品編號：<?php echo $item_list[$i]["find_id"]?><br>
-                                遺失地點：<?php echo $item_list[$i]["find_place"]?><br>
-                                聯絡資訊：<?php echo $item_list[$i]["find_contact"]?><br>
-                                物品描述：<?php echo $item_list[$i]["find_describe"]?>
-                                <?php if($_SESSION["user_admin"]=="admin"){?>
-                                  <?php }?>
-                            </div>
-                        </div>
-                        <?php if($_SESSION["user_admin"]=="admin"){?>
-                            <div  class="card-footer" style="background-color:white">
-                                <div>
-                                <center><a href=item_delete_mes.php?find_id=<?php echo $item_list[$i]["find_id"]?> style="text-decoration:none;"> <font color="green"><i class="fa-solid fa-trash"></i>&nbsp;刪除</font></a></center>
-                                </div>
-                            </div>
-                        <?php }?>
-                    </div>    
-                </div>
-                <?php }?>
-            </div>
         </div>
-         <div class='col-md-12'>
-        <?php if($_SESSION["user_admin"]=="user"){?>
-            <center><a href="find-insert.php"><button class="btn btn-success btn-lg px-3">新增尋物</button></a>
-        <?php } ?>
-            <ul class="pagination pagination-lg justify-content-end">
-          
-                <p class="page-item">
-                    <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href='?page=1'>首頁</a></li>
-                    <?php
-                        for( $i=1 ; $i<=$pages ; $i++ ) {
-                            if ( $page-3 < $i && $i < $page+3 ) {
-                                if($i==$page){
-                                ?>
-                                <li><a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="?page=<?php echo $i;?>" tabindex="-1" >
-                                <?php echo $i.'&nbsp';?></a></li>
-                                <?php
-                                }
-                                else{ ?>
-                                    <li><a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="?page=<?php echo $i;?>" tabindex="-1" >
-                                    <?php echo $i.'&nbsp';?></a></li>
-                                <?php 
-                                }
-                            } 
-                         }?>
-                         
-                    <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="?page=<?php echo $pages?>">末頁</a></li>
-          
-                </p>
-            </ul>
-            
-            <div align="right"><?php echo '共 ',$data_nums,' 筆-在 ',$page,' 頁-共 ',$pages,' 頁';?></div>
-        </div>
-        
     </section>
-    
-   
-                    <script>
-                    $(function(){
-                    $(".flip").click(function(){
-                    $(".panel").slideToggle("slow");
-                   
-                    });});
-                    
-                    
-                    </script>  
+    <?php
+        $link = mysqli_connect("localhost", "root", "12345678", "sa");
+        if(!$link){
+            echo "連接失敗" . mysqli_connect_error(); 
+        }
+        mysqli_query($link, "set names utf8");
+        $sql = "SELECT * FROM find WHERE find_id = $find_id";
+        $result = mysqli_query($link, $sql);
+        while($record=mysqli_fetch_assoc($result)){
+    ?>
 
-    <!-- Start Banner Hero -->
-    
-    <!-- End Banner Hero -->
-
+    <div class="container py-5">
+        <p><center>*為必填</center></p>
+        <form class="col-md-9 m-auto" action="self_find_update2.php" method="post" enctype="multipart/form-data" >
+            <div class="mb-3">
+                <label>*物品名稱</label>
+                <input type="text" class="form-control mt-1" name="name" value=<?php echo $record["find_name"] ?> required="required">
+            </div>
+            <div class="mb-3">
+                <label>*遺失地點</label>
+                <input type="text" class="form-control mt-1" name="place" value=<?php echo $record["find_place"] ?> required="required">
+            </div> 
+            <div class="mb-3">
+                <label>*聯絡資訊</label>
+                <input type="text" class="form-control mt-1" name="contact" value=<?php echo $record["find_contact"] ?> required="required">
+            </div>
+            <div class="mb-3"> 
+                <label>圖片上傳(僅支援1：1大小圖片；且若不更改圖片，無須上傳任何圖片)</label>
+                <input type="file" class="form-control mt-1" name="image" accept=".jpg, .jepg, .png">
+                <input type="hidden" name="test" value=<?php echo $record['find_picture'] ?>>
+            </div>
+            <div class="mb-3">
+                <label>*物品描述</label>
+                <textarea class="form-control mt-1"  name="describe" rows="5" required="required"><?php echo $record["find_describe"] ?></textarea>
+            </div>
+            <div class="row">
+                <div class="col text-end mt-2" >
+                <center><input type="submit" class="btn btn-success btn-lg px-3" value="確認送出"></center>                
+            </div>
+            </div>
+        </form>
+    </div>
+    <?php } ?>
 
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

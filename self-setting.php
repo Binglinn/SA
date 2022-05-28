@@ -185,7 +185,7 @@ https://templatemo.com/tm-559-zay-shop
         <div class="row pt-3">
             <div class="col-lg-6" >
                 <h1 class="h1"><b><font color="green">Setting</font></b></h1>
-                <p >設定</p>
+                <h5>&nbsp;設定</h5>
             </div>
             <hr>
         </div>

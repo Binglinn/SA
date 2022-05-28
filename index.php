@@ -22,6 +22,7 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <script src="https://kit.fontawesome.com/c288ca735f.js" crossorigin="anonymous"></script>
 
     <style>
         .flip{margin:0px;padding:5px;text-align:center;cursor:pointer;font-family:'Arial';}
@@ -170,9 +171,7 @@ https://templatemo.com/tm-559-zay-shop
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1"><b><font color="green">Latest</font></b></h1>
-                    <p>
-                        即時刊登區
-                    </p>
+                    <h5>即時刊登區</h5>
                 </div>
             </div>
             <?php
@@ -203,30 +202,32 @@ https://templatemo.com/tm-559-zay-shop
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img  onerror="javascript:this.src='assets/img/apple-icon.png'" src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top" style="width:253px;height:253px;" onerror="javascript:this.src='assets/img/apple-icon.png'"/>
+                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/apple-icon.png'"/>
                         <div class="card-body">
                             <div class="flip" >
                                 <b><?php echo $item_list[$i]["lose_name"]?></b>
-                                <a href="message.php?hidden_lose_id=<?php echo $item_list[$i]["lose_id"] ?>" class="fas fa-comments" style="color:green;"></a>
-                                <div>
-                                    <font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font>
-                                </div>
+                                <a href="message.php?hidden_lose_id=<?php echo $item_list[$i]["lose_id"] ?>& lose_name=<?php echo $item_list[$i]["lose_name"] ?>" class="fas fa-comments" style="color:green;"></a>
+                                <div><font color="#D5D8DC" ><i class="fa fa-chevron-down" aria-hidden="true" ></i></font></div>
                             </div>
-                            
-                                <div class="panel">
-                                    物品編號：<?php echo $item_list[$i]["lose_id"]?><br>
-                                    拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>
-                                    拾獲地點：<?php echo $item_list[$i]["lose_place"]?><br>
-                                    物品描述：<?php echo $item_list[$i]["lose_describe"]?><br>
-                                    <br>
-                                    <?php 
-                                        if($_SESSION["user_admin"]=="admin"){?>
-                                        <center><a href="update_status.php?lose_status=分類&lose_id=<?php echo  $item_list[$i]["lose_id"] ?>" style="text-decoration:none; color:green;"  ><i class="far fa-arrow-alt-circle-right" style="color:green">&nbsp;遺失物轉交學校</i></a></center>
-                                    <?php } ?>
-                                </div>
+                            <div class="panel">
+                                物品編號：<?php echo $item_list[$i]["lose_id"]?><br>
+                                拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>
+                                拾獲地點：<?php echo $item_list[$i]["lose_place"]?><br>
+                                物品描述：<?php echo $item_list[$i]["lose_describe"]?><br>
                             </div>
-                        </div>    
+                        </div>
+                            <?php if($_SESSION["user_admin"]=="admin"){?>
+                                <div  class="card-footer" style="background-color:white">
+                                    <div>
+                                        <center>
+                                            <a href=item_delete_mes.php?lose_id=<?php echo $item_list[$i]["lose_id"]?> style="text-decoration:none;"> <font color="green"><i class="fa-solid fa-trash"></i>&nbsp;刪除&nbsp;</font></a>
+                                            <a href="update_status.php?lose_status=分類&lose_id=<?php echo  $item_list[$i]["lose_id"] ?>" style="text-decoration:none; color:green;"  ><i class="far fa-arrow-alt-circle-right" style="color:green">&nbsp;轉交學校</i></a>
+                                        </center>
+                                    </div>
+                                </div>
+                            <?php }?>
                     </div>
+                 </div>
                 <?php }?>
             </div>
         </div>

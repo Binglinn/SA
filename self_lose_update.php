@@ -214,7 +214,7 @@ https://templatemo.com/tm-559-zay-shop
                 </select>
             </div>
             <div class="mb-3">
-                <label>圖片上傳(僅支援1：1大小圖片</label>
+                <label>圖片上傳(僅支援1：1大小圖片；且若不更改圖片，無須上傳任何圖片)</label>
                 <input type="file" class="form-control mt-1" name="image" accept=".jpg, .jepg, .png">
             </div>
             <div class="mb-3">
