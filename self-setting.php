@@ -16,8 +16,20 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        table{
+            border-color:#ffffff;
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529; 
+        }
+      
+    </style>
 
-    
 <!--
     
 TemplateMo 559 Zay Shop
@@ -29,7 +41,16 @@ https://templatemo.com/tm-559-zay-shop
 
 <?php 
     session_start();
-    $user_name = $_SESSION['user_name'];
+    $user_email = $_SESSION['user_email'];
+    if(isset($_GET["new_name"])){
+        $_SESSION['user_name']=$_GET["new_name"];
+        $user_name= $_SESSION['user_name'];
+        
+    }
+    else{
+        $user_name = $_SESSION['user_name'];
+    };
+
 ?>
 <body>
    
@@ -66,7 +87,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="management.php">後臺管理</a>
+                            <a class="nav-link" href="contact.html">後臺管理</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">登出</a>
@@ -146,47 +167,67 @@ https://templatemo.com/tm-559-zay-shop
             </form>
         </div>
     </div>
+    <?php
 
-
-
-   
+        $link = mysqli_connect("localhost", "root", "12345678", "sa");
+        if(!$link){
+            echo "連接失敗" . mysqli_connect_error(); 
+        }
+        mysqli_query($link, "set names utf8");
+        $sql="select user_email,user_name,user_phone,user_password FROM user where user_email='$user_email' ";   
+        $result=mysqli_query($link,$sql);
+        
+    ?>
 
 
     <!-- Start Categories of The Month -->
     <section class="container py-5">
-        <div class="row text-center pt-3">
-            <div class="col-lg-6 m-auto">
-                <h1>個人專區</h1>
+        <div class="row pt-3">
+            <div class="col-lg-6" >
+                <h1 class="h1"><b><font color="green">Setting</font></b></h1>
+                <p >設定</p>
             </div>
+            <hr>
         </div>
-        <div align="center" class="row">
-        <div class="col-12 col-md-4 p-5 mt-3">
-                
-                <h3 >
-                <a href="self-lose.php">
-                <img src="./assets/img/pickup2.png" width="310" height="310" ></a>
-                    
-                <br>已發布拾獲貼文</h3>
-            </div>
-
-            <div class="col-12 col-md-4 p-5 mt-3">
-           
-                <h3 > <a href="self-find.php">
-                    <img src="./assets/img/searching.png" width="280" height="280" ></a>
-                <br> <br>已發布尋物貼文</h3>
-            </div>
-
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <h3> <a href="self-setting.php"> <br>
-                    <img src="./assets/img/settings-2.png" width="215" height="215" ></a>
-                 <br><br><br>設定</h3>
-            </div>
-
-            
-        </div>
-
-
         
+        <div class="row">
+            <div class="col-12 mt-3">
+            <?php while($record=mysqli_fetch_assoc($result)){ ?>
+                
+                <table style="line-height:50px;">  
+                    
+                    <tr>
+                        <td><b>信箱</b></td>
+                        <td><?php echo $record['user_email'];?></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><b>使用者名稱</b></td>
+                        <td><?php echo $record['user_name'];?></td>
+                        <td align="center"><a class="btn btn-success btn-lg px-3" href="self-update.php?update=user_name">編輯名稱</td>
+                        </div>
+                    </tr>
+                    
+                    <tr>
+                        <td><b>聯絡電話</b></td>
+                        <td><?php echo $record['user_phone'];?></td>
+                        <td align="center"><a  class="btn btn-success btn-lg px-3" href="self-update.php?update=phone" >編輯電話</td></div>
+                    </tr>
+                   
+                    <tr>
+                        <td><b>使用者密碼</b></td>
+                        <td>********</td>
+                        <td align="center"><a class="btn btn-success btn-lg px-3" href="self-update.php?update=password">編輯密碼</td></div>
+                    </tr>
+                    
+                </table>
+                <?php }?> 
+                
+            </div>
+        </div>
+       
+            
     </section>
     <!-- End Categories of The Month -->
     
@@ -216,6 +257,9 @@ https://templatemo.com/tm-559-zay-shop
             </div>
         </div>
     </footer>
+
+    
+    
     <!-- End Footer -->
     <!-- Start Script -->
     <script src="assets/js/jquery-1.11.0.min.js"></script>
