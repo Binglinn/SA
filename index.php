@@ -35,7 +35,7 @@
         echo "連接失敗" . mysqli_connect_error(); 
     }
     $date = date("Y-m-d",strtotime("-7 day"));
-    $sql_lose= "SELECT * FROM lose where lose_status='即時刊登' AND lose_postTime>'$date' order by lose_postTime desc";
+    $sql_lose= "SELECT lose.lose_id,lose.lose_name,lose.lose_picture,lose.lose_date,lose.lose_place,lose.lose_describe,user.user_name FROM lose,user where lose.user_email=user.user_email AND lose.lose_status='即時刊登' AND lose.lose_postTime>'$date' order by lose.lose_postTime desc"; 
     $rs_lose = mysqli_query($link, $sql_lose);
     ?>
     
@@ -196,17 +196,16 @@ https://templatemo.com/tm-559-zay-shop
                for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
                    
                 while($record=mysqli_fetch_assoc($rs_lose)){
-
                     array_push($item_list,$record);}?>
                     
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/apple-icon.png'"/>
+                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/no_img.jpg'">
                         <div class="card-body">
                             <div class="flip" >
                                 <b><?php echo $item_list[$i]["lose_name"]?></b>
-                                <a href="message.php?hidden_lose_id=<?php echo $item_list[$i]["lose_id"] ?>& lose_name=<?php echo $item_list[$i]["lose_name"] ?>" class="fas fa-comments" style="color:green;"></a>
+                                <a href="message.php?user_name=<?php echo $item_list[$i]["user_name"] ?>&hidden_lose_id=<?php echo $item_list[$i]["lose_id"] ?>& lose_name=<?php echo $item_list[$i]["lose_name"] ?>" class="fas fa-comments" style="color:green;"></a>
                                 <div><font color="#D5D8DC" ><i class="fa fa-chevron-down" aria-hidden="true" ></i></font></div>
                             </div>
                             <div class="panel">
@@ -214,6 +213,7 @@ https://templatemo.com/tm-559-zay-shop
                                 拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>
                                 拾獲地點：<?php echo $item_list[$i]["lose_place"]?><br>
                                 物品描述：<?php echo $item_list[$i]["lose_describe"]?><br>
+                                發文者 : <?php echo $item_list[$i]["user_name"] ?><br>
                             </div>
                         </div>
                             <?php if($_SESSION["user_admin"]=="admin"){?>

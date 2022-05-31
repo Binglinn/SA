@@ -251,11 +251,11 @@ $( document ).tooltip();
                 if(isset($searchtxt))
                     {
                         if($searchtxt != '已領回'){
-                            $sql="select * from lose where(lose_name like '%$searchtxt%'  or lose_classify like '%$searchtxt%' or lose_place like '%$searchtxt%' )and lose_status='分類' order by lose_date DESC";          
+                            $sql="select * from lose where(lose_name like '%$searchtxt%'  or lose_classify like '%$searchtxt%' or lose_place like '%$searchtxt%' )and lose_status='分類' order by lose_postTime DESC";          
                         }
                         else{
-                            
-                            $sql="select * from lose where lose_status='已領回'  order by lose_date DESC";
+                            $date = date("Y-m-d",strtotime("-90 day"));
+                            $sql="select * from lose where lose_status='已領回' AND lose_postTime>'$date' order by lose_postTime DESC";
                         }
                     }    
                
@@ -263,7 +263,7 @@ $( document ).tooltip();
                 
                 else
                 {
-                    $sql="select * from lose where lose_status='分類'  order by lose_date DESC";
+                    $sql="select * from lose where lose_status='分類'  order by lose_postTime DESC";
                 }
 
                 $rs=mysqli_query($link,$sql);
@@ -298,7 +298,7 @@ $( document ).tooltip();
                             <div class='col-md-4'>
                                 <div class='card mb-4 product-wap rounded-0'>
                                     <div class='card rounded-0' >
-                                        <img class='card-img rounded-0 img-fluid'  onerror="javascript:this.src='assets/img/apple-icon.png'"  src='assets/img/<?php echo $item_list[$i]['lose_picture']?>'>
+                                        <img class='card-img rounded-0 img-fluid'  onerror="javascript:this.src='assets/img/no_img.jpg'"  src='assets/img/<?php echo $item_list[$i]['lose_picture']?>'>
                                         
                                     </div>
                                     <div class='card-body'>

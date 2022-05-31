@@ -3,6 +3,7 @@
     $user_name = $_SESSION['user_name'];
     $hidden_find_id = $_GET['hidden_find_id'];
     $find_name = $_GET['find_name'];
+    $post_name = $_GET['user_name'];
 ?>
 <!DOCTYPE html> 
 
@@ -147,21 +148,20 @@ https://templatemo.com/tm-559-zay-shop
     <?php
  
         session_start();
-        $link = mysqli_connect("localhost", "root", "12345678", "sa");
+        $link = mysqli_connect("localhost", "root", "12345678", "sa"); 
         if(!$link){
             echo "連接失敗" . mysqli_connect_error(); 
         }
 
         mysqli_query($link, "set names utf8");
 
-        $date = date("Y-m-d",strtotime("-30 day")); 
         if(isset($searchtxt))
             {
-                $sql="select mes.mes_id, mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_email, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
+                $sql="select mes.mes_id, mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_email, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
             }
             else{
                 $searchtxt = $_SESSION['hidden_find_id'];
-                $sql="select mes.mes_id, mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_email, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND mes_time>'$date'AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
+                $sql="select mes.mes_id, mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_email, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
             }
         $result=mysqli_query($link,$sql)
 
@@ -184,41 +184,60 @@ https://templatemo.com/tm-559-zay-shop
     <!-- //一次取得一筆(列)資料，並存入record[] -->
     <?php
     while($record=mysqli_fetch_assoc($result)){
-        if(($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]=="$record[user_email]")){   
-        echo "<tr>
-                  <td style=text-align:center;line-height:50px;>$record[user_name]</td>
-                  <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
-                  <td>$record[mes_time]</td>
-                  <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
-                  <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
-                  </tr>";
-                }
-
-                elseif($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]!="$record[user_email]"){
-                    echo "<tr>
-                    <td style=text-align:center;line-height:50px;>$record[user_name]</td>
-                    <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
-                    <td>$record[mes_time]</td>
-                    <td style=text-align:center;line-height:50px;></td>
-                    </tr>";
-               }
-                elseif($_SESSION["user_admin"]=="admin"){
-                    echo "<tr>
-                    <td style=text-align:center;line-height:50px;>$record[user_name]</td>
-                    <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
-                    <td>$record[mes_time]</td>
-                    <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
-                    </tr>";
-                }
-                elseif($_SESSION["user_admin"]==""){
-                    echo "<tr>
-                    <td style=text-align:center;line-height:50px;>$record[user_name]</td>
-                    <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
-                    <td>$record[mes_time]</td>
-                    <td style=text-align:center;line-height:50px;></td>
-                    </tr>";
-                }
-         }
+        if(($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]=="$record[user_email]")){  
+            if($post_name==$record["user_name"]){
+                echo "<tr>
+                <td style=text-align:center;line-height:50px;>$record[user_name]&nbsp(發文者)</td>
+                <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
+                <td>$record[mes_time]</td>
+                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
+                <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
+                </tr>";
+            }else{
+                echo "<tr>
+                <td style=text-align:center;line-height:50px;>$record[user_name]</td>
+                <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
+                <td>$record[mes_time]</td>
+                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
+                <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
+                </tr>";
+            }
+        }
+        elseif($_SESSION["user_admin"]=="user" AND $_SESSION["user_email"]!="$record[user_email]" OR $_SESSION["user_admin"]==""){
+            if($post_name==$record["user_name"]){
+                echo "<tr>
+                <td style=text-align:center;line-height:50px;>$record[user_name]&nbsp(發文者)</td>
+                <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
+                <td>$record[mes_time]</td>
+                <td style=text-align:center;line-height:50px;></td>
+                </tr>";
+            }else{
+                echo "<tr>
+                <td style=text-align:center;line-height:50px;>$record[user_name]</td>
+                <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
+                <td>$record[mes_time]</td>
+                <td style=text-align:center;line-height:50px;></td>
+                </tr>";
+            }
+        }
+        elseif($_SESSION["user_admin"]=="admin"){
+            if($post_name==$record["user_name"]){
+                echo "<tr>
+                <td style=text-align:center;line-height:50px;>$record[user_name]&nbsp(發文者)</td>
+                <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
+                <td>$record[mes_time]</td>
+                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
+                </tr>";
+            }else{
+                echo "<tr>
+                <td style=text-align:center;line-height:50px;>$record[user_name]</td>
+                <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
+                <td>$record[mes_time]</td>
+                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
+                </tr>";
+            }      
+        }
+    }
     ?>
     <!-- AND $_SESSION["user_email"]=="$record[user_email]" -->
     </table>

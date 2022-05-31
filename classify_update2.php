@@ -17,7 +17,14 @@
 
          
     //上傳檔案
-    $upload_dir= $_FILES['image']['name'];
+    $upload_dir=$_FILES['image']['name'];
+    $sql_origin="select lose_picture from lose where lose_id=$lose_id";
+    $rs_origin=mysqli_query($link,$sql_origin);
+    $record_origin=mysqli_fetch_assoc($rs_origin);
+
+    if(empty($upload_dir)){
+        $upload_dir=$record_origin["lose_picture"];
+    }
     getimagesize();
     list($width, $height, $type, $attr) = getimagesize("assets/img/$upload_dir");
     

@@ -35,7 +35,7 @@
         echo "連接失敗" . mysqli_connect_error(); 
     }
     $date = date("Y-m-d",strtotime("-30 day"));
-    $sql_find= "SELECT * FROM find WHERE find_postTime>'$date' ORDER BY find_postTime desc";
+    $sql_find= "SELECT find.find_id,find.find_name,find.find_picture,find.find_place,find.find_describe,find.find_contact,user.user_name FROM find,user WHERE find.user_email=user.user_email AND find.find_postTime>'$date' ORDER BY find.find_postTime desc";
     $rs_find = mysqli_query($link, $sql_find);
     ?>
 <!--
@@ -194,24 +194,24 @@ https://templatemo.com/tm-559-zay-shop
                for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
                    
                 while($record=mysqli_fetch_assoc($rs_find)){
-
                     array_push($item_list,$record);}?>
                     
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" style="width:253px; height:253px;" onerror="javascript:this.src='assets/img/apple-icon.png'" >
+                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" style="width:253px; height:253px;" onerror="javascript:this.src='assets/img/no_img.jpg'">
                         <div class="card-body">
                             <div class="flip" >
                                 <b><?php echo $item_list[$i]["find_name"]?></b>
-                                <a href="message_find.php?hidden_find_id=<?php echo $item_list[$i]["find_id"] ?>& find_name=<?php echo $item_list[$i]["find_name"] ?>" class="fas fa-comments" style="color:green;"></a>
+                                <a href="message_find.php?user_name=<?php echo $item_list[$i]["user_name"] ?>&hidden_find_id=<?php echo $item_list[$i]["find_id"] ?>& find_name=<?php echo $item_list[$i]["find_name"] ?>" class="fas fa-comments" style="color:green;"></a>
                                 <div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div>
                             </div>
                             <div class="panel">
                                 物品編號：<?php echo $item_list[$i]["find_id"]?><br>
                                 遺失地點：<?php echo $item_list[$i]["find_place"]?><br>
                                 聯絡資訊：<?php echo $item_list[$i]["find_contact"]?><br>
-                                物品描述：<?php echo $item_list[$i]["find_describe"]?>
+                                物品描述：<?php echo $item_list[$i]["find_describe"]?><br>
+                                發文者 : <?php echo $item_list[$i]["user_name"]?><br>
                                 <?php if($_SESSION["user_admin"]=="admin"){?>
                                   <?php }?>
                             </div>

@@ -176,7 +176,7 @@ https://templatemo.com/tm-559-zay-shop
             <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
                 <h1 class="h1"><b><font color="green">Published found</font></b></h1>
-                <h5>已發布即時刊登區</h5>
+                <h5>已發布拾獲貼文</h5>
             </div>
             </div>
             <?php
@@ -207,7 +207,7 @@ https://templatemo.com/tm-559-zay-shop
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/apple-icon.png'"/>
+                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/no_img.jpg'">
                         <div class="card-body">
                             <div class="flip" ><span class="1"><?php echo $item_list[$i]["lose_name"]?></span><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
                             <div class="panel" >

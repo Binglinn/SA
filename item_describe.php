@@ -171,7 +171,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-lg-5 mt-5">
                     <?php while($record=mysqli_fetch_assoc($rs)){?>
                     <div class="card mb-3"  >
-                        <img class="card-img img-fluid" src="assets/img/<?php echo $record['lose_picture'] ?>" alt="Card image cap" id="product-detail">
+                        <img class="card-img img-fluid" src="assets/img/<?php echo $record['lose_picture'] ?>" alt="Card image cap" id="product-detail" onerror="javascript:this.src='assets/img/no_img.jpg'">
                     </div>
                     
                     

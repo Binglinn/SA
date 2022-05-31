@@ -37,7 +37,7 @@
             echo "連接失敗" . mysqli_connect_error(); 
         }
     
-        $sql_find= "SELECT * FROM find where  user_email='$user_email'";
+        $sql_find= "SELECT * FROM find where  user_email='$user_email' order by find_postTime desc";
 
         $rs_find = mysqli_query($link, $sql_find);
        
@@ -208,7 +208,7 @@ https://templatemo.com/tm-559-zay-shop
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/apple-icon.png'"/>
+                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" onerror="javascript:this.src='assets/img/no_img.jpg'">
                         <div class="card-body">
                             <div class="flip" >
                                 <span class="1"><?php echo $item_list[$i]["find_name"]?></span>
