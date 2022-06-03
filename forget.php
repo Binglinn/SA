@@ -94,23 +94,18 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-            <form action="logincheck.php"  class="col-md-9 m-auto" method="post" role="form">           
-                <label  style="color: green;" for="inputname" ><h1>登入</h1></label>
-                <input type=hidden name="method" >
-            
-                    <div for="user_email" class="form-group col-md-6 mb-3">
-                        <input  type="text" class="form-control mt-1" id="user_email" name="user_email" placeholder="帳號">
-                    </div>
-                    <div for="user_password"  class="form-group col-md-6 mb-3">
-                        <input type="password" class="form-control mt-1" id="user_password" name="user_password" placeholder="密碼">
-                    </div>
-                        <a href="register.php" >尚未註冊？</a>
-                        &nbsp<a href="forget.php" >忘記密碼</a>
-                        <br>
-                
-                    <div class="col text-end mt-1">
-                        <button type="submit" class="btn btn-success btn-lg px-3">登入</button>
-                    </div>                
+            <form action="validate.php"  class="col-md-9 m-auto" method="get">           
+                <label  style="color: green;"><h1>忘記密碼</h1></label>
+                    <div class="row">
+                        <div for="user_email" class="form-group col-md-6">
+                            <input  type="text" class="form-control" name="user_email" placeholder="電子郵件">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-success">發送</button>
+                        </div>
+                    </div><br>
+                        <a href="login.php" >想起來了，我要登入</a>
+                        <br>           
             </form>
         </div>
     </div>
