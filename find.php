@@ -199,7 +199,7 @@ https://templatemo.com/tm-559-zay-shop
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" style="width:253px; height:253px;" onerror="javascript:this.src='assets/img/no_img.jpg'">
+                            <img src="assets/img/<?php echo $item_list[$i]["find_picture"]?>" class="card-img-top" style="width:253px; height:253px;" onerror="javascript:this.src='assets/img/no_img.jpeg'">
                         <div class="card-body">
                             <div class="flip" >
                                 <b><?php echo $item_list[$i]["find_name"]?></b>

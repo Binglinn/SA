@@ -3,7 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 
 if(isset($_GET['name']) && isset($_GET['email'])){
-   
+    $method = $_GET['method'];
     $name = $_GET['name'];
     $email = $_GET['email'];
     $subject = $_GET['subject'];
@@ -32,11 +32,16 @@ if(isset($_GET['name']) && isset($_GET['email'])){
     $mail->Body = $body;
    
     if($mail->send()){
-        echo "<script>alert('寄信成功!');location.href='newpassword.php'</script>";
+        if($method=="forget"){
+            echo "<script>alert('寄信成功!');location.href='newpassword.php'</script>";
+        }
+        else{
+            echo "<script>alert('寄信成功!');location.href='register.php?email=$email'</script>";
+        }
     }
     else
     {
-        echo "<script>alert('寄信失敗!');location.href='forget.php'</script>";
+        echo "<script>alert('寄信失敗!');history.go(-1);</script>";
     }
    
 }

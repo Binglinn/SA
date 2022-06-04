@@ -15,7 +15,6 @@ if($uservalidate==$_SESSION["validate"]){
     echo "<script>alert('修改成功!');location.href='login.php';</script>";
 
 }else{
-    echo $sql;
     echo "<script>alert('修改失敗哭哭笑死孤兒!');location.href='newpassword.php';</script>";
 }
 

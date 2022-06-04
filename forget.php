@@ -100,12 +100,14 @@ https://templatemo.com/tm-559-zay-shop
                         <div for="user_email" class="form-group col-md-6">
                             <input  type="text" class="form-control" name="user_email" placeholder="電子郵件">
                         </div>
-                        <div class="form-group col-md-6">
-                            <button type="submit" class="btn btn-success">發送</button>
-                        </div>
                     </div><br>
                         <a href="login.php" >想起來了，我要登入</a>
-                        <br>           
+                        <br>        
+                        <div class="col text-end mt-2">
+                        
+                        <button type="submit" class="btn btn-success btn-lg px-3">發送</button>
+                    
+                    </div>   
             </form>
         </div>
     </div>

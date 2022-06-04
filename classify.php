@@ -298,7 +298,7 @@ $( document ).tooltip();
                             <div class='col-md-4'>
                                 <div class='card mb-4 product-wap rounded-0'>
                                     <div class='card rounded-0' >
-                                        <img class='card-img rounded-0 img-fluid'  onerror="javascript:this.src='assets/img/no_img.jpg'"  src='assets/img/<?php echo $item_list[$i]['lose_picture']?>'>
+                                        <img class='card-img rounded-0 img-fluid'  onerror="javascript:this.src='assets/img/no_img.jpeg'"  src='assets/img/<?php echo $item_list[$i]['lose_picture']?>'>
                                         
                                     </div>
                                     <div class='card-body'>
@@ -328,7 +328,7 @@ $( document ).tooltip();
         <br>
         <p>
         <div class='col-md-12'>
-            <?php if($_SESSION["user_admin"]=="admin" && $searchtxt != '已領回' && $classify_name!='已領回'){?>
+            <?php if($_SESSION["user_admin"]=="admin" && $searchtxt != '已領回' && $classify_name != '已領回'){?>
                 <center><a href="insert.php"><button class="btn btn-success btn-lg px-3">新增遺失物</button></a></center>
             <?php } ?>
             <ul class="pagination pagination-lg justify-content-end">

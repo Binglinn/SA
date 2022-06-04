@@ -95,43 +95,58 @@ https://templatemo.com/tm-559-zay-shop
 
     <!-- Start Content Page -->
  
-
-
+<script>
+function getEmail(){
+    var email=document.getElementById("user_email").value;
+    var location="validate2.php?user_email="+email;
+    window.location.href=location;
+}
+</script>
+<?php 
+$user_email=$_GET["email"];
+?>
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
            
-                <form class="col-md-9 m-auto" role="form" method="POST" action="emailcheck.php">
-
-                    <div class="form-group col-md-6 mb-3">
-                        <label  style="color: green;" for="inputname"><h1>註冊</h1></label>
-                        <br>
-                        <input type=text class="form-control mt-1" id="user_email" name="user_email" placeholder="帳號 (信箱)" required>  
+                <form class="col-md-9 m-auto" role="form" method="POST" action="emailcheck.php"> 
+                   
+                    <label  style="color:green;" for="inputname"><h1>註冊</h1></label>
+                    <div class="row col-md-15">
+                        <div class="form-group col-md-6 mb-3">    
+                            <input type=text class="form-control" name="user_email" id="user_email" placeholder="帳號 (信箱)" value="<?php echo $user_email?>" required> 
+                        </div>
+                        <div class="form-group col-3 mb-3">  
+                           <button type="button" class="btn btn-success" onclick="getEmail()">發送驗證碼</button>
+                        </div>
                     </div>
-
+                    <div class="row col-md-15">
                     <div class="form-group col-md-6 mb-3">
-                        <input type=text class="form-control mt-1" id="user_name" name="user_name" placeholder="姓名" required>
+                        <input type=text class="form-control mt-1" name="user_name" placeholder="姓名" required>
                     </div>
-                    
-                    <div class="form-group col-md-6 mb-3">
-                        <input type=text class="form-control mt-1" id="user_phone" name="user_phone" placeholder="電話" required>
                     </div>
-                    
+                    <div class="row col-md-15">
                     <div class="form-group col-md-6 mb-3">
-                        <input type=password class="form-control mt-1" id="user_password" name="user_password" placeholder="密碼" required>
+                        <input type=text class="form-control mt-1" name="user_phone" placeholder="電話" required>
+                    </div>
+                    </div>
+                    <div class="row col-md-15">
+                    <div class="form-group col-md-6 mb-3">
+                        <input type=password class="form-control mt-1" name="user_password" placeholder="密碼" required>
+                    </div>
+                    </div>
+                    <div class="row col-md-15">
+                    <div class="form-group col-md-6 mb-3">
+                        <input type=text class="form-control mt-1" name="validate_register" placeholder="驗證碼" required>
+                    </div>
                     </div>
                     <a href="login.php">已有帳號？按此登入</a>
-
-
-                
-                
-                
                     <div class="col text-end mt-2">
                         
                         <button type="submit" class="btn btn-success btn-lg px-3">註冊</button>
                     
                     </div>
-                    </form>
+                </form>
            
         </div>
     </div>

@@ -156,7 +156,7 @@ https://templatemo.com/tm-559-zay-shop
     <div class="container py-5" >
         <div class="row py-5">
             <form action="message_update_mes.php" method="post">
-            <label  style="color: green;" for="inputname" ><h1>留言</h1></label>
+            <label  style="color: green;" for="inputname" ><h1>留言修改</h1></label>
             <p>*為必填</p>
              <div class="form-group col-md-6 mb-3">
                  <input type="text" class="form-control mt-1" name="find_id" value="<?php echo $find_id ?>" readonly>
