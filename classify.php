@@ -328,7 +328,7 @@ $( document ).tooltip();
         <br>
         <p>
         <div class='col-md-12'>
-            <?php if($_SESSION["user_admin"]=="admin" ){?>
+            <?php if($_SESSION["user_admin"]=="admin" && $searchtxt != '已領回' && $classify_name!='已領回'){?>
                 <center><a href="insert.php"><button class="btn btn-success btn-lg px-3">新增遺失物</button></a></center>
             <?php } ?>
             <ul class="pagination pagination-lg justify-content-end">
