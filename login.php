@@ -99,10 +99,10 @@ https://templatemo.com/tm-559-zay-shop
                 <input type=hidden name="method" >
             
                     <div for="user_email" class="form-group col-md-6 mb-3">
-                        <input  type="text" class="form-control mt-1" id="user_email" name="user_email" placeholder="帳號">
+                        <input  type="text" class="form-control mt-1" id="user_email" name="user_email" placeholder="帳號" required>
                     </div>
                     <div for="user_password"  class="form-group col-md-6 mb-3">
-                        <input type="password" class="form-control mt-1" id="user_password" name="user_password" placeholder="密碼">
+                        <input type="password" class="form-control mt-1" id="user_password" name="user_password" placeholder="密碼" required>
                     </div>
                         <a href="register.php" >尚未註冊？</a>
                         &nbsp<a href="forget.php" >忘記密碼</a>

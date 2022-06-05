@@ -125,7 +125,7 @@ $user_email=$_GET["email"];
                         </div>
                         
                             <div class="form-group col-3 mb-3">  
-                                <?php if($check != 'true'){?>
+                                <?php if($check != 'true' ){?>
                                     <button type="button" class="btn btn-success" onclick="getEmail()">發送驗證碼</button>
                                     <?php } ?>
                                 <?php if($check =='true'){ ?>

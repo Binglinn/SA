@@ -96,17 +96,17 @@ https://templatemo.com/tm-559-zay-shop
         <div class="row py-5">
             <form action="validate.php"  class="col-md-9 m-auto" method="get">           
                 <label  style="color: green;"><h1>忘記密碼</h1></label>
-                    <div class="row">
+                <div class="row">
                         <div for="user_email" class="form-group col-md-6">
-                            <input  type="text" class="form-control" name="user_email" placeholder="電子郵件">
+                            <input  type="text" class="form-control" name="user_email" placeholder="電子郵件" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-success">發送驗證碼</button>
                         </div>
                     </div><br>
                         <a href="login.php" >想起來了，我要登入</a>
                         <br>        
-                        <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-success btn-lg px-3" >發送驗證碼</button>
-                    
-                    </div>   
+                        
             </form>
         </div>
     </div>

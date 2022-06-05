@@ -28,6 +28,14 @@ echo $user_mail;
             
                 header("location:sendEmail.php?name=$user_name&email=$user_email&subject=$subject&body=$body&check=true");
         }
+        elseif($user_email == ''){
+            ?>
+            <script>
+                alert("請輸入帳號");          
+                history.go(-1);
+            </script>
+            <?php
+        }
         elseif($user_email == $user_mail){
             ?>
             <script>
