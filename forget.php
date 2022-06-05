@@ -54,7 +54,7 @@ https://templatemo.com/tm-559-zay-shop
                         <li class="nav-item">
                             <a class="nav-link" href="find.php">尋物啟事</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item"> 
                             <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <a> </a>
@@ -104,8 +104,7 @@ https://templatemo.com/tm-559-zay-shop
                         <a href="login.php" >想起來了，我要登入</a>
                         <br>        
                         <div class="col text-end mt-2">
-                        
-                        <button type="submit" class="btn btn-success btn-lg px-3">發送</button>
+                        <button type="submit" class="btn btn-success btn-lg px-3" >發送驗證碼</button>
                     
                     </div>   
             </form>

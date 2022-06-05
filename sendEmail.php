@@ -8,6 +8,7 @@ if(isset($_GET['name']) && isset($_GET['email'])){
     $email = $_GET['email'];
     $subject = $_GET['subject'];
     $body = $_GET['body'];
+    $check = $_GET['check'];
 
     require_once "PHPMailer/PHPMailer.php";
     require_once "PHPMailer/SMTP.php";
@@ -33,10 +34,12 @@ if(isset($_GET['name']) && isset($_GET['email'])){
    
     if($mail->send()){
         if($method=="forget"){
-            echo "<script>alert('寄信成功!');location.href='newpassword.php'</script>";
+            echo "<script>alert('寄信成功');location.href='newpassword.php'</script>";
+            
         }
         else{
-            echo "<script>alert('寄信成功!');location.href='register.php?email=$email'</script>";
+            echo "<script>alert('寄信成功');location.href='register.php?email=$email&check=$check'</script>";
+            
         }
     }
     else

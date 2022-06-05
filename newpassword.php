@@ -103,6 +103,10 @@ https://templatemo.com/tm-559-zay-shop
                         <input type="password" class="form-control"  name="user_password" placeholder="輸入新密碼">
                     </div>
                     <br>
+                    <div class="form-group col-7">
+                        <input type="password" class="form-control"  name="user_password2" placeholder="確認新密碼">
+                    </div>
+                    <br>
                     <div class="row">
                     <div  class="form-group col-6">
                         <input type="text" class="form-control" name="validate" placeholder="輸入驗證碼">

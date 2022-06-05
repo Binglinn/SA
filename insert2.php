@@ -39,7 +39,7 @@
     
     if($width != $height ) { ?>
        <script>
-            alert("圖片長寬須為1：1！");
+            alert("圖片長寬須為1：1");
             history.go(-1);
         </script>
     <?php }

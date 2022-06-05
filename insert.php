@@ -146,7 +146,7 @@ https://templatemo.com/tm-559-zay-shop
             </div>
         </div>
     </section>
-
+  
     <div class="container py-5">
         <p><center>*為必填</center></p>
         <form class="col-md-9 m-auto" action="insert2.php" method="post" enctype="multipart/form-data" >
@@ -177,7 +177,7 @@ https://templatemo.com/tm-559-zay-shop
                 </select>
             </div>
             <div class="mb-3">
-                <label>圖片上傳</label>
+                <label>圖片上傳(僅支援1:1大小圖片)</label>
                 <input type="file" class="form-control mt-1" name="image" accept=".jpg, .jepg, .png">
             </div>
             <div class="mb-3">

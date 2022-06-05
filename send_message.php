@@ -21,7 +21,7 @@
         if(mysqli_query($link, $sql)){
             ?>
             <script>
-            alert("新增成功！");
+            alert("新增成功");
             history.go(-2);
             </script>
             <?php
@@ -33,7 +33,7 @@
         if(mysqli_query($link, $sql)){
             ?>
             <script>
-            alert("新增成功！");
+            alert("新增成功");
             history.go(-2);
             </script>
             <?php

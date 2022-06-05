@@ -30,7 +30,7 @@
     
     if($width != $height ) { ?>
        <script>
-            alert("圖片長寬須為1：1！");
+            alert("圖片長寬須為1：1");
             history.go(-1);
         </script>
     <?php }
@@ -45,7 +45,7 @@
     if(mysqli_query($link,$sql)){
         ?>
         <script>
-            alert("修改成功！");
+            alert("修改成功");
             history.go(-2);
         </script>
         <?php

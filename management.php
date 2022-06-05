@@ -170,7 +170,7 @@ https://templatemo.com/tm-559-zay-shop
                     </button>
                 </div>
             </form>
-        </div>
+        </div> 
     </div>
 
 
@@ -182,10 +182,8 @@ https://templatemo.com/tm-559-zay-shop
     <section class=" py-5">
         <div class="row text-center pt-3 ">
         <div class="col-lg-6 m-auto">
-                    <h1><b><font color="green">Account Summary</font></b></h1>
-                    <p>
-                        帳號總表
-                    </p>
+                    <h1 class="h1"><b><font color="green">Account Summary</font></b></h1>
+                    <h5>帳號總表</h5>
                 </div>
         </div>
         </div>

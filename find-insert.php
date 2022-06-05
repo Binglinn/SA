@@ -161,7 +161,7 @@ https://templatemo.com/tm-559-zay-shop
                 <input type="text" class="form-control mt-1" name="contact" placeholder="聯絡資訊" required>
             </div>
             <div class="mb-3">
-                <label>圖片上傳(支援1:1大小圖片)</label>
+                <label>圖片上傳(僅支援1:1大小圖片)</label>
                 <input type="file" class="form-control mt-1" name="image" accept=".jpg, .jepg, .png" >
             </div>
             <div class="mb-3">

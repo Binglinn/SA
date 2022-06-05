@@ -165,8 +165,8 @@ https://templatemo.com/tm-559-zay-shop
                 
                 <h3 >
                 <a href="self-lose.php">
-                <img src="./assets/img/pickup2.png" width="310" height="310" ></a>
-                    
+                <img src="./assets/img/pickup2.png" width="275" height="275" ></a>
+                <br>
                 <br>已發布拾獲貼文</h3>
             </div>
 
@@ -178,9 +178,9 @@ https://templatemo.com/tm-559-zay-shop
             </div>
 
             <div class="col-12 col-md-4 p-5 mt-3">
-                <h3> <a href="self-setting.php"> <br>
-                    <img src="./assets/img/settings-2.png" width="210" height="210" ></a>
-                 <br><br><br>設定</h3>
+                <h3> <a href="self-setting.php"> 
+                    <img src="./assets/img/settings-2.png" width="265" height="272" ></a>
+                 <br><br>設定</h3>
             </div>
 
             

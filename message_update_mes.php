@@ -17,7 +17,7 @@
     if(mysqli_query($link,$sql)){
         ?>
         <script>
-            alert("修改成功！");
+            alert("修改成功");
             history.go(-2);
         </script>
         <?php
