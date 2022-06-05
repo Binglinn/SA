@@ -98,17 +98,15 @@ https://templatemo.com/tm-559-zay-shop
     <div class="container py-5">
         <div class="row py-5">
             <form action="passwordcheck.php"  class="col-md-9 m-auto" method="post" role="form">           
-                <label  style="color: green;" for="inputname" ><h1>忘記密碼</h1></label>
-                    <div class="form-group col-7">
+                <label  style="color: green;height:65px" for="inputname" ><h1>忘記密碼</h1></label>
+                    <div class="form-group col-7 mb-3">
                         <input type="password" class="form-control"  name="user_password" placeholder="輸入新密碼" required>
                     </div>
-                    <br>
-                    <div class="form-group col-7">
+                    <div class="form-group col-7 mb-3">
                         <input type="password" class="form-control"  name="user_password2" placeholder="確認新密碼" required>
                     </div>
-                    <br>
                     <div class="row">
-                    <div  class="form-group col-6">
+                    <div  class="form-group col-6 mb-3">
                         <input type="text" class="form-control" name="validate" placeholder="輸入驗證碼" required>
                     </div>
                     <div class="col">

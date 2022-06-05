@@ -111,7 +111,7 @@ $user_email=$_GET["email"];
            
                 <form class="col-md-9 m-auto" role="form" method="POST" action="emailcheck.php"> 
                    
-                    <label  style="color:green;" for="inputname"><h1>註冊</h1></label>
+                    <label  style="color:green;height:65px" for="inputname"><h1>註冊</h1></label>
                     <div class="row col-md-15">
                         <div class="form-group col-md-6 mb-3">    
                             <?php $check = $_GET['check'];
