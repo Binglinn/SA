@@ -37,7 +37,7 @@
             echo "連接失敗" . mysqli_connect_error(); 
         }
     
-        $sql_find= "SELECT * FROM find where  user_email='$user_email' order by find_postTime desc";
+        $sql_find= "SELECT find.find_id,find.find_name,find.find_picture,find.find_place,find.find_describe,find.find_contact,user.user_name FROM find,user WHERE find.user_email=user.user_email AND find.user_email='$user_email' ORDER BY find.find_postTime desc";
 
         $rs_find = mysqli_query($link, $sql_find);
        
@@ -212,6 +212,8 @@ https://templatemo.com/tm-559-zay-shop
                         <div class="card-body">
                             <div class="flip" >
                                 <span class="1"><?php echo $item_list[$i]["find_name"]?></span>
+                                <a href="message_find.php?user_name=<?php echo $item_list[$i]["user_name"] ?>&hidden_find_id=<?php echo $item_list[$i]["find_id"] ?>& find_name=<?php echo $item_list[$i]["find_name"] ?>" class="fas fa-comments" style="color:green;"></a>
+
                                 <div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div>
                             </div>
                             <div class="panel">

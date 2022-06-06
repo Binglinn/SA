@@ -37,7 +37,7 @@
             echo "連接失敗" . mysqli_connect_error(); 
         }
     
-        $sql_lose= "SELECT * FROM lose where lose_status='即時刊登'and user_email='$user_email' order by lose_postTime desc ";
+        $sql_lose= "SELECT lose.lose_id,lose.lose_name,lose.lose_picture,lose.lose_date,lose.lose_place,lose.lose_describe,user.user_name FROM lose,user where lose.user_email=user.user_email AND lose.user_email='$user_email' AND lose.lose_status='即時刊登'  order by lose.lose_postTime desc"; 
 
         $rs_lose = mysqli_query($link, $sql_lose);
        
@@ -209,7 +209,10 @@ https://templatemo.com/tm-559-zay-shop
                     <div class="card h-100">           
                             <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/no_img.jpeg'">
                         <div class="card-body">
-                            <div class="flip" ><span class="1"><?php echo $item_list[$i]["lose_name"]?></span><div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
+                            <div class="flip" ><span class="1"><?php echo $item_list[$i]["lose_name"]?></span>
+                            <a href="message.php?user_name=<?php echo $item_list[$i]["user_name"] ?>&hidden_lose_id=<?php echo $item_list[$i]["lose_id"] ?>& lose_name=<?php echo $item_list[$i]["lose_name"] ?>" class="fas fa-comments" style="color:green;"></a>
+
+                            <div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
                             <div class="panel" >
                                 物品編號：<?php echo $item_list[$i]["lose_id"]?><br>
                                 拾獲日期：<?php echo $item_list[$i]["lose_date"]?><br>
