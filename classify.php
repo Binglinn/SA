@@ -298,7 +298,7 @@ $( document ).tooltip();
                             <div class='col-md-4'>
                                 <div class='card mb-4 product-wap rounded-0'>
                                     <div class='card rounded-0' >
-                                        <img class='card-img rounded-0 img-fluid'  onerror="javascript:this.src='assets/img/no_img.jpeg'"  src='assets/img/<?php echo $item_list[$i]['lose_picture']?>'>
+                                        <img class='card-img rounded-0 img-fluid'  onerror="javascript:this.src='assets/img/no_img.jpg'"  src='assets/img/<?php echo $item_list[$i]['lose_picture']?>'>
                                         
                                     </div>
                                     <div class='card-body'>
