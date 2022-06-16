@@ -20,8 +20,8 @@ if(isset($_GET['name']) && isset($_GET['email'])){
     $mail->isSMTP();
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPAuth = true;
-    $mail->Username = "409402049@gapp.fju.edu.tw";
-    $mail->Password = 'brian001002003';
+    $mail->Username = "409402154@gapp.fju.edu.tw";
+    $mail->Password = 'NCW21056920';
     $mail->Port = 465;
     $mail->SMTPSecure = "ssl";
 
