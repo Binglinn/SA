@@ -6,9 +6,7 @@
     $post_name = $_GET['user_name'];
 ?>
 <!DOCTYPE html> 
-
 <html lang="en">
-
 <head>
     <title>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -80,12 +78,10 @@ https://templatemo.com/tm-559-zay-shop
                     </ul>
 
                     <?php }elseif($_SESSION["user_admin"]=="user"){?>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
                             <?php echo '嗨！' ,$user_name;?>
                         </ul>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                             
                             <li class="nav-item">
@@ -103,11 +99,7 @@ https://templatemo.com/tm-559-zay-shop
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">登出</a>
                             </li>      
-                            
-                                  
                         </ul>
-
-                        
 
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -124,14 +116,9 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="login.php">登入</a>
                         </li>
                         </ul>
-
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <br>
@@ -146,21 +133,14 @@ https://templatemo.com/tm-559-zay-shop
         </div>
     </div>
     <?php
- 
         session_start();
         $link = mysqli_connect("localhost", "root", "12345678", "sa"); 
         if(!$link){
             echo "連接失敗" . mysqli_connect_error(); 
         }
-
         mysqli_query($link, "set names utf8");
-
-        if(isset($searchtxt))
+        if(isset($hidden_find_id))
             {
-                $sql="select mes.mes_id, mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_email, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
-            }
-            else{
-                $searchtxt = $_SESSION['hidden_find_id'];
                 $sql="select mes.mes_id, mes.find_id, find.find_name, mes.mes_content, mes.mes_time, user.user_email, user.user_name from mes,find,user where mes.find_id like '$searchtxt' AND user.user_email=mes.user_email AND find.find_id = mes.find_id ORDER BY mes_time desc";   
             }
         $result=mysqli_query($link,$sql)
@@ -190,16 +170,20 @@ https://templatemo.com/tm-559-zay-shop
                 <td style=text-align:center;line-height:50px;>$record[user_name]&nbsp(發文者)</td>
                 <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                 <td>$record[mes_time]</td>
-                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
-                <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
+                <td style=width:400px;style=text-align:center;line-height:50px;>
+                    <a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
+                    <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]&post_name=$post_name'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a>
+                </td>
                 </tr>";
             }else{
                 echo "<tr>
                 <td style=text-align:center;line-height:50px;>$record[user_name]</td>
                 <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                 <td>$record[mes_time]</td>
-                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
-                <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
+                <td style=width:400px;style=text-align:center;line-height:50px;>
+                    <a href='message_find_update.php?mes_id=$record[mes_id]&find_id=$record[find_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
+                    <a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]&post_name=$post_name'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a>
+                </td>
                 </tr>";
             }
         }
@@ -211,7 +195,7 @@ https://templatemo.com/tm-559-zay-shop
                 <td>$record[mes_time]</td>
                 <td style=text-align:center;line-height:50px;></td>
                 </tr>";
-            }else{
+            }else{ 
                 echo "<tr>
                 <td style=text-align:center;line-height:50px;>$record[user_name]</td>
                 <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
@@ -226,20 +210,19 @@ https://templatemo.com/tm-559-zay-shop
                 <td style=text-align:center;line-height:50px;>$record[user_name]&nbsp(發文者)</td>
                 <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                 <td>$record[mes_time]</td>
-                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
+                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]&post_name=$post_name'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
                 </tr>";
             }else{
                 echo "<tr>
                 <td style=text-align:center;line-height:50px;>$record[user_name]</td>
                 <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                 <td>$record[mes_time]</td>
-                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
+                <td style=width:400px;style=text-align:center;line-height:50px;><a href='message_delete_mes.php?mes_id=$record[mes_id]&find_id=$record[find_id]&find_name=$record[find_name]&post_name=$post_name'>"?><i class="fa-solid fa-trash"  style="color:gray"></i><?php echo "</a></td>
                 </tr>";
             }      
         }
     }
     ?>
-    <!-- AND $_SESSION["user_email"]=="$record[user_email]" -->
     </table>
     </div>
     <?php
@@ -276,8 +259,6 @@ https://templatemo.com/tm-559-zay-shop
     </footer>
     <!-- End Footer -->
     
-    
-
     <!-- Start Script -->
     <script src="assets/js/jquery-1.11.0.min.js"></script>
     <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>

@@ -1,14 +1,12 @@
 <?php
-   session_start();
-   $user_name = $_SESSION['user_name'];
+    session_start();
+    $user_name = $_SESSION['user_name'];
     $hidden_find_id = $_GET['hidden_find_id'];
     $_SESSION['hidden_find_id'] = $hidden_find_id;
 ?>
  
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <title>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -69,7 +67,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="find.php">尋物啟事</a>
+                            <a class="nav-link" href="find.php">尋物啟示</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="classify.php">遺失物分類</a>
@@ -83,19 +81,17 @@ https://templatemo.com/tm-559-zay-shop
                     </ul>
 
                     <?php }elseif($_SESSION["user_admin"]=="user"){?>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
                             <?php echo '嗨！' ,$user_name;?>
                         </ul>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                             
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php">即時刊登區</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="find.php">尋物啟事</a>
+                                <a class="nav-link" href="find.php">尋物啟示</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="classify.php">遺失物分類</a>
@@ -105,12 +101,8 @@ https://templatemo.com/tm-559-zay-shop
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">登出</a>
-                            </li>      
-                            
-                                  
+                            </li>            
                         </ul>
-
-                        
 
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -118,7 +110,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="find.php">尋物啟事</a>
+                            <a class="nav-link" href="find.php">尋物啟示</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="classify.php">遺失物分類</a>
@@ -127,14 +119,9 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="login.php">登入</a>
                         </li>
                         </ul>
-
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
@@ -157,16 +144,6 @@ https://templatemo.com/tm-559-zay-shop
             </form>
             </div>
     </div>
-    
-  
-            
-    
-   
-                    
-    <!-- Start Banner Hero -->
-    
-    <!-- End Banner Hero -->
-
 
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

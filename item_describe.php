@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php 
     session_start();
     $user_name = $_SESSION['user_name'];
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -35,12 +34,10 @@ https://templatemo.com/tm-559-zay-shop
 </head>
 
 <?php
-      
       $lose_id=$_GET["id"];
       $link=mysqli_connect("localhost","root","12345678","sa");
       $sql="select * from lose where lose_id = $lose_id ";
       $rs=mysqli_query($link,$sql);
-
       
       if(!$link){
         echo "連結失敗".mysqli_connect_error();
@@ -55,7 +52,6 @@ https://templatemo.com/tm-559-zay-shop
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
                 Lost & found
-                
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +90,6 @@ https://templatemo.com/tm-559-zay-shop
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
                             <?php echo '嗨！' ,$user_name;?>
                         </ul>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                             
                             <li class="nav-item">
@@ -111,12 +106,8 @@ https://templatemo.com/tm-559-zay-shop
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">登出</a>
-                            </li>      
-                            
-                                  
-                        </ul>
-
-                        
+                            </li>              
+                        </ul> 
 
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -133,36 +124,12 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="login.php">登入</a>
                         </li>
                         </ul>
-
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
-
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
 
     <!-- Open Content -->
     <section class="bg-light">
@@ -180,23 +147,18 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            
                             <p class="h2 col-md-4" style="display:inline;"><?php echo  $record['lose_name']?> </p>
-
                             <p class="h3 py-2">分類項目：<?php echo $record['lose_classify'] ?></p>   
                             <p class="h3 py-2">拾獲日期：<?php echo $record['lose_date']?></p>
                             <p class="h3 py-2">拾獲地點：<?php echo $record['lose_place'] ?></p> 
                             <p class="h3 py-2">物品敘述：<?php echo $record['lose_describe'] ?></p>   
                             <p class="h3 py-2">領取地點：<?php echo $record['lose_office'] ?></p>   
-                            
-                            
-                            
+
                             <?php 
                                 if($_SESSION["user_admin"]=="admin" && $record['lose_status']=='分類'){?>
-                                <div >
+                                <div>
                                 <a href=classify_update.php?lose_id=<?php echo $record["lose_id"]?> style="text-decoration:none;"><font color="green"><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp;修改</font></a>&nbsp;&nbsp;&nbsp;</a>
                                 <a href=classify_delete_mes.php?lose_id=<?php echo $record["lose_id"]?> style="text-decoration:none;"><font color="green" ><i class="fa-solid fa-trash"></i>&nbsp;刪除</font></a>
-                            
                                 <a href="update_status.php?lose_status=已領回&lose_id=<?php echo $lose_id ?>" style="text-decoration:none; color:green;float:right; "  ><i class="far fa-arrow-alt-circle-right" style="color:green">&nbsp;遺失物已領回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></a>
                                 <?php } ?>
                              <?php }?>

@@ -13,13 +13,10 @@ if($lose_status=='已領回'){
     }
 }
 
-
-
 if($lose_status=='分類'){
     $sql="update lose set lose_status = '$lose_status', lose_office = '$office', lose_postTime = '$lose_postTime' where lose_id = '$lose_id' ";
     if(mysqli_query($link, $sql)){
         header("location:classify.php");
     }
-
 }
 ?>

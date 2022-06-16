@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -45,12 +44,10 @@ https://templatemo.com/tm-559-zay-shop
     if(isset($_GET["new_name"])){
         $_SESSION['user_name']=$_GET["new_name"];
         $user_name= $_SESSION['user_name'];
-        
     }
     else{
         $user_name = $_SESSION['user_name'];
     };
-
 ?>
 <body>
    
@@ -142,41 +139,19 @@ https://templatemo.com/tm-559-zay-shop
 
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
 
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
     <?php
-
         $link = mysqli_connect("localhost", "root", "12345678", "sa");
         if(!$link){
             echo "連接失敗" . mysqli_connect_error(); 
         }
         mysqli_query($link, "set names utf8");
         $sql="select user_email,user_name,user_phone,user_password FROM user where user_email='$user_email' ";   
-        $result=mysqli_query($link,$sql);
-        
+        $result=mysqli_query($link,$sql);   
     ?>
 
 
@@ -193,48 +168,39 @@ https://templatemo.com/tm-559-zay-shop
         <div class="row">
             <div class="col-12 mt-3">
             <?php while($record=mysqli_fetch_assoc($result)){ ?>
-                
                 <table style="line-height:50px;">  
                     
                     <tr>
                         <td><b>信箱</b></td>
                         <td><?php echo $record['user_email'];?></td>
-                        <td>&nbsp;</td>
+                        <td></td>
                     </tr>
                     
                     <tr>
                         <td><b>使用者名稱</b></td>
                         <td><?php echo $record['user_name'];?></td>
                         <td align="center"><a class="btn btn-success btn-lg px-3" href="self-update.php?update=user_name">編輯名稱</td>
-                        </div>
                     </tr>
                     
                     <tr>
                         <td><b>聯絡電話</b></td>
                         <td><?php echo $record['user_phone'];?></td>
-                        <td align="center"><a  class="btn btn-success btn-lg px-3" href="self-update.php?update=phone" >編輯電話</td></div>
+                        <td align="center"><a  class="btn btn-success btn-lg px-3" href="self-update.php?update=phone" >編輯電話</td>
                     </tr>
                    
                     <tr>
                         <td><b>使用者密碼</b></td>
                         <td>********</td>
-                        <td align="center"><a class="btn btn-success btn-lg px-3" href="self-update.php?update=password">編輯密碼</td></div>
+                        <td align="center"><a class="btn btn-success btn-lg px-3" href="self-update.php?update=password">編輯密碼</td>
                     </tr>
                     
                 </table>
                 <?php }?> 
-                
             </div>
-        </div>
-       
-            
+        </div>       
     </section>
     <!-- End Categories of The Month -->
     
-
-   
-
-   
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">

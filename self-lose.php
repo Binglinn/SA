@@ -2,9 +2,9 @@
 <?php 
     session_start();
     $user_name = $_SESSION['user_name'];
+    $user_email=$_SESSION["user_email"];
 ?>
 <html lang="en">
-
 <head>
     <title>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -26,22 +26,15 @@
         .flip{margin:0px;padding:5px;text-align:center;cursor:pointer;font-family:'Arial';}
         .panel{margin:0px;padding:5px;text-align:center;display:none;font-family:'Arial';text-align:left;}
     </style>
-        <?php
-        session_start();
-        $user_email=$_SESSION["user_email"];
-        ?>
-        <?php
-        $link=mysqli_connect("localhost","root","12345678","sa");
 
-        if(!$link){
-            echo "連接失敗" . mysqli_connect_error(); 
-        }
-    
-        $sql_lose= "SELECT lose.lose_id,lose.lose_name,lose.lose_picture,lose.lose_date,lose.lose_place,lose.lose_describe,user.user_name FROM lose,user where lose.user_email=user.user_email AND lose.user_email='$user_email' AND lose.lose_status='即時刊登'  order by lose.lose_postTime desc"; 
-
-        $rs_lose = mysqli_query($link, $sql_lose);
-       
-        ?>
+    <?php
+    $link=mysqli_connect("localhost","root","12345678","sa");
+    if(!$link){
+        echo "連接失敗" . mysqli_connect_error(); 
+    }
+    $sql_lose= "SELECT lose.lose_id,lose.lose_name,lose.lose_picture,lose.lose_date,lose.lose_place,lose.lose_describe,user.user_name FROM lose,user where lose.user_email=user.user_email AND lose.user_email='$user_email' AND lose.lose_status='即時刊登'  order by lose.lose_postTime desc"; 
+    $rs_lose = mysqli_query($link, $sql_lose);
+    ?>
     
    
 <!--
@@ -64,7 +57,6 @@ https://templatemo.com/tm-559-zay-shop
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
                 Lost & found
-                
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +66,6 @@ https://templatemo.com/tm-559-zay-shop
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
             <div class="flex-fill">
                     <?php if($_SESSION["user_admin"]=="admin"){?>
-                      
                     <br>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;嗨！管理者
@@ -103,9 +94,7 @@ https://templatemo.com/tm-559-zay-shop
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
                             <?php echo '嗨！' ,$user_name;?>
                         </ul>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                            
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php">即時刊登區</a>
                             </li>
@@ -120,12 +109,8 @@ https://templatemo.com/tm-559-zay-shop
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">登出</a>
-                            </li>      
-                            
-                                  
+                            </li>             
                         </ul>
-
-                        
 
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -142,34 +127,12 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="login.php">登入</a>
                         </li>
                         </ul>
-
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
-    
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
    
     <section class="bg-light">
         <div class="container py-5">
@@ -180,29 +143,24 @@ https://templatemo.com/tm-559-zay-shop
             </div>
             </div>
             <?php
-                        $data_nums = mysqli_num_rows($rs_lose); //統計總比數
-                        
-                        $per = 8; //每頁顯示項目數量
-                        $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
-                        if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
-                            $page=1; //則在此設定起始頁數
-                        } else {
-                            $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
-                            
-                        }
-                        $start = ($page-1)*$per; //每一頁開始的資料序號
+                $data_nums = mysqli_num_rows($rs_lose); //統計總比數
+                
+                $per = 8; //每頁顯示項目數量
+                $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
+                if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
+                    $page=1; //則在此設定起始頁數
+                } else {
+                    $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
                     
-                      
-                        $item_list=[];
-                           
-                ?> 
+                }
+                $start = ($page-1)*$per; //每一頁開始的資料序號
+
+                $item_list=[];
+            ?> 
             <div class="row">
                 <?php 
-               for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
-                   
-                while($record=mysqli_fetch_assoc($rs_lose)){
-                    
-                     
+            for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
+                while($record=mysqli_fetch_assoc($rs_lose)){  
                     array_push($item_list,$record);}?>
                     
                 <div class="col-12 col-md-3 mb-4">
@@ -211,7 +169,6 @@ https://templatemo.com/tm-559-zay-shop
                         <div class="card-body">
                             <div class="flip" ><span class="1"><?php echo $item_list[$i]["lose_name"]?></span>
                             <a href="message.php?user_name=<?php echo $item_list[$i]["user_name"] ?>&hidden_lose_id=<?php echo $item_list[$i]["lose_id"] ?>& lose_name=<?php echo $item_list[$i]["lose_name"] ?>" class="fas fa-comments" style="color:green;"></a>
-
                             <div><font color="#D5D8DC"><i class="fa fa-chevron-down" aria-hidden="true"></i></font></div></div>
                             <div class="panel" >
                                 物品編號：<?php echo $item_list[$i]["lose_id"]?><br>
@@ -255,27 +212,16 @@ https://templatemo.com/tm-559-zay-shop
                     <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="?page=<?php echo $pages?>">末頁</a></li>
                 </p>
             </ul>
-            
             <div align="right"><?php echo '共 ',$data_nums,' 筆-在 ',$page,' 頁-共 ',$pages,' 頁';?></div>
         </div>
-        
     </section>
-    
-   
-                    <script>
-                    $(function(){
-                    $(".flip").click(function(){
-                    $(".panel").slideToggle("slow");
-                   
-                    });});
-                    
-                    
-                    </script>  
-
-    <!-- Start Banner Hero -->
-    
-    <!-- End Banner Hero -->
-
+        <script>
+            $(function(){
+            $(".flip").click(function(){
+            $(".panel").slideToggle("slow");
+            
+            });});
+        </script>  
 
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

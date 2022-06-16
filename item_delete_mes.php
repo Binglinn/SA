@@ -1,10 +1,8 @@
-
 <?php
-  session_start();
-  $lose_id = $_GET["lose_id"];
-  $find_id = $_GET["find_id"];
+session_start();
+$lose_id = $_GET["lose_id"];
+$find_id = $_GET["find_id"];
   
-
     if($lose_id!="" or  $find_id!=""){ ?>
         <script> 
             var sure=confirm( '確定刪除?'); 
@@ -14,7 +12,7 @@
             } 
             else {
                 alert( '已取消動作');
-                history.go(-1);
+                history.go(-1); 
             }
         </script>
     <?php }

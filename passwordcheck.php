@@ -1,7 +1,5 @@
 <?php
 session_start();
-//比對驗證碼
-
 $link=mysqli_connect("localhost","root","12345678","sa");
 $uservalidate=$_POST["validate"];
 $user_password=$_POST["user_password"]; 
@@ -23,6 +21,8 @@ if($user_password != $user_password2){
     </script>
     <?php
 }else{
+    $sql="update user set user_password = '$user_password' where user_email='$user_email'";
+        if(mysqli_query($link,$sql)){
     ?>
     <script>
         alert("修改成功");
@@ -30,7 +30,5 @@ if($user_password != $user_password2){
     </script>
     <?php
 }
-
-
-
+}
 ?>

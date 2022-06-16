@@ -6,9 +6,7 @@
 ?>
  
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <title>>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -29,17 +27,6 @@
         .flip{margin:0px;padding:5px;text-align:center;cursor:pointer;font-family:'Arial';}
         .panel{margin:0px;padding:5px;text-align:center;display:none;font-family:'Arial';text-align:left;}
     </style>
-    <?php
-    $link=mysqli_connect("localhost","root","12345678","sa");
-
-    if(!$link){
-        echo "連接失敗" . mysqli_connect_error(); 
-    }
-    $date = date("Y-m-d",strtotime("-7 day"));
-    $sql_lose= "SELECT * FROM lose where lose_status='即時刊登' AND lose_date>'$date' order by lose_date desc";
-    $rs_lose = mysqli_query($link, $sql_lose);
-    ?>
-    
 <!--
     
 TemplateMo 559 Zay Shop
@@ -80,7 +67,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="find.php">尋物啟事</a>
+                            <a class="nav-link" href="find.php">尋物啟示</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="classify.php">遺失物分類</a>
@@ -98,7 +85,7 @@ https://templatemo.com/tm-559-zay-shop
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
                             <?php echo '嗨！' ,$user_name;?>
-                        </ul>
+                        </ul> 
 
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                             
@@ -106,7 +93,7 @@ https://templatemo.com/tm-559-zay-shop
                                 <a class="nav-link" href="index.php">即時刊登區</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="find.php">尋物啟事</a>
+                                <a class="nav-link" href="find.php">尋物啟示</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="classify.php">遺失物分類</a>
@@ -129,7 +116,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.php">即時刊登區</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="find.php">尋物啟事</a>
+                            <a class="nav-link" href="find.php">尋物啟示</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="classify.php">遺失物分類</a>
@@ -141,11 +128,7 @@ https://templatemo.com/tm-559-zay-shop
 
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
@@ -167,17 +150,7 @@ https://templatemo.com/tm-559-zay-shop
             </div>      
             </form>
             </div>
-    </div>
-    
-  
-            
-    
-   
-                    
-    <!-- Start Banner Hero -->
-    
-    <!-- End Banner Hero -->
-
+    </div>                   
 
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

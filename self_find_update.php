@@ -43,7 +43,6 @@ https://templatemo.com/tm-559-zay-shop
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
                 Lost & found
-                
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,11 +121,7 @@ https://templatemo.com/tm-559-zay-shop
 
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
@@ -206,7 +201,6 @@ https://templatemo.com/tm-559-zay-shop
             <div class="container"> 
             </div>
         </div>
-
     </footer>
     <!-- End Footer -->
     

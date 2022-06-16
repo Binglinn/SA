@@ -14,11 +14,12 @@ $record=mysqli_fetch_assoc($rs);
 $user_mail = $record['user_email'];
 
 if($user_email == $user_mail){   
-    $limit = 4;
-    $validate=random_int(10 ** ($limit - 1), (10 ** $limit) - 1);
+    $limit = 4;//驗證碼4碼
+    $validate=random_int(10 ** ($limit - 1), (10 ** $limit) - 1);//產生隨機數
     $_SESSION["validate"]=$validate;
-    $subject="系統驗證信";
+    $subject="系統驗證信";//信件標題
     $body=$user_name."您好:<br>本信為輔仁大學失物招領系統修改密碼驗證信<br>以下為您的修改密碼驗證碼<br><strong><h1 style='color:red'>".$validate."<br></h1>請回到網頁輸入驗證碼進行密碼修改，如非本人操作請忽略。</strong><br><br>感謝你的合作，<br>輔大失物招領系統";
+    //信件內文
     header("location:sendEmail.php?name=$user_name&email=$user_email&subject=$subject&body=$body&method=forget");   
 }else{
     ?>

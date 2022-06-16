@@ -145,31 +145,10 @@ https://templatemo.com/tm-559-zay-shop
 
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
-    
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
    
     <section class="bg-light"> 
         <div class="container py-5">
@@ -180,22 +159,21 @@ https://templatemo.com/tm-559-zay-shop
             </div>
             </div>
             <?php
-                        $data_nums = mysqli_num_rows($rs_find); //統計總比數
-                        
-                        $per = 8; //每頁顯示項目數量
-                        $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
-                        if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
-                            $page=1; //則在此設定起始頁數
-                        } else {
-                            $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
-                            
-                        }
-                        $start = ($page-1)*$per; //每一頁開始的資料序號
+                $data_nums = mysqli_num_rows($rs_find); //統計總比數
+                
+                $per = 8; //每頁顯示項目數量
+                $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
+                if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
+                    $page=1; //則在此設定起始頁數
+                } else {
+                    $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
                     
-                      
-                        $item_list=[];
-                           
-                ?> 
+                }
+                $start = ($page-1)*$per; //每一頁開始的資料序號
+            
+                
+                $item_list=[];  
+            ?> 
             <div class="row">
                 <?php 
                for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
@@ -221,7 +199,6 @@ https://templatemo.com/tm-559-zay-shop
                             遺失地點：<?php echo $item_list[$i]["find_place"]?><br>
                             聯絡資訊：<?php echo $item_list[$i]["find_contact"]?><br>
                             物品描述：<?php echo $item_list[$i]["find_describe"]?><br>
-                               
                             </div>
                         </div>
                         <div  class="card-footer" style="background-color:white">
@@ -266,20 +243,13 @@ https://templatemo.com/tm-559-zay-shop
     </section>
     
    
-                    <script>
-                    $(function(){
-                    $(".flip").click(function(){
-                    $(".panel").slideToggle("slow");
-                   
-                    });});
-                    
-                    
-                    </script>  
-
-    <!-- Start Banner Hero -->
-    
-    <!-- End Banner Hero -->
-
+    <script>
+        $(function(){
+        $(".flip").click(function(){
+        $(".panel").slideToggle("slow");
+        
+        });});
+    </script>  
 
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

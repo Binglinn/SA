@@ -16,6 +16,8 @@
          
     //上傳檔案
     $upload_dir = $_FILES['image']['name'];
+
+    //不修改照片時保有原有照片
     $sql_origin="select find_picture from find where find_id=$find_id";
     $rs_origin=mysqli_query($link,$sql_origin);
     $record_origin=mysqli_fetch_assoc($rs_origin);
@@ -23,8 +25,10 @@
     if(empty($upload_dir)){
         $upload_dir=$record_origin['find_picture'];
     }
+
+    //偵測照片長寬比
     getimagesize();
-    list($width, $height, $type, $attr) = getimagesize("assets/img/$upload_dir");
+    list($width, $height) = getimagesize("assets/img/$upload_dir");
     
     if($width != $height ) { ?>
        <script>
@@ -35,7 +39,7 @@
 
      else{
         $upload_file = $_FILES['image']['tmp_name'];
-        move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);
+        move_uploaded_file($_FILES['image']['tmp_name'],'assets/img/'.$_FILES['image']['name']);//將照片加入至assets/img此資料夾
         $sql = "UPDATE find SET find_name='$find_name',find_describe='$find_describe',find_place='$find_place',find_contact='$find_contact',find_picture='$upload_dir' where find_id = '$find_id'";
     }
 

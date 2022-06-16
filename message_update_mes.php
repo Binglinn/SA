@@ -10,7 +10,7 @@
 
     mysqli_query($link, "set names utf8");
 
-        $sql = "UPDATE mes SET mes_content = '$mes_content' where mes_id = '$mes_id'";
+    $sql = "UPDATE mes SET mes_content = '$mes_content' where mes_id = '$mes_id'";
 
     $result = mysqli_query($link, $sql);
 

@@ -22,19 +22,12 @@
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
-    
-
-
-
     <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-      $('#table').DataTable();
-    });
+        $('#table').DataTable();
+        });
     </script>
-
-
-    
 <!--
     
 TemplateMo 559 Zay Shop
@@ -147,36 +140,10 @@ https://templatemo.com/tm-559-zay-shop
 
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
-
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div> 
-    </div>
-
-
-
-   
-
 
     <!-- Start Categories of The Month -->
     <section class=" py-5">
@@ -189,9 +156,8 @@ https://templatemo.com/tm-559-zay-shop
         </div>
         <div  align="center" style="padding:15px">
             <table id="table" width="100%" class="table table-hover display" >
-                <thead >
-                    
-                    <tr >
+                <thead>   
+                    <tr>
                         <th style="text-align: center;">使用者帳號</th>
                         <th style="text-align: center;">姓名</th>
                         <th style="text-align: center;">連絡電話</th>
@@ -204,22 +170,14 @@ https://templatemo.com/tm-559-zay-shop
                             <?php
                                 for($i=0;$i<count($record);$i++){?>
                                     <td><?php echo $record[$i]; ?></td>
-
                             <?php } ?>
                         </tr>
                     <?php } ?> 
                 </tbody>
             </table>
         </div>
-
-
-        
     </section>
     <!-- End Categories of The Month -->
-    
-
-   
-
    
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

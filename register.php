@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,14 +27,7 @@ https://templatemo.com/tm-559-zay-shop
 
 -->
 </head>
-
-
-
-
 <body>
-   
-
-
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
@@ -62,56 +53,31 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="classify.php">遺失物分類</a>
                         </li>
                         <li class="nav-item">
-                            <a > </a>
                         </li>
                         </ul>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
-
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
 
     <!-- Start Content Page -->
  
 <script>
 function getEmail(){
-    var email=document.getElementById("user_email").value;
-    var location="validate2.php?user_email="+email;
-    window.location.href=location;
+    var email=document.getElementById("user_email").value;//取值到一個變數
+    var location="validate2.php?user_email="+email;//取一個網址到變數且將email傳值
+    window.location.href=location;//執行跳頁
 }
 </script>
 <?php 
-$user_email=$_GET["email"];
+    $user_email=$_GET["email"];//將user_email傳到發送驗證碼後
 ?>
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-           
-                <form class="col-md-9 m-auto" role="form" method="POST" action="emailcheck.php"> 
-                   
-                    <label  style="color:green;height:65px" for="inputname"><h1>註冊</h1></label>
+                <form class="col-md-9 m-auto" method="POST" action="emailcheck.php"> 
+                    <label style="color:green;height:65px"><h1>註冊</h1></label>
                     <div class="row col-md-15">
                         <div class="form-group col-md-6 mb-3">    
                             <?php $check = $_GET['check'];
@@ -120,21 +86,17 @@ $user_email=$_GET["email"];
                             <?php }
                             else{?>
                                 <input type=text class="form-control" name="user_email" id="user_email" placeholder="帳號 (學校信箱)" value="<?php echo $user_email?>" required readonly > 
-
                              <?php } ?>
                         </div>
-                        
                             <div class="form-group col-3 mb-3">  
                                 <?php if($check != 'true' ){?>
                                     <button type="button" class="btn btn-success" onclick="getEmail()">發送驗證碼</button>
                                     <?php } ?>
                                 <?php if($check =='true'){ ?>
-                                    <button type="button" class="btn btn-success" onclick="javascript:location.href='validate2.php?user_email=<?php echo $user_email?>&method=register'">再次發送</button>
+                                    <button type="button" class="btn btn-success" onclick="getEmail()">再次發送</button>
                                 <?php }?>
                             </div>
-                        
                     </div>
-                    
                     <?php 
                     if($check=='true'){?>
                         <div class="row col-md-15">
@@ -158,7 +120,6 @@ $user_email=$_GET["email"];
                             </div>
                         </div>
                     <?php } ?>
-                    
                     <a href="login.php">已有帳號？按此登入</a>
                     <?php if($check=='true'){ ?>
                         <div class="col text-end mt-2">

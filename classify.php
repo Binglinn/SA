@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -32,7 +31,7 @@ $(function() {
 $( document ).tooltip();
 });
 </script>
-    <style>
+<style>
     label {
     display: inline-block;
     width: 5em;
@@ -59,7 +58,6 @@ $( document ).tooltip();
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
                 Lost & found
-                
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,14 +91,11 @@ $( document ).tooltip();
                     </ul>
 
                     <?php }elseif($_SESSION["user_admin"]=="user"){?>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
                             <?php echo '嗨！' ,$user_name;?>
                         </ul>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                            
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php">即時刊登區</a>
                             </li>
@@ -115,12 +110,8 @@ $( document ).tooltip();
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">登出</a>
-                            </li>      
-                            
-                                  
+                            </li>             
                         </ul>
-
-                        
 
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -137,46 +128,21 @@ $( document ).tooltip();
                             <a class="nav-link" href="login.php">登入</a>
                         </li>
                         </ul>
-
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
-    <!-- Close Header -->
-
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
+<!-- Close Header -->
 
  <!-- Start Content -->
  <div class="container py-5">
     <div class="row">
-
         <div class="col-lg-3">
             <h1 class="h2 pb-4">分類</h1>
             <ul class="list-unstyled templatemo-accordion">
                 <div class="pb-3">
-                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none"   href="classify.php?searchtxt=證件&classify_name=證件">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="classify.php?searchtxt=證件&classify_name=證件">
                         證件
                     </a>
                 </div>
@@ -201,7 +167,7 @@ $( document ).tooltip();
                     </a> 
                 </div>
                 <div class="pb-3">
-                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="classify.php?searchtxt=衣物&classify_name=物品">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="classify.php?searchtxt=衣物&classify_name=衣物">
                         衣物
                     </a> 
                 </div>
@@ -226,13 +192,11 @@ $( document ).tooltip();
         </div>
 
             <div class="col-lg-9">
-            
                 <div class="row">
                     <div class="col-md-8">
                         <ul class="list-inline shop-top-menu pb-3 pt-1" >
-                            <?php  $classify_name=$_GET["classify_name"]?>
-                                <h3 class="h3" ><?php echo $classify_name?></h3>                           
-                        
+                            <?php $classify_name=$_GET["classify_name"]?>
+                            <h3 class="h3" ><?php echo $classify_name?></h3>                           
                         </ul>
                     </div>
                     <div class="col-md-4 pb-4" align=right>
@@ -240,7 +204,7 @@ $( document ).tooltip();
                             <form action="classify.php" method="get">
                                 <?php $searchtxt = $_GET["searchtxt"]; ?>
                                 <div class="input-group-prepend">     
-                                    <p align=margin-right><input type=text class="form-control" name="searchtxt" placeholder="搜尋關鍵字" ></p>
+                                    <p align=margin-right><input type=text class="form-control" name="searchtxt" placeholder="搜尋關鍵字"></p>
                                 </div>
                             </form>
                         </div>
@@ -257,15 +221,11 @@ $( document ).tooltip();
                             $date = date("Y-m-d",strtotime("-90 day"));
                             $sql="select * from lose where lose_status='已領回' AND lose_postTime>'$date' order by lose_postTime DESC";
                         }
-                    }    
-               
-                   
-                
+                    }      
                 else
                 {
                     $sql="select * from lose where lose_status='分類'  order by lose_postTime DESC";
                 }
-
                 $rs=mysqli_query($link,$sql);
 
                 ?>
@@ -299,12 +259,10 @@ $( document ).tooltip();
                                 <div class='card mb-4 product-wap rounded-0'>
                                     <div class='card rounded-0' >
                                         <img class='card-img rounded-0 img-fluid'  onerror="javascript:this.src='assets/img/no_img.jpg'"  src='assets/img/<?php echo $item_list[$i]['lose_picture']?>'>
-                                        
                                     </div>
                                     <div class='card-body'>
                                         <a href='item_describe.php?id=<?php echo $item_list[$i]['lose_id']?>' class='h3 text-decoration-none'><?php echo $item_list[$i]['lose_name'] ?></a>
                                         
-
                                         <ul class='w-100 list-unstyled d-flex mb-0'>
                                             <li>拾獲日期：</li>
                                             <li><?php echo $item_list[$i]['lose_date']?></li>
@@ -312,19 +270,15 @@ $( document ).tooltip();
                                         <ul class='w-100 list-unstyled d-flex mb-0'>
                                             <li>領取地點：</li>
                                             <li><?php echo $item_list[$i]['lose_office']?></li>
-                                        </ul>
-                                        
+                                        </ul> 
                                     </div>
                                 </div>
                             </div>
-                            
-                            <?php
+                        <?php
                         } 
                     ?>
                 </div>
-                
             </div>
-
         <br>
         <p>
         <div class='col-md-12'>
@@ -332,7 +286,6 @@ $( document ).tooltip();
                 <center><a href="insert.php"><button class="btn btn-success btn-lg px-3">新增遺失物</button></a></center>
             <?php } ?>
             <ul class="pagination pagination-lg justify-content-end">
-                   
                 
                 <p class="page-item">
                 <br>
@@ -348,7 +301,7 @@ $( document ).tooltip();
                                 <?php
                                 }
                                 else{ ?>
-                                    <li><a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="searchtxt=<?php echo $searchtxt ?>&classify_name=<?php echo $searchtxt ?>&?page=<?php echo $i;?>" tabindex="-1" >
+                                    <li><a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="?searchtxt=<?php echo $searchtxt ?>&classify_name=<?php echo $searchtxt ?>&?page=<?php echo $i;?>" tabindex="-1" >
                                     <?php echo $i.'&nbsp';?></a></li>
                                 <?php 
                                 }

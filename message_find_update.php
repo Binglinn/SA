@@ -37,7 +37,7 @@
     }
     $sql= "SELECT * FROM mes WHERE mes_id = $mes_id";
     $rs = mysqli_query($link, $sql);
-    ?>
+    ?> 
     
 <!--
     
@@ -58,8 +58,7 @@ https://templatemo.com/tm-559-zay-shop
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
-                Lost & found
-                
+                Lost & found                
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,14 +92,11 @@ https://templatemo.com/tm-559-zay-shop
                     </ul>
 
                     <?php }elseif($_SESSION["user_admin"]=="user"){?>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
                             <?php echo '嗨！' ,$user_name;?>
                         </ul>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                            
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php">即時刊登區</a>
                             </li>
@@ -140,11 +136,7 @@ https://templatemo.com/tm-559-zay-shop
 
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
@@ -174,16 +166,6 @@ https://templatemo.com/tm-559-zay-shop
     <?php
         }
     ?>
-    
-  
-            
-    
-   
-                    
-    <!-- Start Banner Hero -->
-    
-    <!-- End Banner Hero -->
-
 
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

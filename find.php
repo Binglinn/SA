@@ -2,11 +2,8 @@
     session_start();
     $user_name = $_SESSION['user_name'];
 ?>
- 
 <!DOCTYPE html>
-
 <html lang="en">
- 
 <head>
     <title>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -34,7 +31,7 @@
     if(!$link){
         echo "連接失敗" . mysqli_connect_error(); 
     }
-    $date = date("Y-m-d",strtotime("-30 day"));
+    $date = date("Y-m-d",strtotime("-30 day"));//30天前的日期
     $sql_find= "SELECT find.find_id,find.find_name,find.find_picture,find.find_place,find.find_describe,find.find_contact,user.user_name FROM find,user WHERE find.user_email=user.user_email AND find.find_postTime>'$date' ORDER BY find.find_postTime desc";
     $rs_find = mysqli_query($link, $sql_find);
     ?>
@@ -95,7 +92,6 @@ https://templatemo.com/tm-559-zay-shop
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
                             <?php echo '嗨！' ,$user_name;?>
                         </ul>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                             
                             <li class="nav-item">
@@ -112,12 +108,8 @@ https://templatemo.com/tm-559-zay-shop
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">登出</a>
-                            </li>      
-                            
-                                  
+                            </li>                                      
                         </ul>
-
-                        
 
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -137,31 +129,10 @@ https://templatemo.com/tm-559-zay-shop
 
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
-    
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
    
     <section class="bg-light">
         <div class="container py-5">
@@ -171,31 +142,25 @@ https://templatemo.com/tm-559-zay-shop
                     <h5>尋物啟事</h5>
                 </div>
             </div>
-           
             <?php
-                        $data_nums = mysqli_num_rows($rs_find); //統計總比數
-                        
-                        $per = 8; //每頁顯示項目數量
-                        $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
-                        if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
-                            $page=1; //則在此設定起始頁數
-                        } else {
-                            $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
-                            
-                        }
-                        $start = ($page-1)*$per; //每一頁開始的資料序號
-                    
-                      
-                        $item_list=[];
-                           
+                $data_nums = mysqli_num_rows($rs_find); //統計總比數
+                
+                $per = 8; //每頁顯示項目數量
+                $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
+                if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
+                    $page=1; //則在此設定起始頁數
+                } else {
+                    $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
+                }
+                $start = ($page-1)*$per; //每一頁開始的資料序號
+            
+                $item_list=[];                   
                 ?> 
             <div class="row">
                 <?php 
-               for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
-                   
+               for($i=$start;$i<$start+$per && $i<$data_nums;$i++){  
                 while($record=mysqli_fetch_assoc($rs_find)){
                     array_push($item_list,$record);}?>
-                    
                     
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
@@ -217,9 +182,9 @@ https://templatemo.com/tm-559-zay-shop
                             </div>
                         </div>
                         <?php if($_SESSION["user_admin"]=="admin"){?>
-                            <div  class="card-footer" style="background-color:white">
+                            <div class="card-footer" style="background-color:white">
                                 <div>
-                                <center><a href=item_delete_mes.php?find_id=<?php echo $item_list[$i]["find_id"]?> style="text-decoration:none;"> <font color="green"><i class="fa-solid fa-trash"></i>&nbsp;刪除</font></a></center>
+                                    <center><a href=item_delete_mes.php?find_id=<?php echo $item_list[$i]["find_id"]?> style="text-decoration:none;"> <font color="green"><i class="fa-solid fa-trash"></i>&nbsp;刪除</font></a></center>
                                 </div>
                             </div>
                         <?php }?>
@@ -262,22 +227,13 @@ https://templatemo.com/tm-559-zay-shop
         </div>
         
     </section>
-    
-   
-                    <script>
-                    $(function(){
-                    $(".flip").click(function(){
-                    $(".panel").slideToggle("slow");
-                   
-                    });});
-                    
-                    
-                    </script>  
-
-    <!-- Start Banner Hero -->
-    
-    <!-- End Banner Hero -->
-
+        <script>
+            $(function(){
+            $(".flip").click(function(){
+            $(".panel").slideToggle("slow");
+            
+            });});    
+        </script>  
 
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">

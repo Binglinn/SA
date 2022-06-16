@@ -7,7 +7,6 @@
 ?>
 <!DOCTYPE html> 
 <html lang="en">
-
 <head>
     <title>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -54,7 +53,6 @@ https://templatemo.com/tm-559-zay-shop
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
             <div class="flex-fill">
                     <?php if($_SESSION["user_admin"]=="admin"){?>
-                      
                     <br>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;嗨！管理者
@@ -100,12 +98,8 @@ https://templatemo.com/tm-559-zay-shop
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">登出</a>
-                            </li>      
-                            
-                                  
+                            </li>                       
                         </ul>
-
-                        
 
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -122,14 +116,9 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="login.php">登入</a>
                         </li>
                         </ul>
-
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <br>
@@ -152,10 +141,7 @@ https://templatemo.com/tm-559-zay-shop
         }
         mysqli_query($link, "set names utf8");
 
-        if(isset($searchtxt)){
-            $sql="select mes.mes_id,mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name,user.user_email FROM mes,user,lose where mes.lose_id=$searchtxt AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
-        }else{
-            $searchtxt = $_SESSION['hidden_lose_id'];
+        if(isset($hidden_lose_id)){
             $sql="select mes.mes_id,mes.lose_id,lose.lose_name,mes.mes_content,mes.mes_time,user.user_name,user.user_email FROM mes,user,lose where mes.lose_id=$searchtxt AND user.user_email=mes.user_email AND lose.lose_id = mes.lose_id ORDER BY mes_time desc ";   
         }
         $result=mysqli_query($link,$sql)
@@ -185,16 +171,20 @@ https://templatemo.com/tm-559-zay-shop
                 <td style=text-align:center;line-height:50px;>$record[user_name]&nbsp(發文者)</td>
                 <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                 <td>$record[mes_time]</td>
-                <td style=width:400px;text-align:center;line-height:50px;><a href='message_update.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
-                <a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]&lose_name=$record[lose_name]'>"?><i class="fa-solid fa-trash" style="color:gray"></i><?php echo "</a></td>
+                <td style=width:400px;text-align:center;line-height:50px;>
+                    <a href='message_update.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
+                    <a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]&lose_name=$record[lose_name]&post_name=$post_name'>"?><i class="fa-solid fa-trash" style="color:gray"></i><?php echo "</a>
+                </td>
               </tr>";
             }else{
                 echo "<tr>
                 <td style=text-align:center;line-height:50px;>$record[user_name]</td>
                 <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                 <td>$record[mes_time]</td>
-                <td style=width:400px;text-align:center;line-height:50px;><a href='message_update.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
-                <a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]&lose_name=$record[lose_name]'>"?><i class="fa-solid fa-trash" style="color:gray"></i><?php echo "</a></td>
+                <td style=width:400px;text-align:center;line-height:50px;>
+                    <a href='message_update.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]'>"?><i class="fa-solid fa-screwdriver-wrench" style="color:gray"></i><?php echo "</a>&nbsp&nbsp
+                    <a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]&lose_name=$record[lose_name]&post_name=$post_name'>"?><i class="fa-solid fa-trash" style="color:gray"></i><?php echo "</a>
+                </td>
               </tr>";
             }
             
@@ -213,7 +203,7 @@ https://templatemo.com/tm-559-zay-shop
                 <td>$record[mes_time]</td>
                 <td style=text-align:center;line-height:50px;></td>
             <tr>";
-            }
+            }  
             
         }elseif($_SESSION["user_admin"]=="admin"){
             if($post_name==$record["user_name"]){
@@ -222,7 +212,7 @@ https://templatemo.com/tm-559-zay-shop
                 <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                 <td>$record[mes_time]</td>
                 <td style=width:400px;text-align:center;line-height:50px;>
-                <a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]&lose_name=$record[lose_name]'?>"?><i class="fa-solid fa-trash" style="color:gray"></i><?php echo "</a></td>
+                <a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]&lose_name=$record[lose_name]&post_name=$post_name'?>"?><i class="fa-solid fa-trash" style="color:gray"></i><?php echo "</a></td>
             <tr>";
             }else{
                 echo "<tr>
@@ -230,14 +220,12 @@ https://templatemo.com/tm-559-zay-shop
                 <td style=text-align:center;line-height:50px;>$record[mes_content]</td>
                 <td>$record[mes_time]</td>
                 <td style=width:400px;text-align:center;line-height:50px;>
-                <a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]&lose_name=$record[lose_name]'?>"?><i class="fa-solid fa-trash" style="color:gray"></i><?php echo "</a></td>
+                <a href='message_delete_mes.php?mes_id=$record[mes_id]&lose_id=$record[lose_id]&lose_name=$record[lose_name]&post_name=$post_name'?>"?><i class="fa-solid fa-trash" style="color:gray"></i><?php echo "</a></td>
             <tr>";
             }
-            
         }
     }
     ?>
-    
     </table>
     </div>
     <?php 

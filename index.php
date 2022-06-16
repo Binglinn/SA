@@ -2,11 +2,8 @@
     session_start();
     $user_name = $_SESSION['user_name'];
 ?>
- 
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head> 
     <title>輔大遺失物管理系統</title>
     <meta charset="utf-8">
@@ -30,11 +27,10 @@
     </style>
     <?php
     $link=mysqli_connect("localhost","root","12345678","sa");
-
     if(!$link){
         echo "連接失敗" . mysqli_connect_error(); 
     }
-    $date = date("Y-m-d",strtotime("-7 day"));
+    $date = date("Y-m-d",strtotime("-7 day"));//七天前的日期
     $sql_lose= "SELECT lose.lose_id,lose.lose_name,lose.lose_picture,lose.lose_date,lose.lose_place,lose.lose_describe,user.user_name FROM lose,user where lose.user_email=user.user_email AND lose.lose_status='即時刊登' AND lose.lose_postTime>'$date' order by lose.lose_postTime desc"; 
     $rs_lose = mysqli_query($link, $sql_lose);
     ?>
@@ -59,7 +55,6 @@ https://templatemo.com/tm-559-zay-shop
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
                 Lost & found
-                
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +64,6 @@ https://templatemo.com/tm-559-zay-shop
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
             <div class="flex-fill">
                     <?php if($_SESSION["user_admin"]=="admin"){?>
-                      
                     <br>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;嗨！管理者
@@ -93,14 +87,11 @@ https://templatemo.com/tm-559-zay-shop
                     </ul>
 
                     <?php }elseif($_SESSION["user_admin"]=="user"){?>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto nav-link" style="float:right;" > 
                             <img src="./assets/img/girl.png" width="26" height="26"  >&nbsp;
                             <?php echo '嗨！' ,$user_name;?>
                         </ul>
-
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                            
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php">即時刊登區</a>
                             </li>
@@ -115,12 +106,8 @@ https://templatemo.com/tm-559-zay-shop
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">登出</a>
-                            </li>      
-                            
-                                  
+                            </li>              
                         </ul>
-
-                        
 
                     <?php }elseif($_SESSION["user_admin"]==""){?>
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -137,14 +124,9 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="login.php">登入</a>
                         </li>
                         </ul>
-
                         <?php }?>
                 </div>
-                <!-- <div class="text-end mt-2" >
-                    <button type="submit" class="btn btn-success btn-lg px-3"  onclick="location.href='login.php'">登入</button> 
-                </div> -->
             </div>
-
         </div>
     </nav>
     <!-- Close Header -->
@@ -175,37 +157,32 @@ https://templatemo.com/tm-559-zay-shop
                 </div>
             </div>
             <?php
-                        $data_nums = mysqli_num_rows($rs_lose); //統計總比數
-                        
-                        $per = 8; //每頁顯示項目數量
-                        $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
-                        if (!isset($_GET["page"])){ //假如$_GET["page"]未設置
-                            $page=1; //則在此設定起始頁數
-                        } else {
-                            $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
-                            
-                        }
-                        $start = ($page-1)*$per; //每一頁開始的資料序號
-                    
-                      
-                        $item_list=[];
-                           
+                $data_nums = mysqli_num_rows($rs_lose); //統計總比數
+                
+                $per = 8; //每頁顯示項目數量
+                $pages = ceil($data_nums/$per); //取得不小於值的下一個整數
+                if(!isset($_GET["page"])){ //假如$_GET["page"]未設置
+                    $page=1; //則在此設定起始頁數
+                } else {
+                    $page = intval($_GET["page"]); //確認頁數只能夠是數值資料                   
+                }
+                $start = ($page-1)*$per; //每一頁開始的資料序號
+
+                $item_list=[];
                 ?> 
             <div class="row">
-                <?php 
-               for($i=$start;$i<$start+$per && $i<$data_nums;$i++){
-                   
+            <?php 
+            for($i=$start;$i<$start+$per && $i<$data_nums;$i++){        
                 while($record=mysqli_fetch_assoc($rs_lose)){
                     array_push($item_list,$record);}?>
-                    
-                    
+            
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
                             <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/no_img.jpg'">
                         <div class="card-body">
                             <div class="flip" >
                                 <b><?php echo $item_list[$i]["lose_name"]?></b>
-                                <a href="message.php?user_name=<?php echo $item_list[$i]["user_name"] ?>&hidden_lose_id=<?php echo $item_list[$i]["lose_id"] ?>& lose_name=<?php echo $item_list[$i]["lose_name"] ?>" class="fas fa-comments" style="color:green;"></a>
+                                <a href="message.php?user_name=<?php echo $item_list[$i]["user_name"] ?>&hidden_lose_id=<?php echo $item_list[$i]["lose_id"] ?>" class="fas fa-comments" style="color:green;"></a>
                                 <div><font color="#D5D8DC" ><i class="fa fa-chevron-down" aria-hidden="true" ></i></font></div>
                             </div>
                             <div class="panel">
@@ -217,7 +194,7 @@ https://templatemo.com/tm-559-zay-shop
                             </div>
                         </div>
                             <?php if($_SESSION["user_admin"]=="admin"){?>
-                                <div  class="card-footer" style="background-color:white">
+                                <div class="card-footer" style="background-color:white">
                                     <div>
                                         <center>
                                             <a href=item_delete_mes.php?lose_id=<?php echo $item_list[$i]["lose_id"]?> style="text-decoration:none;"> <font color="green"><i class="fa-solid fa-trash"></i>&nbsp;刪除&nbsp;</font></a>
@@ -257,30 +234,19 @@ https://templatemo.com/tm-559-zay-shop
                          }?>
                          
                     <li><a class="page-link  rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="?page=<?php echo $pages?>">末頁</a></li>
-          
                 </p>
             </ul>
-            
             <div align="right"><?php echo '共 ',$data_nums,' 筆-在 ',$page,' 頁-共 ',$pages,' 頁';?></div>
         </div>
-        
     </section>
     
-   
-                    <script>
-                    $(function(){
-                    $(".flip").click(function(){
-                    $(".panel").slideToggle("slow");
-                   
-                    });});
-                    
-                    
-                    </script>  
-
-    <!-- Start Banner Hero -->
-    
-    <!-- End Banner Hero -->
-
+    <script>
+        $(function(){
+            $(".flip").click(function(){
+            $(".panel").slideToggle("slow");
+        });
+        });
+    </script>  
 
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">
