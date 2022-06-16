@@ -178,8 +178,7 @@ https://templatemo.com/tm-559-zay-shop
             
                 <div class="col-12 col-md-3 mb-4">
                     <div class="card h-100">           
-                            <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/no_img.jpg'">
-                        <div class="card-body">
+                    <img src="assets/img/<?php echo $item_list[$i]["lose_picture"]?>" class="card-img-top"  onerror="javascript:this.src='assets/img/no_img.jpg'">                        <div class="card-body">
                             <div class="flip" >
                                 <b><?php echo $item_list[$i]["lose_name"]?></b>
                                 <a href="message.php?user_name=<?php echo $item_list[$i]["user_name"] ?>&hidden_lose_id=<?php echo $item_list[$i]["lose_id"] ?>" class="fas fa-comments" style="color:green;"></a>
